@@ -1,0 +1,1 @@
+gcc *.c -lmlx -lX11  -lXext
