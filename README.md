@@ -9,3 +9,4 @@ primeiras tarefas:
 Notas:
 [_] Confirmar sobre uso de libft
 [_] Remover gitignore antes de entrega
+[_] Confirmar se pode usar errno, retirar se necessario
