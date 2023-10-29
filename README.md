@@ -3,10 +3,9 @@
 primeiras tarefas:
 [_] criar backlog no projects do git
 [_] abrir/fechar janela
-[_] kick starting parser map
+[x] kick starting parser map
+[_] Adicionar parsing de texturas e cores de chão e teto
 
 
 Notas:
-[_] Confirmar sobre uso de libft
 [_] Remover gitignore antes de entrega
-[_] Confirmar se pode usar errno, retirar se necessario

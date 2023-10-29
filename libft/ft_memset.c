@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 09:42:42 by asoler            #+#    #+#             */
-/*   Updated: 2023/10/29 17:48:05 by asoler           ###   ########.fr       */
+/*   Created: 2022/04/06 15:02:21 by asoler            #+#    #+#             */
+/*   Updated: 2022/04/06 22:25:05 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_map	read_map;
+	unsigned int	i;
+	char			*s1;
 
-	ft_memset((void *)&read_map, 0, sizeof(t_map));
-	if (argc > 2)
-		return (printf("too many arguments\n"));
-	if (cub3d_read_map(argv[1], &read_map))
-		exit (1);
-	printf("Success reading map!\n");
-	return (0);
+	i = 0;
+	s1 = (char *) s;
+	while (i < n)
+	{
+		s1[i] = c;
+		i++;
+	}
+	return (s);
 }
