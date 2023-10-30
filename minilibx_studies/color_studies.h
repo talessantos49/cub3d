@@ -2,10 +2,18 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
+# include <string.h>
 # define COLOR_STUDIES_H
-# define HEIGHT 800
-# define WIGTH 600
+# define HEIGHT 480
+# define WIGTH 640
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_mlx
 {
