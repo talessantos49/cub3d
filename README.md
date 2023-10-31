@@ -12,4 +12,5 @@ primeiras tarefas:
 
 
 Notas:
+
 [_] Remover gitignore antes de entrega
