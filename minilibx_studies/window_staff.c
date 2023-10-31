@@ -18,7 +18,7 @@ int	close_window(t_mlx *mlx)
 void	open_window(t_mlx *mlx)
 {
 	mlx->init = mlx_init();
-	mlx->window = mlx_new_window(mlx->init, WIGTH, HEIGHT, "minilobx studies");
+	mlx->window = mlx_new_window(mlx->init, WIDTH, HEIGHT, "minilibx studies");
 	mlx_key_hook(mlx->window, &key_input, mlx);
 	mlx_loop_hook(mlx->init, &paint_something, mlx);
 	mlx_hook(mlx->window, 17, 0, &close_window, mlx); //x da janela

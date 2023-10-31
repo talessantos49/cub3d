@@ -5,7 +5,7 @@
 # include <string.h>
 # define COLOR_STUDIES_H
 # define HEIGHT 480
-# define WIGTH 640
+# define WIDTH 640
 
 typedef struct	s_data {
 	void	*img;

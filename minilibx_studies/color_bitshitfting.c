@@ -1,6 +1,8 @@
 #include "color_studies.h"
-#define SQUARE_SIZE 200
-#define SQUARE_SIDE 100
+#define CUBE_SIZE 100
+#define CUBE_X (WIDTH - CUBE_SIZE) / 2
+#define CUBE_Y (HEIGHT - CUBE_SIZE) / 2
+#define CUBE_DEPTH 50
 
 int	get_t(int trgb)
 {
@@ -46,19 +48,30 @@ int	paint_something(t_mlx *mlx)
 {
 	int	green = create_trgb(0, 0, 255, 0);
 	int	blue = create_trgb(0, 0, 0, 255);
+	int line_color = create_trgb(0, 255, 0, 0);
 	t_data	img;
 	t_data	temp_img;
 
-	img.img = mlx_new_image(mlx->init, WIGTH, HEIGHT);
-	temp_img.img = mlx_new_image(mlx->init, WIGTH, HEIGHT);
-	for (int x = 0; x < WIGTH; x++)
+	img.img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
+	temp_img.img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
+	for (int x = 0; x < WIDTH; x++)
 	{
 		for (int y = 0; y < HEIGHT; y++)
 		{
-			if (x >= SQUARE_SIZE && x <= SQUARE_SIZE + SQUARE_SIDE && y >= SQUARE_SIZE && y <= SQUARE_SIZE + SQUARE_SIDE)
-				put_pixel(mlx, x, y, green, &img);
-			else
-				put_pixel(mlx, x, y, blue, &img);
+			int z = abs(x - CUBE_X - CUBE_SIZE / 2) + abs(y - CUBE_Y - CUBE_SIZE / 2);
+			if (x >= CUBE_X && x < CUBE_X + CUBE_SIZE && \
+				y >= CUBE_Y && y < CUBE_Y + CUBE_SIZE && \
+				z <= CUBE_DEPTH)
+			{
+				if (x == CUBE_X || x == CUBE_X + CUBE_SIZE - 1 ||
+					y == CUBE_Y || y == CUBE_Y + CUBE_SIZE - 1 ||
+					z == 0 || z == CUBE_DEPTH)
+					put_pixel(mlx, x, y, line_color, &img);
+				// else
+					// put_pixel(mlx, x, y, green, &img);
+			}
+			// else
+			// 	put_pixel(mlx, x, y, blue, &img);
 		}
 	}
 	memcpy((void *)&temp_img,(void *)&img, sizeof(t_data));
