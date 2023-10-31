@@ -1,0 +1,4 @@
+test.cub
+libft/*.o
+libft.a
+*.o
