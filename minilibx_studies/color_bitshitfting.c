@@ -3,17 +3,17 @@
 #define VERTICE_2 {256, 128}
 #define VERTICE_3 {128, 256}
 #define VERTICE_4 {256, 256}
-#define VERTICE_5 {160, 320}
+#define VERTICE_5 {192, 320}
 #define VERTICE_6 {320, 320}
-#define VERTICE_7 {320, 160}
+#define VERTICE_7 {320, 192}
 // aqui encima conversão para plano 480 * 480
 // Vértice 1 (4,4)
 // Vértice 2 (8,4)
 // Vértice 3 (4,8)
 // Vértice 4 (8,8)
-// Vértice 5 (5, 10)
+// Vértice 5 (6, 10)
 // Vértice 6 (10, 10)
-// Vértice 7 (10, 5)
+// Vértice 7 (10, 6)
 
 int	get_t(int trgb)
 {
@@ -76,19 +76,17 @@ int	paint_something(t_mlx *mlx)
 	data.img = &img;
 	data.mlx = mlx;
 	data.line_color = green;
-	bresenham(point3, point4, &data);
-	bresenham(point1, point2, &data);
-	data.line_color = blue;
 	bresenham(point3, point5, &data);
-	data.line_color = green;
 	bresenham(point5, point6, &data);
 	bresenham(point2, point7, &data);
-
-	data.line_color = blue;
+	bresenham(point7, point6, &data);
 	bresenham(point4, point6, &data);
-	// bresenham(point6, point7, &data);
-	// bresenham(point1, point3, &data);
-	// bresenham(point1, point3, &data);
+
+	// data.line_color = blue;
+	bresenham(point3, point4, &data);
+	bresenham(point1, point2, &data);
+	bresenham(point1, point3, &data);
+	bresenham(point2, point4, &data);
 
 	memcpy((void *)&temp_img,(void *)&img, sizeof(t_data));
 	mlx_put_image_to_window(mlx->init, mlx->window, temp_img.img, 0, 0);
