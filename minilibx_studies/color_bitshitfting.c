@@ -1,8 +1,19 @@
 #include "color_studies.h"
-#define CUBE_SIZE 100
-#define CUBE_X (WIDTH - CUBE_SIZE) / 2
-#define CUBE_Y (HEIGHT - CUBE_SIZE) / 2
-#define CUBE_DEPTH 50
+#define VERTICE_1 {128, 128}
+#define VERTICE_2 {256, 128}
+#define VERTICE_3 {128, 256}
+#define VERTICE_4 {256, 256}
+#define VERTICE_5 {160, 320}
+#define VERTICE_6 {320, 320}
+#define VERTICE_7 {320, 160}
+// aqui encima conversão para plano 480 * 480
+// Vértice 1 (4,4)
+// Vértice 2 (8,4)
+// Vértice 3 (4,8)
+// Vértice 4 (8,8)
+// Vértice 5 (5, 10)
+// Vértice 6 (10, 10)
+// Vértice 7 (10, 5)
 
 int	get_t(int trgb)
 {
@@ -51,29 +62,34 @@ int	paint_something(t_mlx *mlx)
 	int line_color = create_trgb(0, 255, 0, 0);
 	t_data	img;
 	t_data	temp_img;
+	t_pixel	data;
+	t_point	point1 = VERTICE_1;
+	t_point	point2 = VERTICE_2;
+	t_point	point3 = VERTICE_3;
+	t_point	point4 = VERTICE_4;
+	t_point	point5 = VERTICE_5;
+	t_point	point6 = VERTICE_6;
+	t_point	point7 = VERTICE_7;
 
 	img.img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
 	temp_img.img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
-	for (int x = 0; x < WIDTH; x++)
-	{
-		for (int y = 0; y < HEIGHT; y++)
-		{
-			int z = abs(x - CUBE_X - CUBE_SIZE / 2) + abs(y - CUBE_Y - CUBE_SIZE / 2);
-			if (x >= CUBE_X && x < CUBE_X + CUBE_SIZE && \
-				y >= CUBE_Y && y < CUBE_Y + CUBE_SIZE && \
-				z <= CUBE_DEPTH)
-			{
-				if (x == CUBE_X || x == CUBE_X + CUBE_SIZE - 1 ||
-					y == CUBE_Y || y == CUBE_Y + CUBE_SIZE - 1 ||
-					z == 0 || z == CUBE_DEPTH)
-					put_pixel(mlx, x, y, line_color, &img);
-				// else
-					// put_pixel(mlx, x, y, green, &img);
-			}
-			// else
-			// 	put_pixel(mlx, x, y, blue, &img);
-		}
-	}
+	data.img = &img;
+	data.mlx = mlx;
+	data.line_color = green;
+	bresenham(point3, point4, &data);
+	bresenham(point1, point2, &data);
+	data.line_color = blue;
+	bresenham(point3, point5, &data);
+	data.line_color = green;
+	bresenham(point5, point6, &data);
+	bresenham(point2, point7, &data);
+
+	data.line_color = blue;
+	bresenham(point4, point6, &data);
+	// bresenham(point6, point7, &data);
+	// bresenham(point1, point3, &data);
+	// bresenham(point1, point3, &data);
+
 	memcpy((void *)&temp_img,(void *)&img, sizeof(t_data));
 	mlx_put_image_to_window(mlx->init, mlx->window, temp_img.img, 0, 0);
 }

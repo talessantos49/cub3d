@@ -21,8 +21,23 @@ typedef struct s_mlx
 	void		*window;
 }	t_mlx;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_pixel
+{
+	t_mlx	*mlx;
+	int		line_color;
+	t_data	*img;
+}	t_pixel;
+
 
 int	paint_something(t_mlx *mlx);
 int	close_window(t_mlx *mlx);
+int	put_pixel(t_mlx *mlx, int x, int y, int trgb, t_data *img);
+int	bresenham(t_point point1, t_point point2, t_pixel *data);
 
 #endif
