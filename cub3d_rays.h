@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_rays.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 09:42:42 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 21:52:09 by asoler           ###   ########.fr       */
+/*   Created: 2023/11/04 21:55:55 by asoler            #+#    #+#             */
+/*   Updated: 2023/11/04 22:16:05 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_RAYS_H
+/////this is temporary ///////
+# define VERTICE_1 {128, 128}
+# define VERTICE_2 {256, 128}
+# define VERTICE_3 {128, 256}
+# define VERTICE_4 {256, 256}
+# define VERTICE_5 {192, 320}
+# define VERTICE_6 {320, 320}
+# define VERTICE_7 {320, 192}
+//////////////////////////////
+# define CUB3D_RAYS_H
 
-int	main(int argc, char *argv[])
-{
-	t_map	read_map;
-	t_mlx	mlx;
-
-	ft_memset((void *)&read_map, 0, sizeof(t_map));
-	if (argc != 2)
-		return (printf("Try something like this: ./cub3d <map>.cub\n"));
-	if (cub3d_read_map(argv[1], &read_map))
-		exit (1);
-	if (cub3d_open_window(&mlx))
-		exit (1);
-	return (0);
-}
+#endif
