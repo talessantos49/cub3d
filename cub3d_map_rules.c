@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2023/10/29 17:43:50 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/04 22:00:08 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 	has_error = FALSE;
 	str_map = ft_calloc(1, sizeof(char));
 	line = get_next_line(fd);
-	if (!line || *line == '\n') // TODO: Evita segfault enquanto nao implementar o parser de texturas
+	if (!line || *line == '\n') // TODO: \n Evita segfault enquanto nao implementar o parser de texturas
 		return (printf ("ERROR: Invalid map\n"));
 	while (line)
 	{

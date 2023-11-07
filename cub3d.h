@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/10/29 17:55:21 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/04 22:04:29 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
+# include "cub3d_window.h"
+# include "cub3d_rays.h"
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
+# define WALL_BLOCK_SIZE 20
 
 // structure sugestion for the next develop parsing steps
 // typedef struct s_texture
@@ -30,13 +33,19 @@
 // 	void ea;
 // }	t_texture;
 
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	p;
+}	t_bresenham;
+
 typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color;
-
 
 typedef struct s_map
 {

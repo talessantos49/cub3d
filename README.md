@@ -4,7 +4,7 @@ primeiras tarefas:
 
 [x] criar backlog no projects do git
 
-[_] abrir/fechar janela
+[x] abrir/fechar janela
 
 [x] kick starting parser map
 
