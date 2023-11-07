@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 22:00:08 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/05 00:06:33 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	different_characters(char *line)
 		return (printf("ERROR: Map most be sorrounded by walls\n"));
 	while (*line)
 	{
-		if (*line != 'N' && *line != 'E' && *line != 'S' && \
+		if (*line != 'N' && *line != 'E' && *line != 'W' && \
 			*line != 'S' && *line != '0' && *line != '1')
 			return (1);
 		line++;

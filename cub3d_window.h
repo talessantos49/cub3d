@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 22:10:03 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/04 23:31:22 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@
 # define CUB3D_WINDOW_H
 # define HEIGHT 480
 # define WIDTH 640
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
+typedef struct s_map
+{
+	char	**map;
+	int		height;
+	t_color	floor;
+	t_color	ceiling;
+}	t_map;
 
 typedef struct s_data {
 	void	*img;
@@ -31,6 +46,7 @@ typedef struct s_mlx
 {
 	void	*init;
 	void	*window;
+	t_map	*map;
 }	t_mlx;
 
 typedef struct s_point
@@ -48,7 +64,7 @@ typedef struct s_pixel
 
 int	cub3d_close_window(t_mlx *mlx);
 int	cub3d_open_window(t_mlx *mlx);
-int	paint_something(t_mlx *mlx);
+int	render_image(t_mlx *mlx);
 int	put_pixel(t_mlx *mlx, t_point point, int trgb, t_data *img);
 int	bresenham(t_point point1, t_point point2, t_pixel *data);
 

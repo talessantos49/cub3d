@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 22:04:29 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/05 00:26:24 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,8 @@ typedef struct s_bresenham
 	int	p;
 }	t_bresenham;
 
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
-
-typedef struct s_map
-{
-	char	**map;
-	int		height;
-	t_color	floor;
-	t_color	ceiling;
-}	t_map;
-
 int	cub3d_read_map(char *map_path, t_map *read_map);
 int	cub3d_parse_map(int fd, t_map *read_map);
+int	create_trgb(int t, int r, int g, int b);
 
 #endif

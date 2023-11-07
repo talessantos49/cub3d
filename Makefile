@@ -11,6 +11,7 @@ SRC =	cub3d.c \
 		cub3d_map_rules.c \
 		cub3d_mlx_utils.c \
 		bresenham_algorithm.c \
+		cub3d_ray_casting.c \
 		cub3d_window.c 
 
 OBJ = $(SRC:.c=.o)
