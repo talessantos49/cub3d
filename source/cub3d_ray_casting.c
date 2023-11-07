@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_ray_casting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/05 00:28:53 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/07 18:53:47 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	print_wall_block(t_point point, t_pixel *data);
 
@@ -47,7 +47,7 @@ void	print_wall_block(t_point point, t_pixel *data)
 
 void	print_cenario(t_pixel *data)
 {
-	t_map *map;
+	t_map	*map;
 	t_point	p;
 	char	c;
 

@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/05 00:26:24 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/07 18:50:24 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# include "includes/get_next_line.h"
-# include "includes/libft.h"
+# include "get_next_line.h"
+# include "libft.h"
+# include "cub3d_rays.h"
+# include "cub3d_window.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
-# include "cub3d_window.h"
-# include "cub3d_rays.h"
+# include <mlx.h>
+# include <X11/keysym.h>
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0

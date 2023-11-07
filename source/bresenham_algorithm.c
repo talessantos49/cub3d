@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham_algorithm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:20 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 22:09:39 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/07 18:56:39 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	call_put_pixel(int x, int y, t_pixel *data)
 {
@@ -18,7 +18,7 @@ int	call_put_pixel(int x, int y, t_pixel *data)
 
 	point.x = x;
 	point.y = y;
-	put_pixel(data->mlx, point, data->line_color, data->img);
+	return (put_pixel(point, data->line_color, data->img));
 }
 
 int	print_vetical_line(int x, int y1, int size, t_pixel *data)

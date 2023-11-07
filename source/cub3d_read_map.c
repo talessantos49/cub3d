@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_read_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/10/29 17:47:13 by asoler           ###   ########.fr       */
+/*   Updated: 2023/11/07 18:34:02 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	verify_map_file_type(char *map_name)
 {

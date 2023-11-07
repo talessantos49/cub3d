@@ -1,4 +1,4 @@
-NAME = ../libft.a
+NAME = libft.a
 
 CC = gcc
 
