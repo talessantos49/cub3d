@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/07 18:50:24 by tasantos         ###   ########.fr       */
+/*   Updated: 2023/11/19 23:49:35 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
-# include <mlx.h>
-# include <X11/keysym.h>
+// # include <mlx.h>
+// # include <X11/keysym.h>
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
 # define WALL_BLOCK_SIZE 20
+# define  STR_SPACES	" \t\r\f\v"
 
 // structure sugestion for the next develop parsing steps
 // typedef struct s_texture
@@ -45,5 +46,8 @@ typedef struct s_bresenham
 int	cub3d_read_map(char *map_path, t_map *read_map);
 int	cub3d_parse_map(int fd, t_map *read_map);
 int	create_trgb(int t, int r, int g, int b);
+void	clean_before_exit(char *str, int error);
+int	line_too_long(t_map *map);
+
 
 #endif

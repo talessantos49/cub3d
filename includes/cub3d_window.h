@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/07 18:51:18 by tasantos         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:09:54 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ typedef struct s_map
 {
 	char	**map;
 	int		height;
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
 	t_color	floor;
 	t_color	ceiling;
 }	t_map;
@@ -65,5 +69,6 @@ int	cub3d_open_window(t_mlx *mlx);
 int	render_image(t_mlx *mlx);
 int	put_pixel(t_point point, int trgb, t_data *img);
 int	bresenham(t_point point1, t_point point2, t_pixel *data);
+void	parser_map_line(char *line, t_map *map);
 
 #endif
