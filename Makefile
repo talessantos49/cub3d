@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+         #
+#    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/11/07 18:58:58 by tasantos         ###   ########.fr        #
+#    Updated: 2023/11/19 19:57:30 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,12 @@ HEADERS_LIST	= cub3d.h \
 SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
 		cub3d_map_rules.c \
-		cub3d_mlx_utils.c \
+		parser_map.c \
+		clear.c
+		# cub3d_mlx_utils.c \
 		bresenham_algorithm.c \
 		cub3d_ray_casting.c \
-		cub3d_window.c
+		cub3d_window.c \
 
 GREEN			= \033[0;32m
 
@@ -45,7 +47,8 @@ LIBFT			= ${LIBFT_DIR}libft.a
 
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -g3
-LIBRARIES		= -lmlx -lXext -lX11
+LIBRARIES		=
+#  -lmlx -lXext -lX11
 
 RM 				= rm -f
 
