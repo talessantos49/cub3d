@@ -6,11 +6,30 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 09:42:42 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/04 22:52:07 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/02 16:52:42 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	free_staff(t_mlx *mlx)
+{
+	free(mlx->init);
+	free_map(mlx->map->map);
+}
 
 int	main(int argc, char *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/02 10:30:33 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/02 15:43:09 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void	print_viewer(t_point point, t_pixel *data)
 	bresenham(point, point2, data);
 }
 
-void	print_cenario(t_pixel *data)
+t_point	print_cenario(t_pixel *data)
 {
 	t_map	*map;
 	t_point	p;
+	t_point	viewer_pos;
 	char	c;
 
 	ft_memset((void *)&p, 0, sizeof(t_point));
@@ -59,15 +60,20 @@ void	print_cenario(t_pixel *data)
 			if (c == '1')
 				print_wall_block(p, data);
 			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+			{
 				print_viewer(p, data);
+				viewer_pos.y = p.y;
+				viewer_pos.x = p.x;
+			}
 			p.x++;
 		}
 		p.x = 0;
 		p.y++;
 	}
+	return (viewer_pos);
 }
 
-void	ray_casting(t_pixel *data)
-{
-	print_cenario(data);
-}
+// void	ray_casting(t_pixel *data)
+// {
+	
+// }

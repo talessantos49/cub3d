@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+         #
+#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/11/07 18:58:58 by tasantos         ###   ########.fr        #
+#    Updated: 2023/12/02 15:46:43 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,13 +52,6 @@ RM 				= rm -f
 VALGRIND		= @valgrind --leak-check=full --show-leak-kinds=all \
 --track-origins=yes --quiet --tool=memcheck --keep-debuginfo=yes --verbose \
 --log-file=valgrind-out.txt
-
-# $(NAME): $(OBJ) $(MAKE_LIBFT)
-# 	$(CC) $(WFLAGS) $(OBJ) -L ./ -lft -L./ -lmlx -L./ -lX11 -L./ -lXext -o $(NAME)
-
-# %.o: %.c
-# 	$(CCW) -g3 $(FLAGS) -c $< -o $@
-
 
 all:			${NAME}
 				@echo "$(GREEN)Cub3D Was compiled!"

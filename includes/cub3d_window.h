@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/07 18:51:18 by tasantos         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:47:46 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,28 @@ typedef struct s_data {
 	int		endian;
 }	t_data;
 
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}	t_point;
+
 typedef struct s_mlx
 {
 	void	*init;
 	void	*window;
 	t_map	*map;
+	t_point	camera_pos;
+	void	*data_img;
+	void	*temp_img;
 }	t_mlx;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
 
 typedef struct s_pixel
 {
 	t_mlx	*mlx;
 	int		line_color;
 	t_data	*img;
+	// t_point	camera_pos;
 }	t_pixel;
 
 int	cub3d_close_window(t_mlx *mlx);

@@ -1,74 +1,38 @@
-==22818== Memcheck, a memory error detector
-==22818== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==22818== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==22818== Command: ./cub3d maps/map_example.cub
-==22818== Parent PID: 22817
-==22818== 
-==22818== 
-==22818== HEAP SUMMARY:
-==22818==     in use at exit: 16,456 bytes in 153 blocks
-==22818==   total heap usage: 1,108 allocs, 955 frees, 144,645 bytes allocated
-==22818== 
-==22818== 72 bytes in 1 blocks are still reachable in loss record 1 of 6
-==22818==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x40352D: ft_split (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4029CC: cub3d_parse_map (cub3d_map_rules.c:90)
-==22818==    by 0x402648: cub3d_read_map (cub3d_read_map.c:36)
-==22818==    by 0x4024F9: main (cub3d.c:23)
-==22818== 
-==22818== 256 bytes in 8 blocks are still reachable in loss record 2 of 6
-==22818==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x403D0F: ft_strdup (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x403735: result_array (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x40358C: ft_split (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4029CC: cub3d_parse_map (cub3d_map_rules.c:90)
-==22818==    by 0x402648: cub3d_read_map (cub3d_read_map.c:36)
-==22818==    by 0x4024F9: main (cub3d.c:23)
-==22818== 
-==22818== 4,896 bytes in 36 blocks are indirectly lost in loss record 3 of 6
-==22818==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x486BBB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==22818==    by 0x4044FE: mlx_int_new_xshm_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4047A3: mlx_new_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x402B21: render_image (cub3d_mlx_utils.c:42)
-==22818==    by 0x4042DE: mlx_loop (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x40309A: cub3d_open_window (cub3d_window.c:37)
-==22818==    by 0x40251D: main (cub3d.c:26)
-==22818== 
-==22818== 4,896 bytes in 36 blocks are indirectly lost in loss record 4 of 6
-==22818==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x486BBB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==22818==    by 0x4044FE: mlx_int_new_xshm_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4047A3: mlx_new_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x402B3B: render_image (cub3d_mlx_utils.c:43)
-==22818==    by 0x4042DE: mlx_loop (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x40309A: cub3d_open_window (cub3d_window.c:37)
-==22818==    by 0x40251D: main (cub3d.c:26)
-==22818== 
-==22818== 8,064 (3,168 direct, 4,896 indirect) bytes in 36 blocks are definitely lost in loss record 5 of 6
-==22818==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x4044B0: mlx_int_new_xshm_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4047A3: mlx_new_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x402B21: render_image (cub3d_mlx_utils.c:42)
-==22818==    by 0x4042DE: mlx_loop (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x40309A: cub3d_open_window (cub3d_window.c:37)
-==22818==    by 0x40251D: main (cub3d.c:26)
-==22818== 
-==22818== 8,064 (3,168 direct, 4,896 indirect) bytes in 36 blocks are definitely lost in loss record 6 of 6
-==22818==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==22818==    by 0x4044B0: mlx_int_new_xshm_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x4047A3: mlx_new_image (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x402B3B: render_image (cub3d_mlx_utils.c:43)
-==22818==    by 0x4042DE: mlx_loop (in /nfs/homes/tasantos/cub3d/cub3d)
-==22818==    by 0x40309A: cub3d_open_window (cub3d_window.c:37)
-==22818==    by 0x40251D: main (cub3d.c:26)
-==22818== 
-==22818== LEAK SUMMARY:
-==22818==    definitely lost: 6,336 bytes in 72 blocks
-==22818==    indirectly lost: 9,792 bytes in 72 blocks
-==22818==      possibly lost: 0 bytes in 0 blocks
-==22818==    still reachable: 328 bytes in 9 blocks
-==22818==         suppressed: 0 bytes in 0 blocks
-==22818== 
-==22818== For lists of detected and suppressed errors, rerun with: -s
-==22818== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 1 from 1)
+==18610== Memcheck, a memory error detector
+==18610== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18610== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==18610== Command: ./cub3d maps/map_example.cub
+==18610== Parent PID: 18609
+==18610== 
+==18610== 
+==18610== HEAP SUMMARY:
+==18610==     in use at exit: 272 bytes in 2 blocks
+==18610==   total heap usage: 545 allocs, 543 frees, 98,670 bytes allocated
+==18610== 
+==18610== 136 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==18610==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==18610==    by 0x4869BB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==18610==    by 0x10D48E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==18610==    by 0x10D772: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==18610==    by 0x10AED1: render_image (cub3d_mlx_utils.c:42)
+==18610==    by 0x10B640: cub3d_open_window (cub3d_window.c:65)
+==18610==    by 0x10A971: main (cub3d.c:45)
+==18610== 
+==18610== 136 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==18610==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==18610==    by 0x4869BB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==18610==    by 0x10D48E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==18610==    by 0x10D772: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==18610==    by 0x10AEF1: render_image (cub3d_mlx_utils.c:43)
+==18610==    by 0x10B640: cub3d_open_window (cub3d_window.c:65)
+==18610==    by 0x10A971: main (cub3d.c:45)
+==18610== 
+==18610== LEAK SUMMARY:
+==18610==    definitely lost: 272 bytes in 2 blocks
+==18610==    indirectly lost: 0 bytes in 0 blocks
+==18610==      possibly lost: 0 bytes in 0 blocks
+==18610==    still reachable: 0 bytes in 0 blocks
+==18610==         suppressed: 0 bytes in 0 blocks
+==18610== 
+==18610== For lists of detected and suppressed errors, rerun with: -s
+==18610== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 1 from 1)
