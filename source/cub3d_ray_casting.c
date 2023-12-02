@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_ray_casting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/07 18:53:47 by tasantos         ###   ########.fr       */
+/*   Updated: 2023/12/02 10:30:33 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	print_wall_block(t_point point, t_pixel *data);
+void	print_wall_block(t_point point, t_pixel *data)
+{
+	t_point	p;
+
+	p.x = point.x * WALL_BLOCK_SIZE;
+	p.y = point.y * WALL_BLOCK_SIZE;
+	while (++p.x < WALL_BLOCK_SIZE + (point.x * WALL_BLOCK_SIZE))
+	{
+		while (++p.y < WALL_BLOCK_SIZE + (point.y * WALL_BLOCK_SIZE))
+			call_put_pixel(p.x, p.y, data);
+		p.y = (point.y * WALL_BLOCK_SIZE);
+	}
+}
 
 void	print_viewer(t_point point, t_pixel *data)
 {
@@ -29,20 +41,6 @@ void	print_viewer(t_point point, t_pixel *data)
 	point2.x += WALL_BLOCK_SIZE;
 	point2.y += WALL_BLOCK_SIZE;
 	bresenham(point, point2, data);
-}
-
-void	print_wall_block(t_point point, t_pixel *data)
-{
-	t_point	p;
-
-	p.x = point.x * WALL_BLOCK_SIZE;
-	p.y = point.y * WALL_BLOCK_SIZE;
-	while (++p.x < WALL_BLOCK_SIZE + (point.x * WALL_BLOCK_SIZE))
-	{
-		while (++p.y < WALL_BLOCK_SIZE + (point.y * WALL_BLOCK_SIZE))
-			call_put_pixel(p.x, p.y, data);
-		p.y = (point.y * WALL_BLOCK_SIZE);
-	}
 }
 
 void	print_cenario(t_pixel *data)
