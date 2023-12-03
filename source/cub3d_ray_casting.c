@@ -6,81 +6,68 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 15:14:30 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/03 17:48:46 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_camera_direction(t_point p, t_point cord, t_pixel *data)
-{
-	if (data->camera_dir == 'N' || data->camera_dir == 'S')
-		if (p.y <= (cord.y - VIEWER_SIZE) && \
-			p.y >= (cord.y - (VIEWER_SIZE * 2)))
-			call_put_pixel(p.x, p.y, data);
-	if (data->camera_dir == 'N' && \
-		p.y <= (cord.y - VIEWER_SIZE * 2) && \
-		p.x <= (cord.x - VIEWER_SIZE) && \
-		p.x >= (cord.x - (VIEWER_SIZE * 2)))
-		call_put_pixel(p.x, p.y, data);
-	else if (data->camera_dir == 'S' && \
-			p.y >= (cord.y - VIEWER_SIZE) && \
-			p.x <= (cord.x - VIEWER_SIZE) && \
-			p.x >= (cord.x - (VIEWER_SIZE * 2)))
-		call_put_pixel(p.x, p.y, data);
-	if (data->camera_dir == 'E' || data->camera_dir == 'W')
-		if (p.x <= (cord.x - VIEWER_SIZE) && \
-			p.x >= (cord.x - (VIEWER_SIZE * 2)))
-			call_put_pixel(p.x, p.y, data);
-	if (data->camera_dir == 'E' && \
-		p.y <= (cord.y - VIEWER_SIZE) && \
-		p.y >= (cord.y - (VIEWER_SIZE * 2)) && \
-		p.x <= (cord.x - (VIEWER_SIZE * 2)))
-		call_put_pixel(p.x, p.y, data);
-	else if (data->camera_dir == 'W' && \
-			p.y <= (cord.y - VIEWER_SIZE) && \
-			p.y >= (cord.y - VIEWER_SIZE * 2) && \
-			p.x >= (cord.x - VIEWER_SIZE))
-		call_put_pixel(p.x, p.y, data);
-}
-
-void	draw_blocks(t_point point, t_pixel *data, int size)
+void	draw_block(t_point coord, t_pixel *data, int size)
 {
 	t_point	p;
-	t_point	cord;
+	t_point	end_coord;
 
-	p.x = point.x * BLOCK_SIZE;
-	p.y = point.y * BLOCK_SIZE;
-	cord.x = BLOCK_SIZE + (point.x * BLOCK_SIZE);
-	cord.y = BLOCK_SIZE + (point.y * BLOCK_SIZE);
-	while (++p.x < cord.x)
+	if (size == BLOCK_SIZE)
 	{
-		while (++p.y < cord.y)
-		{
-			if (size == VIEWER_SIZE)
-				draw_camera_direction(p, cord, data);
-			else
-				call_put_pixel(p.x, p.y, data);
-		}
-		p.y = (point.y * BLOCK_SIZE);
+		coord.x *= size;
+		coord.y *= size;
+	}
+	p = coord;
+	end_coord.x = size + p.x;
+	end_coord.y = size + p.y;
+	while (++p.x < end_coord.x)
+	{
+		while (++p.y < end_coord.y)
+			call_put_pixel(p.x, p.y, data);
+		p.y = coord.y;
 	}
 }
 
-void	draw_viewer(t_point point, t_pixel *data, char dir)
+void	draw_viewer_size_block(t_point coord, t_pixel *data)
 {
-	t_point	point2;
+	t_point	p;
+	t_point	coord2;
+	t_point	init_coord;
+
+	coord2.x = coord.x * BLOCK_SIZE;
+	coord2.y = coord.y * BLOCK_SIZE;
+	init_coord = coord2;
+	ft_memset((void *)&p, 0, sizeof(t_point));
+	while (++p.x < 3)
+	{
+		while (++p.y < 3)
+		{
+			// if ((!p.x || p.x == 2) && (!p.y || p.y == 2))
+			// 	continue;
+			draw_block(coord2, data, VIEWER_SIZE);
+			coord2.y += VIEWER_SIZE * (p.y + 1);
+		}
+		p.y = 0;
+		coord2.y = init_coord.y;
+		coord2.x = init_coord.x + VIEWER_SIZE * (p.x + 1);
+	}
+}
+
+t_point	draw_viewer(t_point coord, t_pixel *data, char dir)
+{
 	int		bckp_color;
 
 	bckp_color = data->line_color;
 	data->line_color = create_trgb(0, 0, 100, 200);
 	data->camera_dir = dir;
-	draw_blocks(point, data, VIEWER_SIZE);
+	draw_viewer_size_block(coord, data);
 	data->line_color = bckp_color;
-	point.x *= BLOCK_SIZE;
-	point.y *= BLOCK_SIZE;
-	point2 = point;
-	point2.x += BLOCK_SIZE;
-	point2.y += BLOCK_SIZE;
+	return (coord);
 }
 
 t_point	draw_scenario(t_pixel *data)
@@ -98,12 +85,9 @@ t_point	draw_scenario(t_pixel *data)
 		{
 			c = map->map[p.y][p.x];
 			if (c == '1')
-				draw_blocks(p, data, BLOCK_SIZE);
+				draw_block(p, data, BLOCK_SIZE);
 			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-			{
-				draw_viewer(p, data, c);
-				viewer_pos = p;
-			}
+				viewer_pos = draw_viewer(p, data, c);
 			p.x++;
 		}
 		p.x = 0;
