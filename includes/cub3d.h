@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/02 16:05:23 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/03 13:26:58 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
-# define WALL_BLOCK_SIZE 20
+# define BLOCK_SIZE 18
+# define VIEWER_SIZE BLOCK_SIZE / 3
 
 // structure sugestion for the next develop parsing steps
 // typedef struct s_texture

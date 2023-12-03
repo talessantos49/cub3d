@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/02 16:47:46 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/03 14:15:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_pixel
 	t_mlx	*mlx;
 	int		line_color;
 	t_data	*img;
-	// t_point	camera_pos;
+	char	camera_dir;
 }	t_pixel;
 
 int	cub3d_close_window(t_mlx *mlx);

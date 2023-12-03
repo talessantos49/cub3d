@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/02 17:06:02 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/03 14:09:48 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	move_player(t_mlx *mlx, int x, int y, int key)
 {
 	t_point		next;
-	static int	moves;
 
 	next.x = x;
 	next.y = y;
@@ -31,11 +30,9 @@ void	move_player(t_mlx *mlx, int x, int y, int key)
 	{
 		mlx_clear_window(mlx->init, mlx->window);
 		mlx->map->map[y][x] = '0';
-		// [TODO] Tratar orientação
+		// [TODO] Tratar orientação/move player smoothly
 		mlx->map->map[next.y][next.x] = 'N';
 		render_image(mlx);
-		moves++;
-		ft_printf("Move Counter: %d\n", moves);
 	}
 }
 
