@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 17:48:46 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:36:39 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ void	draw_viewer_size_block(t_point coord, t_pixel *data)
 	coord2.y = coord.y * BLOCK_SIZE;
 	init_coord = coord2;
 	ft_memset((void *)&p, 0, sizeof(t_point));
-	while (++p.x < 3)
+	while (p.x < N_MINICUBES)
 	{
-		while (++p.y < 3)
+		coord2.x = init_coord.x + (VIEWER_SIZE * p.x);
+		while (p.y < N_MINICUBES)
 		{
-			// if ((!p.x || p.x == 2) && (!p.y || p.y == 2))
-			// 	continue;
+			coord2.y = init_coord.y + (VIEWER_SIZE * p.y);
 			draw_block(coord2, data, VIEWER_SIZE);
-			coord2.y += VIEWER_SIZE * (p.y + 1);
+			p.y++;
 		}
 		p.y = 0;
 		coord2.y = init_coord.y;
-		coord2.x = init_coord.x + VIEWER_SIZE * (p.x + 1);
+		p.x++;
 	}
 }
 

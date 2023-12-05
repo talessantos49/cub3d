@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 13:26:58 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/05 19:36:27 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define TRUE 1
 # define FALSE 0
 # define BLOCK_SIZE 18
-# define VIEWER_SIZE BLOCK_SIZE / 3
+# define VIEWER_SIZE 6
+# define N_MINICUBES BLOCK_SIZE / VIEWER_SIZE
 
 // structure sugestion for the next develop parsing steps
 // typedef struct s_texture
