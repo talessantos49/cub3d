@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/12/02 15:46:43 by asoler           ###   ########.fr        #
+#    Updated: 2023/12/06 19:49:39 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_mlx_utils.c \
 		bresenham_algorithm.c \
 		cub3d_ray_casting.c \
+		cub3d_draw.c \
 		cub3d_window.c
 
 GREEN			= \033[0;32m
