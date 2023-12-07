@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 14:15:47 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/07 21:05:19 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_mlx
 	t_point	camera_pos;
 	void	*data_img;
 	void	*temp_img;
+	t_list	*l_compass;
+	char	*c_compass;
 }	t_mlx;
 
 typedef struct s_pixel

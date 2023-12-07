@@ -1,17 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_ray_casting.c                                :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/07 21:51:37 by asoler           ###   ########.fr       */
+/*   Created: 2022/04/22 18:28:50 by asoler            #+#    #+#             */
+/*   Updated: 2023/12/07 21:51:08 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-// void	ray_casting(t_pixel *data)
-// {
-// }
+void	ft_lstclear(t_list **lst)
+{
+	t_list	*aux;
+	t_list	*aux1;
+	int		i;
+
+	i = 0
+	aux = *lst;
+	aux1 = *lst;
+	while (i < 4)
+	{
+		aux1 = aux->next;
+		free(aux);
+		aux = NULL;
+		aux = aux1;
+		i++;
+	}
+}

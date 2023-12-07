@@ -2,7 +2,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 SRC = 	ft_itoa.c \
 		ft_toupper.c \
@@ -18,6 +18,9 @@ SRC = 	ft_itoa.c \
 		ft_memset.c \
 		get_next_line.c \
 		get_next_line_utils.c \
+		ft_lstlast.c \
+		ft_lstnew.c \
+		ft_lstclear.c \
 		ft_printf.c \
 		ft_printf_other_convs.c \
 		ft_printf_int_convs.c

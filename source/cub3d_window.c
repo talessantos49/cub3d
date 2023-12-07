@@ -6,32 +6,53 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 14:09:48 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/07 21:07:00 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	read_key_input(int key, t_point *next, t_list **dir)
+{
+	if (key == XK_w)
+		next->y--;
+	else if (key == XK_a)
+		next->x--;
+	else if (key == XK_d)
+		next->x++;
+	else if (key == XK_s)
+		next->y++;
+	else if (key == XK_Left)
+	{
+		*dir = (*dir)->next;
+		return (TRUE);
+	}
+	else if (key == XK_Right)
+	{
+		*dir = (*dir)->prev;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 void	move_player(t_mlx *mlx, int x, int y, int key)
 {
-	t_point		next;
+	t_point	next;
+	t_list	*temp;
+	char	change_dir;
 
 	next.x = x;
 	next.y = y;
-	if (key == XK_w || key == XK_Up)
-		next.y--;
-	else if (key == XK_a || key == XK_Left)
-		next.x--;
-	else if (key == XK_d || key == XK_Right)
-		next.x++;
-	else if (key == XK_s || key == XK_Down)
-		next.y++;
-	if (mlx->map->map[next.y][next.x] == '0')
+	temp = mlx->l_compass;
+	change_dir = FALSE;
+	while (mlx->map->map[y][x] != *((char *)temp->content))
+		temp = temp->next;
+	change_dir = read_key_input(key, &next, &temp);
+	if (mlx->map->map[next.y][next.x] == '0' || change_dir)
 	{
 		mlx_clear_window(mlx->init, mlx->window);
 		mlx->map->map[y][x] = '0';
-		// [TODO] Tratar orientação/move player smoothly
-		mlx->map->map[next.y][next.x] = 'N';
+		mlx->map->map[next.y][next.x] = *((char *) temp->content);
 		render_image(mlx);
 	}
 }

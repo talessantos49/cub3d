@@ -1,38 +1,38 @@
-==18610== Memcheck, a memory error detector
-==18610== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==18610== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==18610== Command: ./cub3d maps/map_example.cub
-==18610== Parent PID: 18609
-==18610== 
-==18610== 
-==18610== HEAP SUMMARY:
-==18610==     in use at exit: 272 bytes in 2 blocks
-==18610==   total heap usage: 545 allocs, 543 frees, 98,670 bytes allocated
-==18610== 
-==18610== 136 bytes in 1 blocks are definitely lost in loss record 1 of 2
-==18610==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18610==    by 0x4869BB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==18610==    by 0x10D48E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
-==18610==    by 0x10D772: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
-==18610==    by 0x10AED1: render_image (cub3d_mlx_utils.c:42)
-==18610==    by 0x10B640: cub3d_open_window (cub3d_window.c:65)
-==18610==    by 0x10A971: main (cub3d.c:45)
-==18610== 
-==18610== 136 bytes in 1 blocks are definitely lost in loss record 2 of 2
-==18610==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18610==    by 0x4869BB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==18610==    by 0x10D48E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
-==18610==    by 0x10D772: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
-==18610==    by 0x10AEF1: render_image (cub3d_mlx_utils.c:43)
-==18610==    by 0x10B640: cub3d_open_window (cub3d_window.c:65)
-==18610==    by 0x10A971: main (cub3d.c:45)
-==18610== 
-==18610== LEAK SUMMARY:
-==18610==    definitely lost: 272 bytes in 2 blocks
-==18610==    indirectly lost: 0 bytes in 0 blocks
-==18610==      possibly lost: 0 bytes in 0 blocks
-==18610==    still reachable: 0 bytes in 0 blocks
-==18610==         suppressed: 0 bytes in 0 blocks
-==18610== 
-==18610== For lists of detected and suppressed errors, rerun with: -s
-==18610== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 1 from 1)
+==8603== Memcheck, a memory error detector
+==8603== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==8603== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==8603== Command: ./cub3d maps/map_example.cub
+==8603== Parent PID: 8602
+==8603== 
+==8603== 
+==8603== HEAP SUMMARY:
+==8603==     in use at exit: 272 bytes in 2 blocks
+==8603==   total heap usage: 550 allocs, 548 frees, 98,771 bytes allocated
+==8603== 
+==8603== 136 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==8603==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8603==    by 0x486ABB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==8603==    by 0x10CE2E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==8603==    by 0x10D112: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==8603==    by 0x10AFE4: render_image (cub3d_mlx_utils.c:42)
+==8603==    by 0x10B994: cub3d_open_window (cub3d_window.c:84)
+==8603==    by 0x10AA84: main (cub3d.c:72)
+==8603== 
+==8603== 136 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==8603==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8603==    by 0x486ABB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==8603==    by 0x10CE2E: mlx_int_new_xshm_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==8603==    by 0x10D112: mlx_new_image (in /home/angelasoler/Angela/42/cub3d/cub3d)
+==8603==    by 0x10B004: render_image (cub3d_mlx_utils.c:43)
+==8603==    by 0x10B994: cub3d_open_window (cub3d_window.c:84)
+==8603==    by 0x10AA84: main (cub3d.c:72)
+==8603== 
+==8603== LEAK SUMMARY:
+==8603==    definitely lost: 272 bytes in 2 blocks
+==8603==    indirectly lost: 0 bytes in 0 blocks
+==8603==      possibly lost: 0 bytes in 0 blocks
+==8603==    still reachable: 0 bytes in 0 blocks
+==8603==         suppressed: 0 bytes in 0 blocks
+==8603== 
+==8603== For lists of detected and suppressed errors, rerun with: -s
+==8603== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 1 from 1)
