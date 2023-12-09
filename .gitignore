@@ -3,3 +3,4 @@ libft/*.o
 libft.a
 *.o
 .vscode
+valgrind-out.txt

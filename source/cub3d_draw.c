@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/07 21:52:14 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:29:40 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,23 @@ void	draw_block(t_point coord, t_pixel *data, int size)
 	}
 }
 
-void	verify_viewer_draw_rules(t_point coord, t_pixel *data, t_point p)
+void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 {
-	if ((!p.x || p.x == 2) && (!p.y || p.y == 2))
-		return ;
-	if (data->camera_dir == 'N' && (p.y == 2 && p.x == 1))
-		return ;
-	else if (data->camera_dir == 'E' && (p.y == 1 && p.x == 0))
-		return ;
-	else if (data->camera_dir == 'S' && (p.y == 0 && p.x == 1))
-		return ;
-	else if (data->camera_dir == 'W' && (p.y == 1 && p.x == 2))
-		return ;
+	t_point	dir;
+	t_point	center;
+
+	dir.y = coord.y + VIEWER_SIZE / 2;
+	dir.x = coord.x + VIEWER_SIZE / 2;
+	center = dir;
+	if (data->camera_dir == 'N')
+		dir.y -= LINE_SIZE;
+	else if (data->camera_dir == 'E')
+		dir.x += LINE_SIZE;
+	else if (data->camera_dir == 'S')
+		dir.y += LINE_SIZE;
+	else if (data->camera_dir == 'W')
+		dir.x -= LINE_SIZE;
+	draw_line(center, dir, data);
 	draw_block(coord, data, VIEWER_SIZE);
 }
 
@@ -58,19 +63,11 @@ void	draw_viewer_size_block(t_point coord, t_pixel *data)
 	coord2.y = coord.y * BLOCK_SIZE;
 	init_coord = coord2;
 	ft_memset((void *)&p, 0, sizeof(t_point));
-	while (p.x < N_MINICUBES)
-	{
-		coord2.x = init_coord.x + (VIEWER_SIZE * p.x);
-		while (p.y < N_MINICUBES)
-		{
-			coord2.y = init_coord.y + (VIEWER_SIZE * p.y);
-			verify_viewer_draw_rules(coord2, data, p);
-			p.y++;
-		}
-		p.y = 0;
-		coord2.y = init_coord.y;
-		p.x++;
-	}
+	p.y = 1;
+	p.x = 1;
+	coord2.x = init_coord.x + (VIEWER_SIZE * p.x);
+	coord2.y = init_coord.y + (VIEWER_SIZE * p.y);
+	verify_viewer_draw_rules(coord2, data);
 }
 
 t_point	draw_viewer(t_point coord, t_pixel *data, char dir)

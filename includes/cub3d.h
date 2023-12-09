@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/05 19:36:27 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:34:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define BLOCK_SIZE 18
 # define VIEWER_SIZE 6
 # define N_MINICUBES BLOCK_SIZE / VIEWER_SIZE
+# define CUB3D_H
 
 // structure sugestion for the next develop parsing steps
 // typedef struct s_texture
@@ -37,12 +38,13 @@
 // 	void ea;
 // }	t_texture;
 
-typedef struct s_bresenham
+typedef struct s_draw_line
 {
-	int	dx;
-	int	dy;
-	int	p;
-}	t_bresenham;
+	int		dx;
+	int		p;
+	int		dy;
+	t_point	op;
+}	t_draw_line;
 
 int	cub3d_read_map(char *map_path, t_map *read_map);
 int	cub3d_parse_map(int fd, t_map *read_map);

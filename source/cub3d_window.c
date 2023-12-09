@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/07 21:07:00 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/09 15:45:40 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	key_input(int key, t_mlx *mlx)
 	if (key == XK_Escape)
 		cub3d_close_window(mlx);
 	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d || \
-	key == XK_Up || key == XK_Down || key == XK_Right || key == XK_Left)
+			key == XK_Right || key == XK_Left)
 		move_player(mlx, mlx->camera_pos.x, \
 		mlx->camera_pos.y, key);
 	return (0);
@@ -80,9 +80,9 @@ int	cub3d_open_window(t_mlx *mlx)
 {
 	mlx->init = mlx_init();
 	mlx->window = mlx_new_window(mlx->init, WIDTH, HEIGHT, "cub3d, get fun!");
-	mlx_key_hook(mlx->window, &key_input, mlx);
-	render_image(mlx);
+	mlx_hook(mlx->window, 2, 1L << 0, key_input, mlx);
 	mlx_hook(mlx->window, 17, 0, &cub3d_close_window, mlx);
+	render_image(mlx);
 	//TODO: avoid misterious end leak
 	//		related with these vars
 	free(mlx->data_img);

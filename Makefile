@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/12/06 19:49:39 by asoler           ###   ########.fr        #
+#    Updated: 2023/12/09 17:05:58 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
 		cub3d_map_rules.c \
 		cub3d_mlx_utils.c \
-		bresenham_algorithm.c \
+		cub3d_draw_line.c \
 		cub3d_ray_casting.c \
 		cub3d_draw.c \
 		cub3d_window.c
