@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/09 19:34:31 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/29 17:54:09 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <X11/keysym.h>
+# include <math.h>
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
 # define BLOCK_SIZE 18
-# define VIEWER_SIZE 6
-# define N_MINICUBES BLOCK_SIZE / VIEWER_SIZE
+# define VIEWER_SIZE BLOCK_SIZE / 3
 # define CUB3D_H
 
 // structure sugestion for the next develop parsing steps

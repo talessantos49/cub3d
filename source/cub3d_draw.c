@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/09 19:29:40 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 16:04:52 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	dir.x = coord.x + VIEWER_SIZE / 2;
 	center = dir;
 	if (data->camera_dir == 'N')
-		dir.y -= LINE_SIZE;
+		*data->camera_angle = M_PI + (M_PI / 2);
 	else if (data->camera_dir == 'E')
-		dir.x += LINE_SIZE;
+		*data->camera_angle = 0;
 	else if (data->camera_dir == 'S')
-		dir.y += LINE_SIZE;
+		*data->camera_angle = M_PI / 2;
 	else if (data->camera_dir == 'W')
-		dir.x -= LINE_SIZE;
+		*data->camera_angle = M_PI;
+	dir.x += LINE_SIZE * cos(*data->camera_angle);
+	dir.y += LINE_SIZE * sin(*data->camera_angle);
+	printf("\t|  coord  | radians | center |\n\t| x = %d |\n\t| y = %d |\n\t\t| %f |\t\t\t|x: %d y: %d\n=====\n",\
+			dir.x, dir.y, *data->camera_angle, center.x, center.y);
+	if (data->camera_dir != 27)
+		data->camera_dir = 27;
 	draw_line(center, dir, data);
 	draw_block(coord, data, VIEWER_SIZE);
 }
@@ -56,18 +62,18 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 void	draw_viewer_size_block(t_point coord, t_pixel *data)
 {
 	t_point	p;
-	t_point	coord2;
+	t_point	viewer;
 	t_point	init_coord;
 
-	coord2.x = coord.x * BLOCK_SIZE;
-	coord2.y = coord.y * BLOCK_SIZE;
-	init_coord = coord2;
+	viewer.x = coord.x * BLOCK_SIZE;
+	viewer.y = coord.y * BLOCK_SIZE;
+	init_coord = viewer;
 	ft_memset((void *)&p, 0, sizeof(t_point));
 	p.y = 1;
 	p.x = 1;
-	coord2.x = init_coord.x + (VIEWER_SIZE * p.x);
-	coord2.y = init_coord.y + (VIEWER_SIZE * p.y);
-	verify_viewer_draw_rules(coord2, data);
+	viewer.x = init_coord.x + (VIEWER_SIZE * p.x);
+	viewer.y = init_coord.y + (VIEWER_SIZE * p.y);
+	verify_viewer_draw_rules(viewer, data);
 }
 
 t_point	draw_viewer(t_point coord, t_pixel *data, char dir)
@@ -98,7 +104,7 @@ t_point	draw_scenario(t_pixel *data)
 			c = map->map[p.y][p.x];
 			if (c == '1')
 				draw_block(p, data, BLOCK_SIZE);
-			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W' || c == 27)
 				viewer_pos = draw_viewer(p, data, c);
 			p.x++;
 		}

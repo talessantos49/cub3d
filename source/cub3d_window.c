@@ -6,13 +6,29 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/09 15:45:40 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 14:40:45 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	read_key_input(int key, t_point *next, t_list **dir)
+void	update_viewer_direction(t_mlx *mlx, int key)
+{
+	if (key == XK_Right)
+	{
+		mlx->camera_angle += 0.1;
+		if (mlx->camera_angle > M_PI * 2)
+			mlx->camera_angle = 0;
+	}
+	else
+	{
+		mlx->camera_angle -= 0.1;
+		if (mlx->camera_angle < 0)
+			mlx->camera_angle = M_PI * 2;
+	}
+}
+
+void	read_key_input(int key, t_point *next, t_mlx *mlx)
 {
 	if (key == XK_w)
 		next->y--;
@@ -22,38 +38,35 @@ int	read_key_input(int key, t_point *next, t_list **dir)
 		next->x++;
 	else if (key == XK_s)
 		next->y++;
-	else if (key == XK_Left)
+	else if (key == XK_Left || key == XK_Right)
 	{
-		*dir = (*dir)->next;
-		return (TRUE);
+		update_viewer_direction(mlx, key);
+		mlx->change_dir = TRUE;
+		return ;
 	}
-	else if (key == XK_Right)
-	{
-		*dir = (*dir)->prev;
-		return (TRUE);
-	}
-	return (FALSE);
+	mlx->change_dir = FALSE;
 }
 
 void	move_player(t_mlx *mlx, int x, int y, int key)
 {
 	t_point	next;
-	t_list	*temp;
-	char	change_dir;
+	char	viewer_bck;
 
 	next.x = x;
 	next.y = y;
-	temp = mlx->l_compass;
-	change_dir = FALSE;
-	while (mlx->map->map[y][x] != *((char *)temp->content))
-		temp = temp->next;
-	change_dir = read_key_input(key, &next, &temp);
-	if (mlx->map->map[next.y][next.x] == '0' || change_dir)
+	viewer_bck = mlx->map->map[y][x];
+	read_key_input(key, &next, mlx);
+	if (mlx->map->map[next.y][next.x] == '0' || mlx->change_dir)
 	{
 		mlx_clear_window(mlx->init, mlx->window);
 		mlx->map->map[y][x] = '0';
-		mlx->map->map[next.y][next.x] = *((char *) temp->content);
+		if (mlx->change_dir)
+			mlx->map->map[next.y][next.x] = 27;
+		else
+			mlx->map->map[next.y][next.x] = viewer_bck;
 		render_image(mlx);
+		free(mlx->data_img);
+		free(mlx->temp_img);
 	}
 }
 
@@ -83,8 +96,6 @@ int	cub3d_open_window(t_mlx *mlx)
 	mlx_hook(mlx->window, 2, 1L << 0, key_input, mlx);
 	mlx_hook(mlx->window, 17, 0, &cub3d_close_window, mlx);
 	render_image(mlx);
-	//TODO: avoid misterious end leak
-	//		related with these vars
 	free(mlx->data_img);
 	free(mlx->temp_img);
 	mlx_loop(mlx->init);

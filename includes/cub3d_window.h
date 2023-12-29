@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/09 18:14:40 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/29 18:14:32 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ typedef struct s_mlx
 	void	*window;
 	t_map	*map;
 	t_point	camera_pos;
+	t_point	camera_dir;
 	void	*data_img;
 	void	*temp_img;
-	t_list	*l_compass;
-	char	*c_compass;
+	char	change_dir;
+	double	camera_angle;
 }	t_mlx;
 
 typedef struct s_pixel
@@ -65,6 +66,7 @@ typedef struct s_pixel
 	int		line_color;
 	t_data	*img;
 	char	camera_dir;
+	double	*camera_angle;
 }	t_pixel;
 
 int	cub3d_close_window(t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:04:20 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/03 13:03:17 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:36:49 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	render_image(t_mlx *mlx)
 	mlx->data_img = img.img;
 	mlx->temp_img = temp_img.img;
 	data.mlx = mlx;
+	data.camera_angle = &mlx->camera_angle;
 	data.line_color = create_trgb(0, 0, 255, 0);
 	mlx->camera_pos = draw_scenario(&data);
 	// ray_casting(&data);

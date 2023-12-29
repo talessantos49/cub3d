@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/12/09 17:05:58 by asoler           ###   ########.fr        #
+#    Updated: 2023/12/29 16:39:21 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LIBFT			= ${LIBFT_DIR}libft.a
 
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -g3
-LIBRARIES		= -lmlx -lXext -lX11
+LIBRARIES		= -lmlx -lXext -lX11 -lm
 
 RM 				= rm -f
 
