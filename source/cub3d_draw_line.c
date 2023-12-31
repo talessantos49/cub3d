@@ -6,16 +6,18 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:20 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/09 19:32:08 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 23:11:55 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	call_put_pixel(int x, int y, t_pixel *data)
+int	call_put_pixel(int x, int y, t_pixel *data, char swap_sig)
 {
 	t_point	point;
 
+	if (swap_sig)
+		swap(&x, &y);
 	point.x = x;
 	point.y = y;
 	return (put_pixel(point, data->line_color, data->img));
@@ -25,7 +27,7 @@ int	draw_vetical_line(t_point p, int size, t_pixel *data, int op)
 {
 	while (size)
 	{
-		call_put_pixel(p.x, p.y, data);
+		call_put_pixel(p.x, p.y, data, 0);
 		p.y += op;
 		size--;
 	}
@@ -50,13 +52,13 @@ void	draw_bresenham_line(t_point init, t_point end, \
 {
 	while (init.x != end.x)
 	{
-		call_put_pixel(init.x, init.y, data);
+		call_put_pixel(init.x, init.y, data, bsh.swap_sig);
 		init.x += bsh.op.x;
 		if (bsh.p < 0)
-			bsh.p = bsh.p + 2 * abs(bsh.dy);
+			bsh.p += 2 * abs(bsh.dy);
 		else
 		{
-			bsh.p = bsh.p + 2 * abs(bsh.dy) - 2 * abs(bsh.dx);
+			bsh.p += 2 * abs(bsh.dy) - 2 * abs(bsh.dx);
 			init.y += bsh.op.y;
 		}
 	}
@@ -69,6 +71,15 @@ int	draw_line(t_point init, t_point end, t_pixel *data)
 	bsh.dx = end.x - init.x;
 	bsh.dy = end.y - init.y;
 	bsh.op = line_diretion_op(bsh);
+	bsh.swap_sig = FALSE;
+	if (!(abs(bsh.dx) >= abs(bsh.dy)))
+	{
+		swap(&init.x, &init.y);
+		swap(&end.x, &end.y);
+		swap(&bsh.dx, &bsh.dy);
+		swap(&bsh.op.x, &bsh.op.y);
+		bsh.swap_sig = TRUE;
+	}
 	bsh.p = 2 * abs(bsh.dy) - abs(bsh.dx);
 	if (!bsh.dx)
 		return (draw_vetical_line(init, abs(bsh.dy), data, bsh.op.y));

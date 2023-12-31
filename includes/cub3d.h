@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/29 17:54:09 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 23:19:20 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define TRUE 1
 # define FALSE 0
 # define BLOCK_SIZE 18
-# define VIEWER_SIZE BLOCK_SIZE / 3
+# define VIEWER_SIZE 6
 # define CUB3D_H
 
 // structure sugestion for the next develop parsing steps
@@ -44,10 +44,13 @@ typedef struct s_draw_line
 	int		p;
 	int		dy;
 	t_point	op;
+	char	swap_sig;
 }	t_draw_line;
 
-int	cub3d_read_map(char *map_path, t_map *read_map);
-int	cub3d_parse_map(int fd, t_map *read_map);
-int	create_trgb(int t, int r, int g, int b);
+int		cub3d_read_map(char *map_path, t_map *read_map);
+int		cub3d_parse_map(int fd, t_map *read_map);
+int		create_trgb(int t, int r, int g, int b);
+void	swap(int *a, int *b);
+void	update_viewer_direction(t_mlx *mlx, int key);
 
 #endif

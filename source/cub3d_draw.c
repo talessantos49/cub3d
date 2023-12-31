@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 16:04:52 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 23:03:42 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_block(t_point coord, t_pixel *data, int size)
 	while (++p.x < end_coord.x)
 	{
 		while (++p.y < end_coord.y)
-			call_put_pixel(p.x, p.y, data);
+			call_put_pixel(p.x, p.y, data, 0);
 		p.y = coord.y;
 	}
 }
@@ -51,8 +51,6 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 		*data->camera_angle = M_PI;
 	dir.x += LINE_SIZE * cos(*data->camera_angle);
 	dir.y += LINE_SIZE * sin(*data->camera_angle);
-	printf("\t|  coord  | radians | center |\n\t| x = %d |\n\t| y = %d |\n\t\t| %f |\t\t\t|x: %d y: %d\n=====\n",\
-			dir.x, dir.y, *data->camera_angle, center.x, center.y);
 	if (data->camera_dir != 27)
 		data->camera_dir = 27;
 	draw_line(center, dir, data);

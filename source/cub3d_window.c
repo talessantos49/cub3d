@@ -6,27 +6,11 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 14:40:45 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/30 23:16:45 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	update_viewer_direction(t_mlx *mlx, int key)
-{
-	if (key == XK_Right)
-	{
-		mlx->camera_angle += 0.1;
-		if (mlx->camera_angle > M_PI * 2)
-			mlx->camera_angle = 0;
-	}
-	else
-	{
-		mlx->camera_angle -= 0.1;
-		if (mlx->camera_angle < 0)
-			mlx->camera_angle = M_PI * 2;
-	}
-}
 
 void	read_key_input(int key, t_point *next, t_mlx *mlx)
 {
