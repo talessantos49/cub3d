@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 23:03:42 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/31 19:58:38 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	dir.y += LINE_SIZE * sin(*data->camera_angle);
 	if (data->camera_dir != 27)
 		data->camera_dir = 27;
+	ray_casting(center, data);
 	draw_line(center, dir, data);
 	draw_block(coord, data, VIEWER_SIZE);
 }
@@ -86,6 +87,35 @@ t_point	draw_viewer(t_point coord, t_pixel *data, char dir)
 	return (coord);
 }
 
+void	draw_quads(t_pixel *data)
+{
+	t_point	window;
+	t_point	init;
+	int		bckp_color;
+
+	bckp_color = data->line_color;
+	data->line_color = create_trgb(0, 255, 255, 255);
+	ft_memset((void *)&window, 0, sizeof(t_point));
+	ft_memset((void *)&init, 0, sizeof(t_point));
+	window.y = HEIGHT;
+	while (window.x <= WIDTH)
+	{
+		draw_line(init, window, data);
+		window.x += BLOCK_SIZE;
+		init.x = window.x;
+	}
+	ft_memset((void *)&window, 0, sizeof(t_point));
+	ft_memset((void *)&init, 0, sizeof(t_point));
+	window.x = WIDTH;
+	while (window.y <= HEIGHT)
+	{
+		draw_line(init, window, data);
+		window.y += BLOCK_SIZE;
+		init.y = window.y;
+	}
+	data->line_color = bckp_color;
+}
+
 t_point	draw_scenario(t_pixel *data)
 {
 	t_map	*map;
@@ -95,6 +125,7 @@ t_point	draw_scenario(t_pixel *data)
 
 	ft_memset((void *)&p, 0, sizeof(t_point));
 	map = data->mlx->map;
+	draw_quads(data);
 	while (map->map[p.y])
 	{
 		while (map->map[p.y][p.x])

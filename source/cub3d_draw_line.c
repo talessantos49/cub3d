@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:20 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 23:11:55 by asoler           ###   ########.fr       */
+/*   Updated: 2023/12/31 18:17:11 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	draw_vetical_line(t_point p, int size, t_pixel *data, int op)
 	return (0);
 }
 
-t_point	line_diretion_op(t_draw_line bsh)
+t_point	line_direction_op(t_draw_line bsh)
 {
 	t_point	op;
 
@@ -64,13 +64,19 @@ void	draw_bresenham_line(t_point init, t_point end, \
 	}
 }
 
+// the swaps allow to draw major x axis and major y axis as well
+// the condition verifys if is not a major x axis ray
+// so using the same funtion we can also draw major y axis rays
+// also we have to add a flag to inform this situation
+// thus the draw pixel function knows
+// and swap them back before drawing
 int	draw_line(t_point init, t_point end, t_pixel *data)
 {
 	t_draw_line	bsh;
 
 	bsh.dx = end.x - init.x;
 	bsh.dy = end.y - init.y;
-	bsh.op = line_diretion_op(bsh);
+	bsh.op = line_direction_op(bsh);
 	bsh.swap_sig = FALSE;
 	if (!(abs(bsh.dx) >= abs(bsh.dy)))
 	{
