@@ -6,21 +6,43 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/31 19:58:38 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/01 13:45:56 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_block(t_point coord, t_pixel *data, int size)
+void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
+{
+	t_point	center;
+
+	center.y = coord.y + VIEWER_SIZE / 2;
+	center.x = coord.x + VIEWER_SIZE / 2;
+	if (data->camera_dir == 'N')
+		*data->camera_angle = M_PI + (M_PI / 2);
+	else if (data->camera_dir == 'E')
+		*data->camera_angle = 0;
+	else if (data->camera_dir == 'S')
+		*data->camera_angle = M_PI / 2;
+	else if (data->camera_dir == 'W')
+		*data->camera_angle = M_PI;
+	if (data->camera_dir != 27) //metodo questionavel
+		data->camera_dir = 27;
+	ray_casting(center, data);
+}
+
+// returns of top-left block coordinates
+t_point	draw_block(t_point coord, t_pixel *data, int size)
 {
 	t_point	p;
 	t_point	end_coord;
 
-	if (size == BLOCK_SIZE)
+	coord.x *= BLOCK_SIZE;
+	coord.y *= BLOCK_SIZE;
+	if (size == VIEWER_SIZE)
 	{
-		coord.x *= size;
-		coord.y *= size;
+		coord.x += size;
+		coord.y += size;
 	}
 	p = coord;
 	end_coord.x = size + p.x;
@@ -31,89 +53,21 @@ void	draw_block(t_point coord, t_pixel *data, int size)
 			call_put_pixel(p.x, p.y, data, 0);
 		p.y = coord.y;
 	}
-}
-
-void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
-{
-	t_point	dir;
-	t_point	center;
-
-	dir.y = coord.y + VIEWER_SIZE / 2;
-	dir.x = coord.x + VIEWER_SIZE / 2;
-	center = dir;
-	if (data->camera_dir == 'N')
-		*data->camera_angle = M_PI + (M_PI / 2);
-	else if (data->camera_dir == 'E')
-		*data->camera_angle = 0;
-	else if (data->camera_dir == 'S')
-		*data->camera_angle = M_PI / 2;
-	else if (data->camera_dir == 'W')
-		*data->camera_angle = M_PI;
-	dir.x += LINE_SIZE * cos(*data->camera_angle);
-	dir.y += LINE_SIZE * sin(*data->camera_angle);
-	if (data->camera_dir != 27)
-		data->camera_dir = 27;
-	ray_casting(center, data);
-	draw_line(center, dir, data);
-	draw_block(coord, data, VIEWER_SIZE);
-}
-
-void	draw_viewer_size_block(t_point coord, t_pixel *data)
-{
-	t_point	p;
-	t_point	viewer;
-	t_point	init_coord;
-
-	viewer.x = coord.x * BLOCK_SIZE;
-	viewer.y = coord.y * BLOCK_SIZE;
-	init_coord = viewer;
-	ft_memset((void *)&p, 0, sizeof(t_point));
-	p.y = 1;
-	p.x = 1;
-	viewer.x = init_coord.x + (VIEWER_SIZE * p.x);
-	viewer.y = init_coord.y + (VIEWER_SIZE * p.y);
-	verify_viewer_draw_rules(viewer, data);
+	return (coord);
 }
 
 t_point	draw_viewer(t_point coord, t_pixel *data, char dir)
 {
 	int		bckp_color;
+	t_point	viewer;
 
 	bckp_color = data->line_color;
 	data->line_color = create_trgb(0, 0, 100, 200);
 	data->camera_dir = dir;
-	draw_viewer_size_block(coord, data);
+	viewer = draw_block(coord, data, VIEWER_SIZE);
+	verify_viewer_draw_rules(viewer, data);
 	data->line_color = bckp_color;
 	return (coord);
-}
-
-void	draw_quads(t_pixel *data)
-{
-	t_point	window;
-	t_point	init;
-	int		bckp_color;
-
-	bckp_color = data->line_color;
-	data->line_color = create_trgb(0, 255, 255, 255);
-	ft_memset((void *)&window, 0, sizeof(t_point));
-	ft_memset((void *)&init, 0, sizeof(t_point));
-	window.y = HEIGHT;
-	while (window.x <= WIDTH)
-	{
-		draw_line(init, window, data);
-		window.x += BLOCK_SIZE;
-		init.x = window.x;
-	}
-	ft_memset((void *)&window, 0, sizeof(t_point));
-	ft_memset((void *)&init, 0, sizeof(t_point));
-	window.x = WIDTH;
-	while (window.y <= HEIGHT)
-	{
-		draw_line(init, window, data);
-		window.y += BLOCK_SIZE;
-		init.y = window.y;
-	}
-	data->line_color = bckp_color;
 }
 
 t_point	draw_scenario(t_pixel *data)

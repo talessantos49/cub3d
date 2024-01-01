@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 23:19:20 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/01 13:48:53 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define FALSE 0
 # define BLOCK_SIZE 18
 # define VIEWER_SIZE 6
+#define ONE_DEGREE 1 / 57.3
 # define CUB3D_H
 
 // structure sugestion for the next develop parsing steps
@@ -52,5 +53,7 @@ int		cub3d_parse_map(int fd, t_map *read_map);
 int		create_trgb(int t, int r, int g, int b);
 void	swap(int *a, int *b);
 void	update_viewer_direction(t_mlx *mlx, int key);
+void	draw_quads(t_pixel *data);
+t_point	draw_block(t_point coord, t_pixel *data, int size);
 
 #endif
