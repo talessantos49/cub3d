@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/02 09:22:48 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/02 10:13:59 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	check_rays_colition_on_x_axis(t_point camera, t_pixel *data, int *h_ray_leng
 	ft_memset((void *)h_ray_end, 0, sizeof(t_point));
 	while (TRUE)
 	{
-		// if (ray_angle == ONE_DEGREE * 90 || ray_angle == ONE_DEGREE * 270)
-			// return (-1);
 		if (ray_angle < ONE_DEGREE * 270 && ray_angle > ONE_DEGREE * 90) // looking west
 		{
 			h_ray_end->x = ((camera.x - (VIEWER_SIZE / 2)) - VIEWER_SIZE) - (BLOCK_SIZE * i);
@@ -70,7 +68,7 @@ int	check_rays_colition_on_x_axis(t_point camera, t_pixel *data, int *h_ray_leng
 		}
 		i++;
 		flag = check_wall(map, data);
-		if (flag)
+		if (flag > 0)
 			break ;
 		else if (flag < 0)
 		{
@@ -93,8 +91,6 @@ int	check_rays_colition_on_y_axis(t_point camera, t_pixel *data, int *v_ray_leng
 	ft_memset((void *)v_ray_end, 0, sizeof(t_point));
 	while (TRUE)
 	{
-		// if (!ray_angle || ray_angle == ONE_DEGREE * 360)
-		// 	return (-1);
 		if (ray_angle < M_PI) //looking south
 		{
 			v_ray_end->y = (camera.y + (VIEWER_SIZE / 2) + VIEWER_SIZE) + BLOCK_SIZE* i;
@@ -113,7 +109,7 @@ int	check_rays_colition_on_y_axis(t_point camera, t_pixel *data, int *v_ray_leng
 		}
 		i++;
 		flag = check_wall(map, data);
-		if (flag)
+		if (flag > 0)
 			break ;
 		else if (flag < 0)
 		{
@@ -144,11 +140,13 @@ void	ray_casting(t_point camera, t_pixel *data)
 	int	bckp_color;
 
 	draw_rays(camera, data, ONE_DEGREE * 360, 0, LINE_SIZE / 3); //draw viewer
-	bckp_color = data->line_color;
-	data->line_color = create_trgb(0, 255, 255, 255);
-	draw_rays(camera, data, *data->camera_angle + ONE_DEGREE * 30, *data->camera_angle - ONE_DEGREE * 30, LINE_SIZE * 4); //draw view range
-	data->line_color = bckp_color;
+	// bckp_color = data->line_color;
+	// data->line_color = create_trgb(0, 255, 255, 255);
+	// draw_rays(camera, data, *data->camera_angle + ONE_DEGREE * 30, *data->camera_angle - ONE_DEGREE * 30, LINE_SIZE * 4); //draw view range
+	// data->line_color = bckp_color;
 
+	int	ray_len;
+	t_point	ray_end;
 
 	int		h_ray_length;
 	t_point	h_ray_end;
@@ -158,16 +156,33 @@ void	ray_casting(t_point camera, t_pixel *data)
 	t_point	v_ray_end;
 	check_rays_colition_on_x_axis(camera, data, &v_ray_length, &v_ray_end);
 
+	printf("\n====debug===\n");
+	printf("vray_end: (%d, %d)\n", v_ray_end.x, v_ray_end.y);
+	printf("hray_end: (%d, %d)\n", h_ray_end.x, h_ray_end.y);
+	printf("vray_len: %d\n", v_ray_length);
+	printf("hray_len: %d\n", h_ray_length);
+
+
+	if (!h_ray_length || !v_ray_length)
+		return ; // fazer tratamento para esse caso
 	bckp_color = data->line_color;
 	if (v_ray_length < h_ray_length)
 	{
 		data->line_color = create_trgb(0, 255, 0, 0);
-		draw_line(camera, v_ray_end, data);
+		ray_end = v_ray_end;
+		ray_len = v_ray_length;
 	}
-	else
+	else if (v_ray_length > h_ray_length)
 	{
 		data->line_color = create_trgb(0, 255, 255, 0);
-		draw_line(camera, h_ray_end, data);
+		ray_end = h_ray_end;
+		ray_len = h_ray_length;
 	}
+	draw_line(camera, ray_end, data);
 	data->line_color = bckp_color;
+
+	printf("ray end: (%d, %d)\n", ray_end.x, ray_end.y);
+	printf("vray_lenght: %d\n", v_ray_length);
+	printf("hray_lenght: %d\n", h_ray_length);
+	printf("ray lenght: %d\n=======\n", ray_len);
 }
