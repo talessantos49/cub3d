@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/01 13:45:56 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/01 22:59:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	ray_casting(center, data);
 }
 
-// returns of top-left block coordinates
+// returns top-left block coordinates
 t_point	draw_block(t_point coord, t_pixel *data, int size)
 {
 	t_point	p;
