@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/01 22:59:31 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/01 23:36:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	center.y = coord.y + VIEWER_SIZE / 2;
 	center.x = coord.x + VIEWER_SIZE / 2;
 	if (data->camera_dir == 'N')
-		*data->camera_angle = M_PI + (M_PI / 2);
+		*data->camera_angle = ONE_DEGREE * 270;
 	else if (data->camera_dir == 'E')
 		*data->camera_angle = 0;
 	else if (data->camera_dir == 'S')
-		*data->camera_angle = M_PI / 2;
+		*data->camera_angle = ONE_DEGREE * 90;
 	else if (data->camera_dir == 'W')
-		*data->camera_angle = M_PI;
+		*data->camera_angle = ONE_DEGREE * 180;
 	if (data->camera_dir != 27) //metodo questionavel
 		data->camera_dir = 27;
 	ray_casting(center, data);
