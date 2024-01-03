@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 16:09:27 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 20:16:34 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define BLOCK_SIZE 36
 # define VIEWER_SIZE 12
 # define ONE_DEGREE 0.01745200698
+# define VIEW_RANGE 60
+# define N_RAYS 320
 # define CUB3D_H
 
 // structure sugestion for the next develop parsing steps
@@ -57,5 +59,6 @@ void	draw_quads(t_pixel *data);
 t_point	draw_block(t_point coord, t_pixel *data, int size);
 void	draw_circle_viewer(t_point coord, t_pixel *data);
 int		check_wall(t_point map, t_pixel *data);
+double	deeg_to_rad(int deegres);
 
 #endif

@@ -6,11 +6,16 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 23:13:13 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 16:51:11 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 19:44:55 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+double	deeg_to_rad(int deegres)
+{
+	return (ONE_DEGREE * deegres);
+}
 
 void	draw_circle_viewer(t_point coord, t_pixel *data)
 {
@@ -62,20 +67,4 @@ void	swap(int *a, int *b)
 	*a = *a ^ *b;
 	*b = *a ^ *b;
 	*a = *a ^ *b;
-}
-
-void	update_viewer_direction(t_mlx *mlx, int key)
-{
-	if (key == XK_Right)
-	{
-		mlx->camera_angle += 0.1;
-		if (mlx->camera_angle > M_PI * 2)
-			mlx->camera_angle = 0;
-	}
-	else
-	{
-		mlx->camera_angle -= 0.1;
-		if (mlx->camera_angle < 0)
-			mlx->camera_angle = M_PI * 2;
-	}
 }
