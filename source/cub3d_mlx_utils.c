@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:04:20 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/01 12:40:20 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 13:30:29 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	put_pixel(t_point point, int trgb, t_data *img)
 	return (0);
 }
 
+//rever implementação:
+//leaks relacionados as mlx_new_image
 int	render_image(t_mlx *mlx)
 {
 	t_data	img;
