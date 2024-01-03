@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 13:20:49 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 13:47:43 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define CUB3D_WINDOW_H
 # define HEIGHT 480
 # define WIDTH 1020
-# define LINE_SIZE 10
 
 typedef struct s_color
 {

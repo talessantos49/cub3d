@@ -6,46 +6,18 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 13:35:03 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 13:46:44 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int map_height(char **map, t_point map_coord)
-{
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		y++;
-	}
-	if (map_coord.y >= y)
-		return (1);
-	return (0);
-}
-
-int	check_wall(t_point map, t_pixel *data)
-{
-	if (map.y < 0 || map.x < 0 || map_height(data->mlx->map->map, map) || ft_strlen(data->mlx->map->map[map.y]) <= (size_t)map.x)
-		return (-1);
-	if (data->mlx->map->map[map.y][map.x] == '1')
-	{
-		printf("\nfound wall at map[%d][%d]\n", map.y, map.x);
-		return (TRUE);
-	}
-	return (FALSE);
-}
-
 int	check_rays_colition_on_x_axis(t_point camera, t_pixel *data, int *h_ray_length, t_point *h_ray_end, double ray_angle)
 {
-	// double	ray_angle;
 	t_point	map;
 	int		i = 0;
 	int		flag = 0;
 
-	// ray_angle = *data->camera_angle; //substituir por ray angle, que virá dinamicamente de draw rays
 	*h_ray_length = 0;
 	ft_memset((void *)h_ray_end, 0, sizeof(t_point));
 	while (TRUE)
@@ -83,12 +55,10 @@ int	check_rays_colition_on_x_axis(t_point camera, t_pixel *data, int *h_ray_leng
 
 int	check_rays_colition_on_y_axis(t_point camera, t_pixel *data, int *v_ray_length, t_point *v_ray_end, double ray_angle)
 {
-	// double	ray_angle;
 	t_point	map;
 	int		i = 0;
 	int		flag=0;
 
-	// ray_angle = *data->camera_angle; //substituir por ray angle, que virá dinamicamente de draw rays
 	*v_ray_length = 0;
 	ft_memset((void *)v_ray_end, 0, sizeof(t_point));
 	while (TRUE)
@@ -126,7 +96,6 @@ int	check_rays_colition_on_y_axis(t_point camera, t_pixel *data, int *v_ray_leng
 
 t_point	ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 {
-	int	ray_len;
 	t_point	ray_end;
 	ft_memset((void *)&ray_end, 0, sizeof(t_point));
 
@@ -144,34 +113,16 @@ t_point	ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	printf("vray_len: %d\n", v_ray_length);
 	printf("hray_len: %d\n", h_ray_length);
 	if (v_ray_length < h_ray_length)
-	{
-		data->line_color = create_trgb(0, 255, 0, 0);
 		ray_end = v_ray_end;
-		ray_len = v_ray_length;
-	}
 	else if (v_ray_length > h_ray_length)
-	{
-		data->line_color = create_trgb(0, 255, 255, 0);
 		ray_end = h_ray_end;
-		ray_len = h_ray_length;
-	}
 	else
 		ray_end = h_ray_end;
 	if (!h_ray_length)
-	{
-		data->line_color = create_trgb(0, 255, 0, 0);
 		ray_end = v_ray_end;
-		ray_len = v_ray_length;
-	}
 	if (!v_ray_length)
-	{
-		data->line_color = create_trgb(0, 255, 255, 0);
 		ray_end = h_ray_end;
-		ray_len = h_ray_length;
-	}
-
 	printf("ray end: (%d, %d)\n", ray_end.x, ray_end.y);
-	printf("ray lenght: %d\n=======\n", ray_len);
 	return (ray_end);
 }
 
@@ -189,27 +140,11 @@ void	draw_rays(t_point coord,t_pixel *data, double final_angle, double init_angl
 	}
 }
 
-void	draw_circle_viewer(t_point coord,t_pixel *data, double final_angle, double init_angle, int ray_size)
-{
-	t_point	dir;
-
-	dir = coord;
-	while (init_angle < final_angle)
-	{
-		dir.x += ray_size * cos(init_angle);
-		dir.y += ray_size * sin(init_angle);
-		draw_line(coord, dir, data);
-		init_angle += ONE_DEGREE;
-		dir = coord;
-	}
-}
-
-
 void	ray_casting(t_point camera, t_pixel *data)
 {
 	int	bckp_color;
 
-	draw_circle_viewer(camera, data, ONE_DEGREE * 360, 0, LINE_SIZE); //draw viewer
+	draw_circle_viewer(camera, data); //draw viewer
 	bckp_color = data->line_color;
 	data->line_color = create_trgb(0, 255, 255, 255);
 	draw_rays(camera, data, *data->camera_angle + ONE_DEGREE * 30, *data->camera_angle - ONE_DEGREE * 30); //draw view range
