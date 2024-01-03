@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/01 13:47:28 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/03 17:18:07 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_utils.c \
 		cub3d_draw_line.c \
 		cub3d_ray_casting.c \
+		cub3d_ray_utils.c \
 		cub3d_draw.c \
 		cub3d_debug_util.c \
 		cub3d_window.c
