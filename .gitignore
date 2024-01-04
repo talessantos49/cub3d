@@ -3,3 +3,6 @@ libft/*.o
 libft.a
 *.o
 .vscode
+valgrind-out.txt
+draft.c
+axis_exe.cpp

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+         #
+#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/11/07 18:58:58 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/04 11:24:28 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,13 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
 		cub3d_map_rules.c \
 		cub3d_mlx_utils.c \
-		bresenham_algorithm.c \
+		cub3d_utils.c \
+		cub3d_draw_line.c \
 		cub3d_ray_casting.c \
+		cub3d_ray_utils.c \
+		cub3d_draw.c \
+		cub3d_draw_scenario.c \
+		cub3d_debug_util.c \
 		cub3d_window.c
 
 GREEN			= \033[0;32m
@@ -45,20 +50,13 @@ LIBFT			= ${LIBFT_DIR}libft.a
 
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -g3
-LIBRARIES		= -lmlx -lXext -lX11
+LIBRARIES		= -lmlx -lXext -lX11 -lm
 
 RM 				= rm -f
 
 VALGRIND		= @valgrind --leak-check=full --show-leak-kinds=all \
 --track-origins=yes --quiet --tool=memcheck --keep-debuginfo=yes --verbose \
 --log-file=valgrind-out.txt
-
-# $(NAME): $(OBJ) $(MAKE_LIBFT)
-# 	$(CC) $(WFLAGS) $(OBJ) -L ./ -lft -L./ -lmlx -L./ -lX11 -L./ -lXext -o $(NAME)
-
-# %.o: %.c
-# 	$(CCW) -g3 $(FLAGS) -c $< -o $@
-
 
 all:			${NAME}
 				@echo "$(GREEN)Cub3D Was compiled!"
@@ -80,7 +78,7 @@ ${LIBFT}:
 			@echo Libft has been compiled!
 
 valgrind:
-		$(VALGRIND) ./cub3d maps/map_example.cub
+		$(VALGRIND) ./cub3d maps/test.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean

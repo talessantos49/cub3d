@@ -6,68 +6,102 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/02 10:30:33 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 11:21:54 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	print_wall_block(t_point point, t_pixel *data)
+void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 {
-	t_point	p;
+	int		i;
+	int		flag;
 
-	p.x = point.x * WALL_BLOCK_SIZE;
-	p.y = point.y * WALL_BLOCK_SIZE;
-	while (++p.x < WALL_BLOCK_SIZE + (point.x * WALL_BLOCK_SIZE))
+	i = 0;
+	while (TRUE)
 	{
-		while (++p.y < WALL_BLOCK_SIZE + (point.y * WALL_BLOCK_SIZE))
-			call_put_pixel(p.x, p.y, data);
-		p.y = (point.y * WALL_BLOCK_SIZE);
-	}
-}
-
-void	print_viewer(t_point point, t_pixel *data)
-{
-	t_point	point2;
-	int		bckp_color;
-
-	bckp_color = data->line_color;
-	data->line_color = create_trgb(0, 0, 100, 200);
-	print_wall_block(point, data);
-	data->line_color = bckp_color;
-	point.x *= WALL_BLOCK_SIZE;
-	point.y *= WALL_BLOCK_SIZE;
-	point2 = point;
-	point2.x += WALL_BLOCK_SIZE;
-	point2.y += WALL_BLOCK_SIZE;
-	bresenham(point, point2, data);
-}
-
-void	print_cenario(t_pixel *data)
-{
-	t_map	*map;
-	t_point	p;
-	char	c;
-
-	ft_memset((void *)&p, 0, sizeof(t_point));
-	map = data->mlx->map;
-	while (map->map[p.y])
-	{
-		while (map->map[p.y][p.x])
+		if (ray->angle < deeg_to_rad(270) && ray->angle > deeg_to_rad(90))
+			calculate_west_rays(ray, i);
+		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
+			calculate_est_rays(ray, i);
+		i++;
+		flag = check_wall(ray->map, data);
+		if (flag > 0)
+			break ;
+		else if (flag < 0)
 		{
-			c = map->map[p.y][p.x];
-			if (c == '1')
-				print_wall_block(p, data);
-			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-				print_viewer(p, data);
-			p.x++;
+			ray->len = 0;
+			break ;
 		}
-		p.x = 0;
-		p.y++;
 	}
 }
 
-void	ray_casting(t_pixel *data)
+void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 {
-	print_cenario(data);
+	int		i;
+	int		flag;
+
+	i = 0;
+	while (TRUE)
+	{
+		if (ray->angle < deeg_to_rad(180))
+			calculate_south_rays(ray, i);
+		if (ray->angle > deeg_to_rad(180))
+			calculate_north_rays(ray, i);
+		i++;
+		flag = check_wall(ray->map, data);
+		if (flag > 0)
+			break ;
+		else if (flag < 0)
+		{
+			ray->len = 0;
+			break ;
+		}
+	}
+}
+
+void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray)
+{
+	if (v_ray->len < h_ray->len)
+		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
+	else if (v_ray->len > h_ray->len)
+		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+	else
+		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+	if (!h_ray->len)
+		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
+	if (!v_ray->len)
+		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+}
+
+t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
+{
+	t_ray	h_ray;
+	t_ray	v_ray;
+	t_ray	*ray;
+
+	ray = ft_calloc(1, sizeof(t_ray));
+	h_ray.init = init_coord;
+	h_ray.angle = angle;
+	v_ray.init = init_coord;
+	v_ray.angle = angle;
+	check_rays_colition_on_y_axis(&h_ray, data);
+	check_rays_colition_on_x_axis(&v_ray, data);
+	choose_final_ray(ray, &h_ray, &v_ray);
+	if (ray->end.x == h_ray.end.x && ray->end.y == h_ray.end.y)
+		data->line_color = create_trgb(0, 255, 0, 0);
+	else if (ray->end.x == v_ray.end.x && ray->end.y == v_ray.end.y)
+		data->line_color = create_trgb(0, 150, 0, 0);
+	return (ray);
+}
+
+void	ray_casting(t_point camera, t_pixel *data)
+{
+	double	angle;
+
+	angle = *data->camera_angle - deeg_to_rad(VIEW_RANGE / 2);
+	if (angle < 0)
+		angle += deeg_to_rad(360);
+	draw_circle_viewer(camera, data);
+	draw_rays(camera, data, angle);
 }
