@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 22:36:34 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:42:51 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ t_point	draw_block(t_point coord, t_pixel *data, int size)
 	while (++p.x < end_coord.x)
 	{
 		while (++p.y < end_coord.y)
+		{
+			if (size == VIEWER_SIZE)
+				break ;
 			call_put_pixel(p.x, p.y, data, 0);
+		}
 		p.y = coord.y;
 	}
 	return (coord);

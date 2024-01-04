@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 23:13:13 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 22:01:30 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:40:50 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	draw_circle_viewer(t_point coord, t_pixel *data)
 	init_angle = 0;
 	while (init_angle < ONE_DEGREE * 360)
 	{
-		dir.x += VIEWER_SIZE * cos(init_angle);
-		dir.y += VIEWER_SIZE * sin(init_angle);
+		dir.x += (VIEWER_SIZE / 2) * cos(init_angle);
+		dir.y += (VIEWER_SIZE / 2) * sin(init_angle);
 		draw_line(coord, dir, data);
 		init_angle += ONE_DEGREE;
 		dir = coord;

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 20:16:34 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:44:25 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
-# define BLOCK_SIZE 36
-# define VIEWER_SIZE 12
+# define BLOCK_SIZE 18
+# define VIEWER_SIZE 6
 # define ONE_DEGREE 0.01745200698
 # define VIEW_RANGE 60
 # define N_RAYS 320

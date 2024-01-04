@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 23:01:02 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:53:28 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,19 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	v_ray.angle = angle;
 	check_rays_colition_on_y_axis(&h_ray, data);
 	check_rays_colition_on_x_axis(&v_ray, data);
+	data->line_color = create_trgb(0, 255, 255, 0);
 	if (v_ray.len < h_ray.len)
 		memcpy((void *)ray, (void *)&v_ray, sizeof(t_ray));
 	else if (v_ray.len > h_ray.len)
+	{
+		data->line_color = create_trgb(0, 255, 0, 0);
 		memcpy((void *)ray, (void *)&h_ray, sizeof(t_ray));
+	}
 	else
+	{
+		data->line_color = create_trgb(0, 255, 0, 0);
 		memcpy((void *)ray, (void *)&h_ray, sizeof(t_ray));
+	}
 	if (!h_ray.len)
 		memcpy((void *)ray, (void *)&v_ray, sizeof(t_ray));
 	if (!v_ray.len)
@@ -86,7 +93,7 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	return (ray);
 }
 
-void	draw_3d_wall(t_ray *ray, t_pixel *data)
+void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
 {
 	double	wall_row;
 	double	center;
@@ -99,12 +106,12 @@ void	draw_3d_wall(t_ray *ray, t_pixel *data)
 	if (wall_row > HEIGHT)
 		wall_row = HEIGHT;
 	center = (HEIGHT / 2) - (wall_row / 2);
-	top_init.x = WIDTH / 2;
+	top_init.x = i * 8;
 	top_init.y = center;
 	top_end = top_init;
 	top_end.x += 8;
-	botoom_init.x = WIDTH / 2;
-	botoom_init.y = wall_row;
+	botoom_init.x = i * 8;
+	botoom_init.y = top_init.y + wall_row;
 	botoom_end = botoom_init;
 	botoom_end.x += 8;
 	draw_line(top_init, top_end, data);
@@ -120,12 +127,14 @@ t_ray	*draw_rays(t_point init_ray, t_pixel *data, double init_angle)
 	while (i <= N_RAYS)
 	{
 		ray = ray_end_coord(init_angle, init_ray, data);
+		// data->line_color = create_trgb(0, 255, 255, 255);
 		draw_line(init_ray, ray->end, data);
 		init_angle += deeg_to_rad(VIEW_RANGE) / N_RAYS;
 		if (init_angle > deeg_to_rad(360))
 			init_angle -= deeg_to_rad(360);
 		ray->end = init_ray;
-		// draw_3d_wall(ray, data);
+		// data->line_color = create_trgb(0, 255, 0, 0);
+		draw_3d_wall(ray, data, i);
 		printf("ray len %d\n", ray->len);
 		i++;
 		free(ray);
