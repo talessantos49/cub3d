@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 23:02:47 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 11:36:00 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	move_player(t_mlx *mlx, int x, int y, int key)
 		render_image(mlx);
 		mlx_destroy_image(mlx->init, mlx->data_img);
 		mlx_destroy_image(mlx->init, mlx->temp_img);
-
 	}
 }
 

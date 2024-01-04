@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 23:42:51 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 11:26:16 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_point	draw_viewer(t_point coord, t_pixel *data, char dir)
 	return (coord);
 }
 
-t_point	draw_scenario(t_pixel *data)
+t_point	draw_2d_scenario(t_pixel *data)
 {
 	t_map	*map;
 	t_point	p;
