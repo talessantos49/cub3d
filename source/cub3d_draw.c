@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/01 23:36:47 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 22:36:34 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_point	draw_scenario(t_pixel *data)
 
 	ft_memset((void *)&p, 0, sizeof(t_point));
 	map = data->mlx->map;
-	draw_quads(data);
+	// draw_quads(data);
 	while (map->map[p.y])
 	{
 		while (map->map[p.y][p.x])

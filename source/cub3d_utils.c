@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 23:13:13 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 19:44:55 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 22:01:30 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_wall(t_point map, t_pixel *data)
 		return (-1);
 	if (data->mlx->map->map[map.y][map.x] == '1')
 	{
-		printf("\nfound wall at map[%d][%d]\n", map.y, map.x);
+		// printf("\nfound wall at map[%d][%d]\n", map.y, map.x);
 		return (TRUE);
 	}
 	return (FALSE);

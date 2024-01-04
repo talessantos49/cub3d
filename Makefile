@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/03 17:18:07 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/03 22:56:31 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ ${LIBFT}:
 			@echo Libft has been compiled!
 
 valgrind:
-		$(VALGRIND) ./cub3d maps/map_example.cub
+		$(VALGRIND) ./cub3d maps/test.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean

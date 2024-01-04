@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2023/12/30 23:16:45 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:02:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void	move_player(t_mlx *mlx, int x, int y, int key)
 		else
 			mlx->map->map[next.y][next.x] = viewer_bck;
 		render_image(mlx);
-		free(mlx->data_img);
-		free(mlx->temp_img);
+		mlx_destroy_image(mlx->init, mlx->data_img);
+		mlx_destroy_image(mlx->init, mlx->temp_img);
+
 	}
 }
 
@@ -80,8 +81,8 @@ int	cub3d_open_window(t_mlx *mlx)
 	mlx_hook(mlx->window, 2, 1L << 0, key_input, mlx);
 	mlx_hook(mlx->window, 17, 0, &cub3d_close_window, mlx);
 	render_image(mlx);
-	free(mlx->data_img);
-	free(mlx->temp_img);
+	mlx_destroy_image(mlx->init, mlx->data_img);
+	mlx_destroy_image(mlx->init, mlx->temp_img);
 	mlx_loop(mlx->init);
 	return (0);
 }

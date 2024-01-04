@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/03 20:17:04 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/03 23:01:02 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 	}
 }
 
-t_point	ray_end_coord(double angle, t_point init_coord, t_pixel *data)
+t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 {
 	t_ray	h_ray;
 	t_ray	v_ray;
-	t_point	ray_end;
+	t_ray	*ray;
 
-	ft_memset((void *)&ray_end, 0, sizeof(t_point));
+	ray = ft_calloc(1, sizeof(t_ray));
 	h_ray.init = init_coord;
 	h_ray.angle = angle;
 	v_ray.init = init_coord;
@@ -74,35 +74,63 @@ t_point	ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	check_rays_colition_on_y_axis(&h_ray, data);
 	check_rays_colition_on_x_axis(&v_ray, data);
 	if (v_ray.len < h_ray.len)
-		ray_end = v_ray.end;
+		memcpy((void *)ray, (void *)&v_ray, sizeof(t_ray));
 	else if (v_ray.len > h_ray.len)
-		ray_end = h_ray.end;
+		memcpy((void *)ray, (void *)&h_ray, sizeof(t_ray));
 	else
-		ray_end = h_ray.end;
+		memcpy((void *)ray, (void *)&h_ray, sizeof(t_ray));
 	if (!h_ray.len)
-		ray_end = v_ray.end;
+		memcpy((void *)ray, (void *)&v_ray, sizeof(t_ray));
 	if (!v_ray.len)
-		ray_end = h_ray.end;
-	return (ray_end);
+		memcpy((void *)ray, (void *)&h_ray, sizeof(t_ray));
+	return (ray);
 }
 
-void	draw_rays(t_point init_ray, t_pixel *data, double init_angle)
+void	draw_3d_wall(t_ray *ray, t_pixel *data)
 {
-	t_point	end_ray;
+	double	wall_row;
+	double	center;
+	t_point	top_init;
+	t_point	botoom_init;
+	t_point	top_end;
+	t_point	botoom_end;
+
+	wall_row = (BLOCK_SIZE * HEIGHT) / ray->len;
+	if (wall_row > HEIGHT)
+		wall_row = HEIGHT;
+	center = (HEIGHT / 2) - (wall_row / 2);
+	top_init.x = WIDTH / 2;
+	top_init.y = center;
+	top_end = top_init;
+	top_end.x += 8;
+	botoom_init.x = WIDTH / 2;
+	botoom_init.y = wall_row;
+	botoom_end = botoom_init;
+	botoom_end.x += 8;
+	draw_line(top_init, top_end, data);
+	draw_line(botoom_init, botoom_end, data);
+}
+
+t_ray	*draw_rays(t_point init_ray, t_pixel *data, double init_angle)
+{
+	t_ray	*ray;
 	int		i;
 
 	i = 0;
-	end_ray = init_ray;
 	while (i <= N_RAYS)
 	{
-		end_ray = ray_end_coord(init_angle, init_ray, data);
-		draw_line(init_ray, end_ray, data);
+		ray = ray_end_coord(init_angle, init_ray, data);
+		draw_line(init_ray, ray->end, data);
 		init_angle += deeg_to_rad(VIEW_RANGE) / N_RAYS;
 		if (init_angle > deeg_to_rad(360))
 			init_angle -= deeg_to_rad(360);
-		end_ray = init_ray;
+		ray->end = init_ray;
+		// draw_3d_wall(ray, data);
+		printf("ray len %d\n", ray->len);
 		i++;
+		free(ray);
 	}
+	return(ray);
 }
 
 void	ray_casting(t_point camera, t_pixel *data)
