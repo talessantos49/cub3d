@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 15:54:24 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 15:49:46 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ typedef struct s_point
 
 typedef struct s_ray
 {
-	int		len;
+	double	len;
 	double	angle;
 	t_point	init;
 	t_point	end;
 	t_point	map;
+	t_point	offset;
 }	t_ray;
 
 typedef struct s_data {

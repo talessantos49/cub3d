@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:43:15 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 13:25:03 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 14:48:14 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ int	cal_collition(t_ray *camera, t_mlx *mlx)
 	if (camera->angle > deeg_to_rad(180))
 		calculate_north(camera);
 	flag2 = check_collition(camera->map, mlx);
+	if (flag2 < 0)
+	{
+		printf("\n\t\t=====ATENCAO=====\ncal on map fails\n\n");
+		return (-1);
+	}
 	if (flag1 != flag2)
+	{
 		printf("\n\t\t===IS NOT SUPOSE TO BE THIS WAY====\nflag1: %d\nflag2: %d\n", \
 																	flag1, flag2);
-	if (flag2 < 0)
-		printf("cal on map fail");
+		printf("\n(%d,%d)\n", camera->init.x,camera->init.y);
+		flag2 = (FALSE);
+	}
 	return (flag2);
 }

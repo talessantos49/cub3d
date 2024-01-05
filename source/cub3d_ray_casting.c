@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 21:13:34 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 17:55:24 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 	while (TRUE)
 	{
 		if (ray->angle < deeg_to_rad(270) && ray->angle > deeg_to_rad(90))
-			calculate_west_rays(ray, i);
+			calculate_west_rays(ray);
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
-			calculate_est_rays(ray, i);
+			calculate_est_rays(ray);
 		i++;
+		ray->map.y = (ray->end.y / BLOCK_SIZE);
+		ray->map.x = ray->end.x/ BLOCK_SIZE;
 		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
 			break ;
-		else if (flag < 0)
-		{
-			ray->len = 0;
-			break ;
-		}
+		ray->end.x += ray->offset.x;
+		ray->end.y += ray->offset.y;
+		break ;
 	}
 }
 
@@ -45,18 +45,18 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 	while (TRUE)
 	{
 		if (ray->angle < deeg_to_rad(180))
-			calculate_south_rays(ray, i);
+			calculate_south_rays(ray);
 		if (ray->angle > deeg_to_rad(180))
-			calculate_north_rays(ray, i);
+			calculate_north_rays(ray);
 		i++;
+		ray->map.y = (ray->end.y / BLOCK_SIZE);
+		ray->map.x = ray->end.x/ BLOCK_SIZE;
 		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
 			break ;
-		else if (flag < 0)
-		{
-			ray->len = 0;
-			break ;
-		}
+		ray->end.x += ray->offset.x;
+		ray->end.y += ray->offset.y;
+		break ;
 	}
 }
 
@@ -97,13 +97,14 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 
 void	ray_casting(t_point camera, t_pixel *data)
 {
-	double	angle;
+	// double	angle;
 
-	angle = *data->camera_angle - deeg_to_rad(VIEW_RANGE / 2);
-	if (angle < 0)
-		angle += deeg_to_rad(360);
+	// angle = *data->camera_angle - deeg_to_rad(VIEW_RANGE / 2);
+	// if (angle < 0)
+	// 	angle += deeg_to_rad(360);
 	draw_circle_viewer(camera, data);
-	draw_rays(camera, data, angle);
+	draw_rays(camera, data, *data->camera_angle);
+	// draw_rays(camera, data, angle);
 	if (data->mlx->viewer_dir)
 		free(data->mlx->viewer_dir);
 	data->mlx->viewer_dir = ray_end_coord(*data->camera_angle, camera, data);
