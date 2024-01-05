@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 12:34:37 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 14:51:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 		printf("this is the first time\n");
 	}
 	else
-	{
 		center = data->mlx->viewer_dir->init;
-		printf("center: (%d,%d)\nmlx->viewer_dir->init: (%d,%d)\n", \
-		center.x,center.y,data->mlx->viewer_dir->init.x,data->mlx->viewer_dir->init.y);
-	}
+	printf("\ncenter: (%d,%d)\n", center.x,center.y);
 	ray_casting(center, data);
 	return (center);
 }
