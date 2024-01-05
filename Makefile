@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/04 11:24:28 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/05 12:44:11 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SOURCES_DIR		= ./source/
 
 HEADERS_LIST	= cub3d.h \
 				cub3d_window.h \
+				cub3d_move_camera.h \
 				cub3d_rays.h
 
 SOURCES_LIST	= cub3d.c \
@@ -24,12 +25,14 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_map_rules.c \
 		cub3d_mlx_utils.c \
 		cub3d_utils.c \
+		cub3d_move_camera.c \
 		cub3d_draw_line.c \
 		cub3d_ray_casting.c \
 		cub3d_ray_utils.c \
 		cub3d_draw.c \
 		cub3d_draw_scenario.c \
 		cub3d_debug_util.c \
+		cub3d_check_collition.c \
 		cub3d_window.c
 
 GREEN			= \033[0;32m

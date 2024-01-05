@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 11:30:23 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:24:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "libft.h"
 # include "cub3d_rays.h"
 # include "cub3d_window.h"
+# include "cub3d_move_camera.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
@@ -55,11 +56,11 @@ int		cub3d_read_map(char *map_path, t_map *read_map);
 int		cub3d_parse_map(int fd, t_map *read_map);
 int		create_trgb(int t, int r, int g, int b);
 void	swap(int *a, int *b);
-void	update_viewer_direction(t_mlx *mlx, int key);
+int		update_viewer_direction(t_mlx *mlx, int key);
 void	draw_quads(t_pixel *data);
 t_point	draw_block(t_point coord, t_pixel *data, int size);
 void	draw_circle_viewer(t_point coord, t_pixel *data);
-int		check_wall(t_point map, t_pixel *data);
+int		check_collition(t_point map, t_mlx *mlx);
 double	deeg_to_rad(int deegres);
 int		map_height(char **map, t_point map_coord);
 

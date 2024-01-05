@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 09:52:30 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 15:54:24 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	t_ray	cal_rays;
 }	t_data;
 
 typedef struct s_mlx
@@ -62,11 +61,11 @@ typedef struct s_mlx
 	void	*window;
 	t_map	*map;
 	t_point	camera_pos;
-	t_point	camera_dir;
 	void	*data_img;
 	void	*temp_img;
 	char	change_dir;
 	double	camera_angle;
+	t_ray	*viewer_dir;
 }	t_mlx;
 
 typedef struct s_pixel

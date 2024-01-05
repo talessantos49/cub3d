@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 11:35:42 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:23:55 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle)
 		ray = ray_end_coord(angle, ray_init, data);
 		draw_2d_rays(data, ray);
 		draw_3d_wall(ray, data, i);
+		free(ray);
 		cal_next_ray_angle(&angle);
 		i++;
-		free(ray);
 	}
 	return (ray);
 }
