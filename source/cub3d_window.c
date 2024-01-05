@@ -6,13 +6,13 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 21:20:58 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 12:32:32 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	read_key_input(int key, t_mlx *mlx)
+int	read_key_input(int key, t_mlx *mlx)
 {
 	t_point	bckp;
 
@@ -26,23 +26,15 @@ void	read_key_input(int key, t_mlx *mlx)
 	else if (key == XK_s)
 		move_backward(mlx->viewer_dir, mlx);
 	if (bckp.x != mlx->viewer_dir->init.x || bckp.y != mlx->viewer_dir->init.y)
-	{
-		mlx->change_dir = TRUE;
-		return ;
-	}
+		return (TRUE);
 	else if (key == XK_Left || key == XK_Right)
-	{
-		update_viewer_direction(mlx, key);
-		mlx->change_dir = TRUE;
-		return ;
-	}
-	mlx->change_dir = FALSE;
+		return (update_viewer_direction(mlx, key));
+	return (FALSE);
 }
 
 void	move_viewer(t_mlx *mlx, int key)
 {
-	read_key_input(key, mlx);
-	if (mlx->change_dir)
+	if (read_key_input(key, mlx))
 	{
 		mlx_clear_window(mlx->init, mlx->window);
 		render_image(mlx);

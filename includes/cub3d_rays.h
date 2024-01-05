@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:55:55 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 16:13:23 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:24:35 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	calculate_north_rays(t_ray *ray, int i);
 void	calculate_south_rays(t_ray *ray, int i);
 t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data);
 t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle);
+int		cal_collition(t_ray *camera, t_mlx *mlx);
 
 void	free_staff(t_mlx *mlx);
 

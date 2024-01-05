@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 21:16:13 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:24:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		cub3d_read_map(char *map_path, t_map *read_map);
 int		cub3d_parse_map(int fd, t_map *read_map);
 int		create_trgb(int t, int r, int g, int b);
 void	swap(int *a, int *b);
-void	update_viewer_direction(t_mlx *mlx, int key);
+int		update_viewer_direction(t_mlx *mlx, int key);
 void	draw_quads(t_pixel *data);
 t_point	draw_block(t_point coord, t_pixel *data, int size);
 void	draw_circle_viewer(t_point coord, t_pixel *data);

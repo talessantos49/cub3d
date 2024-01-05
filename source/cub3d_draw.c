@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:11:12 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 12:34:37 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 {
 	t_point	center;
 
-	// center.y = coord.y + VIEWER_SIZE / 2;
-	// center.x = coord.x + VIEWER_SIZE / 2;
 	if (!data->mlx->viewer_dir)
 	{
 		center.y = coord.y + VIEWER_SIZE / 2;
@@ -74,8 +72,6 @@ t_point	draw_block(t_point coord, t_pixel *data, int size)
 t_ray	draw_viewer(t_point coord, t_pixel *data, char dir)
 {
 	int		bckp_color;
-	// t_point	ab_view_pos;
-	// t_point	viewer;
 	t_ray	ret;
 
 	ret.map = coord;
@@ -83,10 +79,7 @@ t_ray	draw_viewer(t_point coord, t_pixel *data, char dir)
 	data->line_color = create_trgb(0, 0, 100, 200);
 	data->camera_dir = dir;
 	ret.init = verify_viewer_draw_rules(draw_block(coord, data, VIEWER_SIZE), data);
-	// ab_view_pos = verify_viewer_draw_rules(viewer, data);
 	data->line_color = bckp_color;
-	// printf("absolute viewer pos: (%d,%d)\n", ab_view_pos.x,ab_view_pos.y);
-	// printf("viewer pos: (%d,%d)\n", viewer.x,viewer.y);
 	return (ret);
 }
 
@@ -99,7 +92,7 @@ t_point	draw_scenario(t_pixel *data)
 
 	ft_memset((void *)&p, 0, sizeof(t_point));
 	map = data->mlx->map;
-	// draw_quads(data);
+	draw_quads(data);
 	while (map->map[p.y])
 	{
 		while (map->map[p.y][p.x])
