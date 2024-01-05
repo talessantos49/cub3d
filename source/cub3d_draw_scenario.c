@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:03:33 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:23:55 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	draw_2d_rays(t_pixel *data, t_ray *ray)
 t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle)
 {
 	t_ray	*ray;
-	// t_ray	*viewer_dir;
 	int		i;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:04:49 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:13:34 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
 			calculate_est_rays(ray, i);
 		i++;
-		flag = check_wall(ray->map, data);
+		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
 			break ;
 		else if (flag < 0)
@@ -49,7 +49,7 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle > deeg_to_rad(180))
 			calculate_north_rays(ray, i);
 		i++;
-		flag = check_wall(ray->map, data);
+		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
 			break ;
 		else if (flag < 0)
@@ -104,5 +104,7 @@ void	ray_casting(t_point camera, t_pixel *data)
 		angle += deeg_to_rad(360);
 	draw_circle_viewer(camera, data);
 	draw_rays(camera, data, angle);
+	if (data->mlx->viewer_dir)
+		free(data->mlx->viewer_dir);
 	data->mlx->viewer_dir = ray_end_coord(*data->camera_angle, camera, data);
 }

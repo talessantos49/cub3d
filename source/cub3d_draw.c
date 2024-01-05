@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:10:31 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 20:11:12 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 {
 	t_point	center;
 
-	center.y = coord.y + VIEWER_SIZE / 2;
-	center.x = coord.x + VIEWER_SIZE / 2;
+	// center.y = coord.y + VIEWER_SIZE / 2;
+	// center.x = coord.x + VIEWER_SIZE / 2;
 	if (!data->mlx->viewer_dir)
 	{
-		// center.y = coord.y + VIEWER_SIZE / 2;
-		// center.x = coord.x + VIEWER_SIZE / 2;
+		center.y = coord.y + VIEWER_SIZE / 2;
+		center.x = coord.x + VIEWER_SIZE / 2;
 		if (data->camera_dir == 'N')
 			*data->camera_angle = ONE_DEGREE * 270;
 		else if (data->camera_dir == 'E')
@@ -34,7 +34,7 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	}
 	else
 	{
-		// center = data->mlx->viewer_dir->init;
+		center = data->mlx->viewer_dir->init;
 		printf("center: (%d,%d)\nmlx->viewer_dir->init: (%d,%d)\n", \
 		center.x,center.y,data->mlx->viewer_dir->init.x,data->mlx->viewer_dir->init.y);
 	}

@@ -6,22 +6,30 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:07:59 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:20:58 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	read_key_input(int key, t_point *next, t_mlx *mlx)
+void	read_key_input(int key, t_mlx *mlx)
 {
+	t_point	bckp;
+
+	bckp = mlx->viewer_dir->init;
 	if (key == XK_w)
-		next->y--;
+		move_forward(mlx->viewer_dir, mlx);
 	else if (key == XK_a)
-		next->x--;
+		move_left(mlx->viewer_dir, mlx);
 	else if (key == XK_d)
-		next->x++;
+		move_right(mlx->viewer_dir, mlx);
 	else if (key == XK_s)
-		next->y++;
+		move_backward(mlx->viewer_dir, mlx);
+	if (bckp.x != mlx->viewer_dir->init.x || bckp.y != mlx->viewer_dir->init.y)
+	{
+		mlx->change_dir = TRUE;
+		return ;
+	}
 	else if (key == XK_Left || key == XK_Right)
 	{
 		update_viewer_direction(mlx, key);
@@ -31,24 +39,16 @@ void	read_key_input(int key, t_point *next, t_mlx *mlx)
 	mlx->change_dir = FALSE;
 }
 
-void	move_viewer(t_mlx *mlx, int x, int y, int key)
+void	move_viewer(t_mlx *mlx, int key)
 {
-	t_point	next;
-
-	next.x = x;
-	next.y = y;
-	read_key_input(key, &next, mlx);
-	if (mlx->map->map[next.y][next.x] == '0' || mlx->change_dir)
+	read_key_input(key, mlx);
+	if (mlx->change_dir)
 	{
 		mlx_clear_window(mlx->init, mlx->window);
-		mlx->map->map[y][x] = '0';
-		mlx->map->map[next.y][next.x] = 'E';
 		render_image(mlx);
 		mlx_destroy_image(mlx->init, mlx->data_img);
 		mlx_destroy_image(mlx->init, mlx->temp_img);
 	}
-	// // if (mlx->viewer_dir)
-	// free(mlx->viewer_dir);
 }
 
 int	key_input(int key, t_mlx *mlx)
@@ -57,8 +57,7 @@ int	key_input(int key, t_mlx *mlx)
 		cub3d_close_window(mlx);
 	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d || \
 			key == XK_Right || key == XK_Left)
-		move_viewer(mlx, mlx->camera_pos.x, \
-		mlx->camera_pos.y, key);
+		move_viewer(mlx, key);
 	return (0);
 }
 
