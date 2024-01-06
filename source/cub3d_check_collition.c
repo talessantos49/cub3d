@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:43:15 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 13:25:03 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/06 09:30:54 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	calculate_west(t_ray *ray)
 {
-	ray->map.x = ((ray->init.x - BLOCK_SIZE) / BLOCK_SIZE);
+	ray->map.x = ((ray->init.x) / BLOCK_SIZE);
 	ray->map.y = (ray->init.y - (ray->init.y % BLOCK_SIZE)) / BLOCK_SIZE;
 }
 
@@ -26,7 +26,7 @@ void	calculate_est(t_ray *ray)
 
 void	calculate_north(t_ray *ray)
 {
-	ray->map.y = ((ray->init.y - BLOCK_SIZE) / BLOCK_SIZE);
+	ray->map.y = ((ray->init.y) / BLOCK_SIZE);
 	ray->map.x = (ray->init.x - (ray->init.x % BLOCK_SIZE)) / BLOCK_SIZE;
 }
 

@@ -6,31 +6,12 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 12:32:32 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 23:22:19 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	read_key_input(int key, t_mlx *mlx)
-{
-	t_point	bckp;
-
-	bckp = mlx->viewer_dir->init;
-	if (key == XK_w)
-		move_forward(mlx->viewer_dir, mlx);
-	else if (key == XK_a)
-		move_left(mlx->viewer_dir, mlx);
-	else if (key == XK_d)
-		move_right(mlx->viewer_dir, mlx);
-	else if (key == XK_s)
-		move_backward(mlx->viewer_dir, mlx);
-	if (bckp.x != mlx->viewer_dir->init.x || bckp.y != mlx->viewer_dir->init.y)
-		return (TRUE);
-	else if (key == XK_Left || key == XK_Right)
-		return (update_viewer_direction(mlx, key));
-	return (FALSE);
-}
 
 void	move_viewer(t_mlx *mlx, int key)
 {
@@ -38,8 +19,6 @@ void	move_viewer(t_mlx *mlx, int key)
 	{
 		mlx_clear_window(mlx->init, mlx->window);
 		render_image(mlx);
-		mlx_destroy_image(mlx->init, mlx->data_img);
-		mlx_destroy_image(mlx->init, mlx->temp_img);
 	}
 }
 
@@ -68,8 +47,6 @@ int	cub3d_open_window(t_mlx *mlx)
 	mlx_hook(mlx->window, 2, 1L << 0, key_input, mlx);
 	mlx_hook(mlx->window, 17, 0, &cub3d_close_window, mlx);
 	render_image(mlx);
-	mlx_destroy_image(mlx->init, mlx->data_img);
-	mlx_destroy_image(mlx->init, mlx->temp_img);
 	mlx_loop(mlx->init);
 	return (0);
 }
