@@ -6,13 +6,13 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 21:13:34 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/06 09:20:35 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
+void	check_rays_colition_on_x_axis(t_ray *ray, t_mlx *mlx)
 {
 	int		i;
 	int		flag;
@@ -25,7 +25,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
 			calculate_est_rays(ray, i);
 		i++;
-		flag = check_collition(ray->map, data->mlx);
+		flag = check_collition(ray->map, mlx);
 		if (flag > 0)
 			break ;
 		else if (flag < 0)
@@ -36,7 +36,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 	}
 }
 
-void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
+void	check_rays_colition_on_y_axis(t_ray *ray, t_mlx *mlx)
 {
 	int		i;
 	int		flag;
@@ -49,7 +49,7 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle > deeg_to_rad(180))
 			calculate_north_rays(ray, i);
 		i++;
-		flag = check_collition(ray->map, data->mlx);
+		flag = check_collition(ray->map, mlx);
 		if (flag > 0)
 			break ;
 		else if (flag < 0)
@@ -85,8 +85,8 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	h_ray.angle = angle;
 	v_ray.init = init_coord;
 	v_ray.angle = angle;
-	check_rays_colition_on_y_axis(&h_ray, data);
-	check_rays_colition_on_x_axis(&v_ray, data);
+	check_rays_colition_on_y_axis(&h_ray, data->mlx);
+	check_rays_colition_on_x_axis(&v_ray, data->mlx);
 	choose_final_ray(ray, &h_ray, &v_ray);
 	if (ray->end.x == h_ray.end.x && ray->end.y == h_ray.end.y)
 		data->line_color = create_trgb(0, 255, 0, 0);
