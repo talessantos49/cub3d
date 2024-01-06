@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:55:55 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 13:24:35 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/06 09:08:43 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle);
 int		cal_collition(t_ray *camera, t_mlx *mlx);
 
 void	free_staff(t_mlx *mlx);
+
+
+void	check_rays_colition_on_x_axis(t_ray *ray, t_mlx *mlx);
+void	check_rays_colition_on_y_axis(t_ray *ray, t_mlx *mlx);
+void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray);
 
 #endif

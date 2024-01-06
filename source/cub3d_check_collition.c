@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:43:15 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 22:59:50 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/06 08:36:57 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	cal_collition(t_ray *camera, t_mlx *mlx)
 	else if (camera->angle > deeg_to_rad(270) || camera->angle < deeg_to_rad(90))
 		calculate_est(camera);
 	flag += check_collition(camera->map, mlx);
-
-
 	if (camera->angle < deeg_to_rad(180))
 		calculate_south(camera);
 	if (camera->angle > deeg_to_rad(180))
