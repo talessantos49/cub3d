@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 23:26:27 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/06 11:21:38 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define VIEWER_SIZE 6
 # define ONE_DEGREE 0.01745200698
 # define VIEW_RANGE 60
-# define N_RAYS 180
+# define N_RAYS 1
 # define MAP_OFFSET 450
 # define CUB3D_H
 
