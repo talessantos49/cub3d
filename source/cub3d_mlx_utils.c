@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:04:20 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 19:22:25 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/05 19:17:20 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	put_pixel(t_point point, int trgb, t_data *img)
 	return (0);
 }
 
+//Ajustar renderização para que não pisque
 int	render_image(t_mlx *mlx)
 {
 	t_data	img;
@@ -51,5 +52,7 @@ int	render_image(t_mlx *mlx)
 	mlx->camera_pos = draw_scenario(&data);
 	memcpy((void *)&temp_img, (void *)&img, sizeof(t_data));
 	mlx_put_image_to_window(mlx->init, mlx->window, temp_img.img, 0, 0);
+	mlx_destroy_image(mlx->init, mlx->data_img);
+	mlx_destroy_image(mlx->init, mlx->temp_img);
 	return (0);
 }
