@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/11/19 19:57:30 by root             ###   ########.fr        #
+#    Updated: 2023/11/19 21:37:36 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
 		cub3d_map_rules.c \
 		parser_map.c \
-		clear.c
+		clear.c \
+		parser_texture.c
 		# cub3d_mlx_utils.c \
 		bresenham_algorithm.c \
 		cub3d_ray_casting.c \

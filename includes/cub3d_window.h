@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/19 21:09:54 by root             ###   ########.fr       */
+/*   Updated: 2024/01/08 18:46:39 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ typedef struct s_color
 typedef struct s_map
 {
 	char	**map;
+	char	**matrix;
 	int		height;
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
+	int		n_row;
+	int		n_col;
 	t_color	floor;
 	t_color	ceiling;
 }	t_map;

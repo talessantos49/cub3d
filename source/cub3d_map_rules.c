@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/19 23:57:05 by root             ###   ########.fr       */
+/*   Updated: 2024/01/08 20:03:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,13 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 		return (printf ("ERROR: Invalid map\n"));
 	while (line)
 	{
-		// parser_map_line(line, read_map);
+		parser_map_line(line, read_map);
 		str_map = ft_strjoin(str_map, line);
 		free(line);
 		read_map->height++;
 		line = get_next_line(fd);
 	}
+	parser_map_round(map);
 	read_map->map = ft_split(str_map, '\n');
 	line_too_long(read_map->map);
 	has_error = verify_map(read_map);
