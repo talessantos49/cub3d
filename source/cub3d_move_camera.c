@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:15:34 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 23:25:58 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/11 11:35:48 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	update_viewer_direction(t_mlx *mlx, int key)
 {
 	if (key == XK_Right)
 	{
-		mlx->camera_angle += 0.1;
+		mlx->camera_angle += 0.05;
 		if (mlx->camera_angle > deeg_to_rad(360))
 			mlx->camera_angle = 0;
 	}
 	else
 	{
-		mlx->camera_angle -= 0.1;
+		mlx->camera_angle -= 0.05;
 		if (mlx->camera_angle < 0)
 			mlx->camera_angle = deeg_to_rad(360);
 	}
