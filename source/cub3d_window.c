@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 23:22:19 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:32:18 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 void	move_viewer(t_mlx *mlx, int key)
 {
 	if (read_key_input(key, mlx))
-	{
-		mlx_clear_window(mlx->init, mlx->window);
 		render_image(mlx);
-	}
 }
 
 int	key_input(int key, t_mlx *mlx)

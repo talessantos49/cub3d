@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 09:42:42 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 16:18:56 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:20:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_staff(t_mlx *mlx)
 {
 	free(mlx->init);
 	free_map(mlx->map->map);
+	free(mlx->viewer_dir);
 }
 
 int	main(int argc, char *argv[])
