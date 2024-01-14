@@ -21,6 +21,7 @@ SRC = 	ft_itoa.c \
 		ft_lstlast.c \
 		ft_lstnew.c \
 		ft_lstclear.c \
+		ft_hex_to_int.c \
 		ft_printf.c \
 		ft_printf_other_convs.c \
 		ft_printf_int_convs.c
