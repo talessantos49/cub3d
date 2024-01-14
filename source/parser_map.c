@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/14 17:54:55 by root             ###   ########.fr       */
+/*   Updated: 2024/01/14 18:15:06 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,36 +180,36 @@ void	parser_map_line(char *line, t_map *map)
 	parser_map_round(map);
 	return ;
 }
-void insertNode(Node** head, char key, int value) {
-    Node* newNode = createNode(key, value);
-    newNode->next = *head;
-    *head = newNode;
-}
+// void insertNode(Node** head, char key, int value) {
+//     Node* newNode = createNode(key, value);
+//     newNode->next = *head;
+//     *head = newNode;
+// }
 
-Node* createNode(char key,int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        ft_printf(stderr, "Erro ao alocar memória para o novo nó\n");
-        exit(EXIT_FAILURE);
-    }
-    strcpy(newNode->key, key);
-    newNode->value = value;
-    newNode->next = NULL;
-    return newNode;
-}
+// Node* createNode(char key,int value) {
+//     Node* newNode = (Node*)malloc(sizeof(Node));
+//     if (newNode == NULL) {
+//         ft_printf(stderr, "Erro ao alocar memória para o novo nó\n");
+//         exit(EXIT_FAILURE);
+//     }
+//     strcpy(newNode->key, key);
+//     newNode->value = value;
+//     newNode->next = NULL;
+//     return newNode;
+// }
 
-void insertNode(Node** head, char key, int value) {
-    Node* newNode = createNode(key, value);
-    newNode->next = *head;
-    *head = newNode;
-}
+// void insertNode(Node** head, char key, int value) {
+//     Node* newNode = createNode(key, value);
+//     newNode->next = *head;
+//     *head = newNode;
+// }
 
-int searchNode(Node* head, char key) {
-    Node* current = head;
-    while (current != NULL) {
-        if (ft_strcmp(current->key, key) == 0) {
-            return current->value;
-        }
-        current = current->next;
-    }
-    return -1;
+// int searchNode(Node* head, char key) {
+//     Node* current = head;
+//     while (current != NULL) {
+//         if (ft_strncmp(current->key, key) == 0) {
+//             return current->value;
+//         }
+//         current = current->next;
+//     }
+//     return -1;
