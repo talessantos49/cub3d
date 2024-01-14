@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/08 20:03:46 by root             ###   ########.fr       */
+/*   Updated: 2024/01/11 18:59:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 		read_map->height++;
 		line = get_next_line(fd);
 	}
-	parser_map_round(map);
+	// parser_map_round(map);
 	read_map->map = ft_split(str_map, '\n');
-	line_too_long(read_map->map);
+	// line_too_long(read_map->map);
 	has_error = verify_map(read_map);
 	free(str_map);
 	free(line);

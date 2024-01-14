@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/08 20:04:35 by root             ###   ########.fr       */
+/*   Updated: 2024/01/14 17:54:55 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,214 +39,6 @@ char	*ft_strjoin_gnl(char	*string1, const char	*string2)
 	return (join);
 }
 
-int	comma_check(char *line, char constant)
-{
-    int i;
-    int j;
-    int len;
-
-    i = 0;
-    j = 0;
-    len = ft_strlen(line);
-    while (i < len)
-    {
-        if (line[i] == constant)
-            j++;
-        if (j == 2)
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-void	parser_map_floor(char *line, t_map *map)
-{
-    int i;
-    char    **split;
-
-    i = 0;
-    while (line[i] != '\0' && line[i] != '\n')
-    {
-        if (line[i] == 'F' || line[i] == 'f')
-            i++;
-        else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
-             || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-            i++;
-        else if ((ft_isdigit(line[i]) || line[i] == ',') && map->floor.r == 0)
-        {
-            if (comma_check(line, ',') == 0)
-            	clean_before_exit("Error\nFloor color not valid\n", 0);
-            split = ft_split(&line[i], ',');
-            map->floor.r = ft_atoi(split[0]);
-            map->floor.g = ft_atoi(split[1]);
-            map->floor.b = ft_atoi(split[2]);
-            free(split);
-            if (map->floor.r > 255 || map->floor.g > 255 || map->floor.b > 255)
-            	clean_before_exit("Floor color not valid\n", 0);
-            ft_printf("Floor:\nr = %d\n", map->floor.r);
-            ft_printf("g = %d\n", map->floor.g);
-            ft_printf("b = %d\n", map->floor.b);
-            if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
-                i++;
-        }
-        else if (line[i] == '\0' || line[i] == '\n')
-            return ;
-        else
-            i++;
-    }
-    return ;
-}
-
-void	parser_map_ceiling(char *line, t_map *map)
-{
-    int i;
-    char    **split;
-
-    i = 0;
-    while (line[i] != '\0' && line[i] != '\n')
-    {
-        if (line[i] == 'C' || line[i] == 'c')
-            i++;
-        else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
-             || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-            i++;
-        else if ((ft_isdigit(line[i]) || line[i] == ',') && map->ceiling.r == 0)
-        {
-            if (comma_check(line, ',') == 0)
-            	clean_before_exit("Error\nCeiling color not valid\n", 0);
-            split = ft_split(&line[i], ',');
-            map->ceiling.r = ft_atoi(split[0]);
-            map->ceiling.g = ft_atoi(split[1]);
-            map->ceiling.b = ft_atoi(split[2]);
-            free(split);
-            if (map->ceiling.r > 255 || map->ceiling.g > 255 || map->ceiling.b > 255)
-            	clean_before_exit("Ceiling color not valid\n", 0);
-            ft_printf("Ceiling:\nr = %d\n", map->ceiling.r);
-            ft_printf("g = %d\n", map->ceiling.g);
-            ft_printf("b = %d\n", map->ceiling.b);
-            if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
-                i++;
-        }
-        else if (line[i] == '\0' || line[i] == '\n')
-            return ;
-        else
-            i++;
-    }
-    return ;
-}
-
-void	parser_map_north(char *line)
-{
-    int i;
-    char *str;
-
-    i = 0;
-    str = calloc(sizeof(char), ft_strlen(line)-1);
-    while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-        line++;
-    while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ' && line[i] != '\t' && line[i] != '\v' && line[i] != '\f' && line[i] != '\r')
-    {
-        str[i] = line[i];
-        i++;
-    }
-    if (str == NULL)
-    {
-        free(str);
-    	clean_before_exit("North texture not found\n", 0); 
-    }
-    if (open(str, O_RDONLY) == -1)
-    {
-        free(str);
-    	clean_before_exit("North texture not found\n", 0);
-    }
-    else
-        free(str);
-    ft_printf("parser_map_south - OK, %s\n", line);
-}
-void	parser_map_south(char *line)
-{
-    int i;
-    char *str;
-
-    i = 0;
-    str = calloc(sizeof(char), ft_strlen(line)-1);
-    while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-        line++;
-    while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ' && line[i] != '\t' && line[i] != '\v' && line[i] != '\f' && line[i] != '\r')
-    {
-        str[i] = line[i];
-        i++;
-    }
-    if (str == NULL)
-    {
-        free(str);
-    	clean_before_exit("South texture not found\n", 0); 
-    }
-    if (open(str, O_RDONLY) == -1)
-    {
-        free(str);
-    	clean_before_exit("South texture not found\n", 0);
-    }
-    else
-        free(str);
-    ft_printf("parser_map_south - OK, %s\n", line);
-}
-void	parser_map_west(char *line)
-{
-    int i;
-    char *str;
-
-    i = 0;
-    str = calloc(sizeof(char), ft_strlen(line)-1);
-    while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-        line++;
-    while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ' && line[i] != '\t' && line[i] != '\v' && line[i] != '\f' && line[i] != '\r')
-    {
-        str[i] = line[i];
-        i++;
-    }
-    if (str == NULL)
-    {
-        free(str);
-    	clean_before_exit("West texture not found\n", 0); 
-    }
-    if (open(str, O_RDONLY) == -1)
-    {
-        free(str);
-    	clean_before_exit("West texture not found\n", 0);
-    }
-    else
-        free(str);
-    ft_printf("parser_map_west - OK, %s\n", line);
-}
-void	parser_map_east(char *line)
-{
-    int i;
-    char *str;
-
-    i = 0;
-    str = calloc(sizeof(char), ft_strlen(line)-1);
-    while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-        line++;
-    while (line[i] != '\0' && line[i] != '\n' && line[i] != ' ' && line[i] != '\t' && line[i] != '\v' && line[i] != '\f' && line[i] != '\r')
-    {
-        str[i] = line[i];
-        i++;
-    }
-    if (str == NULL)
-    {
-        free(str);
-    	clean_before_exit("East texture not found\n", 0); 
-    }
-    if (open(str, O_RDONLY) == -1)
-    {
-        free(str);
-    	clean_before_exit("East texture not found\n", 0);
-    }
-    else
-        free(str);
-    ft_printf("parser_map_east - OK, %s\n", line);
-}
 void	init_matrix(int filename, char *buffer, t_map *map)
 {
 	char	*line;
@@ -303,22 +95,28 @@ int	map_file(char *filename)
 // 	}
 // }
 
+// int check_first_row(t_map *map)
+// {
+    
+// }
+
 //  Ajustar essa função
 void	found_structure(t_map *map)
 {
 	int i;
     int j;
-    // int init_map;
-    // int end_map;
 
     i = 0;
     j =0;
-    // init_map = 0;
-    // end_map = 0;
     while (i < map->n_row)
     {
-        if(map->matrix[i][j] == '1')
-            ft_printf("%s\n", map->matrix[i]);
+        if (map->fase.floor == 1 && map->fase.ceiling == 1)
+            if (map->matrix[i][j] == '1')
+            {
+                //ft_printf("ROW: %d : %s, \n", map->n_row, map->matrix[i]);
+                map->fase.map = 1;
+                break;
+            }
         i++;
     }
 }
@@ -344,8 +142,6 @@ void	map_dimensions(t_map *map, char *path_map)
 			map->n_col++;
 		map->n_row++;
 	}
-	if (map->n_row < 3 || map->n_col < 3)
-		clean_before_exit("Error- INVALID MAP\n Map dimensions Invalid!\n", 0);
 	found_structure(map);
 	// verify_first_last(game);
 }
@@ -361,20 +157,22 @@ void	parser_map_line(char *line, t_map *map)
 	int i;
 
 	i = 0;
-    while (line[i] != '\0' && line[i] != '\n')
+    while ((line[i] != '\0' && line[i] != '\n') || map->fase.completed == 1)
 	{
         if (line[i] == 'F')
             parser_map_floor(line, map);
         else if (line[i] == 'C')
             parser_map_ceiling(line, map);
         else if (line[i] == 'N' && line[i + 1] == 'O')
-            parser_map_north(line + 2);
+            map->fase.no_texture = parser_map_north(line + 2);
         else if (line[i] == 'S' && line[i + 1] == 'O')
-            parser_map_south(line + 2);
+            map->fase.so_texture = parser_map_south(line + 2);
         else if (line[i] == 'W' && line[i + 1] == 'E')
-            parser_map_west(line + 2);
+            map->fase.we_texture = parser_map_west(line + 2);
         else if (line[i] == 'E' && line[i + 1] == 'A')
-            parser_map_east(line + 2);
+            map->fase.ea_texture = parser_map_east(line + 2);
+        else if (line[i] == '1' && line[i + 1] == '1' && line[i + 2] == '1' && map->fase.floor == 1 && map->fase.ceiling == 1)
+            parser_map_round(map);
         else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
 			i++;
 		i++;
@@ -382,3 +180,36 @@ void	parser_map_line(char *line, t_map *map)
 	parser_map_round(map);
 	return ;
 }
+void insertNode(Node** head, char key, int value) {
+    Node* newNode = createNode(key, value);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+Node* createNode(char key,int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        ft_printf(stderr, "Erro ao alocar memória para o novo nó\n");
+        exit(EXIT_FAILURE);
+    }
+    strcpy(newNode->key, key);
+    newNode->value = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertNode(Node** head, char key, int value) {
+    Node* newNode = createNode(key, value);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+int searchNode(Node* head, char key) {
+    Node* current = head;
+    while (current != NULL) {
+        if (ft_strcmp(current->key, key) == 0) {
+            return current->value;
+        }
+        current = current->next;
+    }
+    return -1;

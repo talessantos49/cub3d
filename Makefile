@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2023/11/19 21:37:36 by root             ###   ########.fr        #
+#    Updated: 2024/01/14 17:21:04 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ HEADERS_LIST	= cub3d.h \
 SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
 		cub3d_map_rules.c \
+		check_floor.c \
+		check_textures_path.c \
 		parser_map.c \
 		clear.c \
 		parser_texture.c

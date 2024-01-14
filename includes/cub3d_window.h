@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/08 18:46:39 by root             ###   ########.fr       */
+/*   Updated: 2024/01/14 17:22:10 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_fase
+{
+	int	floor;
+	int	ceiling;
+	int	map;
+	int	no_texture;
+	int	so_texture;
+	int	we_texture;
+	int	ea_texture;
+	int	player;
+	int	completed;
+}	t_fase;
+
 typedef struct s_map
 {
 	char	**map;
@@ -35,6 +48,7 @@ typedef struct s_map
 	char	*ea_texture;
 	int		n_row;
 	int		n_col;
+	t_fase	fase;
 	t_color	floor;
 	t_color	ceiling;
 }	t_map;
@@ -72,6 +86,16 @@ int	cub3d_open_window(t_mlx *mlx);
 int	render_image(t_mlx *mlx);
 int	put_pixel(t_point point, int trgb, t_data *img);
 int	bresenham(t_point point1, t_point point2, t_pixel *data);
+int		parser_map_north(char *line);
+int	parser_map(char *path_map, t_map *map);
+int	parser_map_south(char *line);
+int	parser_map_west(char *line);
+int	parser_map_east(char *line);
+int	comma_check(char *line, char constant);
 void	parser_map_line(char *line, t_map *map);
+void	clean_before_exit(char *message, int fd);
+void	check_rgb_and_split(char *line, t_map *map, char constant, char type);
+void	parser_map_floor(char *line, t_map *map);
+void	parser_map_ceiling(char *line, t_map *map);
 
 #endif

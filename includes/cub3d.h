@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/19 23:49:35 by root             ###   ########.fr       */
+/*   Updated: 2024/01/14 17:52:45 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef struct s_bresenham
 	int	dy;
 	int	p;
 }	t_bresenham;
+typedef struct Node {
+    char key;
+    int value;
+    struct Node* next;
+} Node;
 
 int	cub3d_read_map(char *map_path, t_map *read_map);
 int	cub3d_parse_map(int fd, t_map *read_map);
