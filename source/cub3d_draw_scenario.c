@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:08:30 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:13:13 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle)
 		ray->len *= fish_eye_correction(data, ray);
 		if (!ray->len)
 			ray->len = 1;
-		// draw_2d_rays(data, ray);
-		// debug_rays(ray, i);
 		draw_3d_wall(ray, data, i);
 		free(ray);
 		cal_next_ray_angle(&angle);

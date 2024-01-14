@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 23:13:13 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 20:42:13 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:15:15 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int	check_collition(t_point map, t_mlx *mlx)
 		|| ft_strlen(mlx->map->map[map.y]) <= (size_t)map.x)
 		return (-1);
 	if (mlx->map->map[map.y][map.x] == '1')
-	{
-		// printf("\nfound wall at map[%d][%d]\n", map.y, map.x);
 		return (TRUE);
-	}
 	return (FALSE);
 }
 

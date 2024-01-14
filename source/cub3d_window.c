@@ -6,12 +6,11 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 09:35:07 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:30:29 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	move_viewer(t_mlx *mlx, int key)
 {

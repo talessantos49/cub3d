@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:01:58 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:25:28 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define TRUE 1
 # define FALSE 0
 # define BLOCK_SIZE 64
-# define VIEWER_SIZE BLOCK_SIZE / 3
+# define VIEWER_SIZE 21.3
 # define ONE_DEGREE 0.01745200698
 # define VIEW_RANGE 60
 # define N_RAYS WIDTH
@@ -58,7 +58,6 @@ int		create_trgb(int t, int r, int g, int b);
 void	swap(int *a, int *b);
 int		update_viewer_direction(t_mlx *mlx, int key);
 void	draw_quads(t_pixel *data);
-t_point	draw_block(t_point coord, t_pixel *data, int size);
 void	draw_circle_viewer(t_point coord, t_pixel *data);
 int		check_collition(t_point map, t_mlx *mlx);
 double	deeg_to_rad(int deegres);
