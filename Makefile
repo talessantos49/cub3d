@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/05 12:44:11 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/14 19:00:14 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,10 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_draw_scenario.c \
 		cub3d_debug_util.c \
 		cub3d_check_collition.c \
-		cub3d_window.c
+		cub3d_window.c \
+		parser_map.c \
+		parser_texture.c \
+		clear.c
 
 GREEN			= \033[0;32m
 

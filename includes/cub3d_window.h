@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:02:03 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:52:38 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ typedef struct s_color
 typedef struct s_map
 {
 	char	**map;
+	char	**matrix;
 	int		height;
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
+	int		n_row;
+	int		n_col;
 	t_color	floor;
 	t_color	ceiling;
 }	t_map;
@@ -77,10 +84,11 @@ typedef struct s_pixel
 	double	*camera_angle;
 }	t_pixel;
 
-int	cub3d_close_window(t_mlx *mlx);
-int	cub3d_open_window(t_mlx *mlx);
-int	render_image(t_mlx *mlx);
-int	put_pixel(t_point point, int trgb, t_data *img);
-int	draw_line(t_point point1, t_point point2, t_pixel *data);
+int		cub3d_close_window(t_mlx *mlx);
+int		cub3d_open_window(t_mlx *mlx);
+int		render_image(t_mlx *mlx);
+int		put_pixel(t_point	 point, int trgb, t_data *img);
+int		draw_line(t_point point1, t_point point2, t_pixel *data);
+void	parser_map_line(char *line, t_map *map);
 
 #endif

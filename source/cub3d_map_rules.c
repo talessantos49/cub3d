@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2023/11/07 18:34:08 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:55:06 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	verify_map(t_map *read_map)
 	int	i;
 
 	i = 0;
-	if (wall_sorrounded(read_map))
+	// if (wall_sorrounded(read_map))
+	if (line_too_long(read_map))
 		return (1);
 	while (read_map->map[i])
 	{
@@ -82,6 +83,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 		return (printf ("ERROR: Invalid map\n"));
 	while (line)
 	{
+		parser_map_line(line, read_map);
 		str_map = ft_strjoin(str_map, line);
 		free(line);
 		read_map->height++;

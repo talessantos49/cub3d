@@ -4,10 +4,12 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g3
 
-SRC = 	ft_itoa.c \
+SRC = 	ft_atoi.c \
+		ft_itoa.c \
 		ft_toupper.c \
 		ft_calloc.c \
 		ft_bzero.c \
+		ft_isdigit.c \
 		ft_strlen.c \
 		ft_strjoin.c \
 		ft_strdup.c \
