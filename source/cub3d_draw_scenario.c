@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:08:30 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:52:15 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
 		ray->init.x++;
 		j++;
 	}
+	// if (i > 135 && i < 145)
+	// {
+	// 	printf("wall row: %f\tindex: %d\n", wall_row, i);
+	// 	printf("len: %d\n", ray->len);
+	// }
 }
 
 void	cal_next_ray_angle(double *angle)
@@ -61,15 +66,34 @@ void	draw_2d_rays(t_pixel *data, t_ray *ray)
 	data->line_color = bckp_color;
 }
 
+// void	debug_rays(t_ray *ray, int i)
+// {
+// 	if (i > 137 && i < 140)
+// 	{
+// 		printf("index: %d\n", i);
+// 		printf("len: %d\n", ray->len);
+// 		printf("map: y: %d x:%d \n", ray->map.y, ray->map.x);
+// 	}
+// 	// printf("len: %d\n", ray->len);
+// 	// // if (ray->map.y != 1 && ray->map.y != 2 && ray->map.y != 3)
+// 	// // {
+// 	// printf("index: %d\n\n", i);
+// 	// printf("map: y: %d x:%d \n", ray->map.y, ray->map.x);
+		
+// 	// // }
+	
+// }
+
 t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle)
 {
 	t_ray	*ray;
 	int		i;
 
 	i = 0;
-	while (i <= N_RAYS)
+	while (i <= N_RAYS /3)
 	{
-		ray = ray_end_coord(angle, ray_init, data);
+		ray = ray_end_coord(angle, ray_init, data, i);
+		// debug_rays(ray, i);
 		ray->len *= fish_eye_correction(data, ray);
 		if (!ray->len)
 			ray->len = 1;

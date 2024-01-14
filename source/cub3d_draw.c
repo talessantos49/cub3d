@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:02:52 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:11:09 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	}
 	else
 		center = data->mlx->viewer_dir->init;
-	printf("\ncenter: (%d,%d)\n", center.x,center.y);
 	return (center);
 }
 
