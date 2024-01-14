@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/04 21:13:34 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 10:22:22 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ray_casting(t_point camera, t_pixel *data)
 	angle = *data->camera_angle - deeg_to_rad(VIEW_RANGE / 2);
 	if (angle < 0)
 		angle += deeg_to_rad(360);
-	draw_circle_viewer(camera, data);
+	// draw_circle_viewer(camera, data);
 	draw_rays(camera, data, angle);
 	if (data->mlx->viewer_dir)
 		free(data->mlx->viewer_dir);

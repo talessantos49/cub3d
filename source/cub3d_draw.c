@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 14:51:47 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:02:52 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 	else
 		center = data->mlx->viewer_dir->init;
 	printf("\ncenter: (%d,%d)\n", center.x,center.y);
-	ray_casting(center, data);
 	return (center);
 }
 
@@ -57,9 +56,8 @@ t_point	draw_block(t_point coord, t_pixel *data, int size)
 	{
 		while (++p.y < end_coord.y)
 		{
-			if (size == VIEWER_SIZE)
-				break ;
-			call_put_pixel(p.x, p.y, data, 0);
+			if (size != VIEWER_SIZE)
+				call_put_pixel(p.x, p.y, data, 0);
 		}
 		p.y = coord.y;
 	}
@@ -95,14 +93,15 @@ t_point	draw_scenario(t_pixel *data)
 		while (map->map[p.y][p.x])
 		{
 			c = map->map[p.y][p.x];
-			if (c == '1')
-				draw_block(p, data, BLOCK_SIZE);
-			else if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+			// if (c == '1')
+			// 	draw_block(p, data, BLOCK_SIZE);
+			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 				viewer_infos = draw_viewer(p, data, c);
 			p.x++;
 		}
 		p.x = 0;
 		p.y++;
 	}
+	ray_casting(viewer_infos.init, data);
 	return (viewer_infos.map);
 }

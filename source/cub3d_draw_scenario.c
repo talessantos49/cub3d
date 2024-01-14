@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 19:18:47 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:08:30 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
 	if (wall_row > HEIGHT)
 		wall_row = HEIGHT;
 	center = (HEIGHT / 2) - (wall_row / 2);
-	ray->init.x = (i * 8) + MAP_OFFSET;
+	ray->init.x = (i * 1) + MAP_OFFSET;
 	ray->init.y = center;
-	ray->end.x = (i * 8) + MAP_OFFSET;
+	ray->end.x = (i * 1) + MAP_OFFSET;
 	ray->end.y = (ray->init.y + wall_row);
 	j = 0;
-	while (j < 8)
+	while (j < 1)
 	{
 		draw_line(ray->init, ray->end, data);
 		ray->end.x++;
@@ -73,7 +73,8 @@ t_ray	*draw_rays(t_point ray_init, t_pixel *data, double angle)
 		ray->len *= fish_eye_correction(data, ray);
 		if (!ray->len)
 			ray->len = 1;
-		draw_2d_rays(data, ray);
+		// draw_2d_rays(data, ray);
+		// debug_rays(ray, i);
 		draw_3d_wall(ray, data, i);
 		free(ray);
 		cal_next_ray_angle(&angle);

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/05 23:26:27 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 11:01:58 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 # define CUB3D_H
 # define TRUE 1
 # define FALSE 0
-# define BLOCK_SIZE 18
-# define VIEWER_SIZE 6
+# define BLOCK_SIZE 64
+# define VIEWER_SIZE BLOCK_SIZE / 3
 # define ONE_DEGREE 0.01745200698
 # define VIEW_RANGE 60
-# define N_RAYS 180
-# define MAP_OFFSET 450
+# define N_RAYS WIDTH
+# define MAP_OFFSET 0
 # define CUB3D_H
 
 // structure sugestion for the next develop parsing steps

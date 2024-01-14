@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 13:46:42 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/01 13:49:17 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 10:59:22 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_quads_x_loop(t_pixel *data)
 
 	ft_memset((void *)&window, 0, sizeof(t_point));
 	ft_memset((void *)&init, 0, sizeof(t_point));
-	window.x = WIDTH;
+	window.x = MAP_OFFSET;
 	while (window.y <= HEIGHT)
 	{
 		draw_line(init, window, data);
@@ -36,7 +36,7 @@ void	draw_quads_y_loop(t_pixel *data)
 	ft_memset((void *)&window, 0, sizeof(t_point));
 	ft_memset((void *)&init, 0, sizeof(t_point));
 	window.y = HEIGHT;
-	while (window.x <= WIDTH)
+	while (window.x <= MAP_OFFSET)
 	{
 		draw_line(init, window, data);
 		window.x += BLOCK_SIZE;
