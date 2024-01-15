@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
+#    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/14 19:06:00 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/15 11:40:18 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./source/
 
 HEADERS_LIST	= cub3d.h \
+				cub3d_parser.h \
 				cub3d_window.h \
 				cub3d_move_camera.h \
-				cub3d_rays.h
+				cub3d_rays.h \
 
 SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \

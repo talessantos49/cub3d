@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/14 19:13:27 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/15 20:20:41 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void	found_structure(t_map *map)
         if (map->fase.floor == 1 && map->fase.ceiling == 1)
             if (map->matrix[i][j] == '1')
             {
-                //ft_printf("ROW: %d : %s, \n", map->n_row, map->matrix[i]);
+				// ft_printf("\nline %d - %s",i, map->matrix[i]);
                 map->fase.map = 1;
-                break;
+                // break;
             }
         i++;
     }
@@ -146,40 +146,130 @@ void	map_dimensions(t_map *map, char *path_map)
 	// verify_first_last(game);
 }
 
-
 void parser_map_round (t_map *map)
 {
     map_dimensions(map, "maps/map_example.cub");
 }
 
-void	parser_map_line(char *line, t_map *map)
+void	parser_atributes(t_map *map, char *line)
 {
-	int i;
+	int		i;
+	int		k;
+	char	*tmp;
 
 	i = 0;
-    while ((line[i] != '\0' && line[i] != '\n') || map->fase.completed == 1)
+	k = 0;
+	tmp = ft_strdup("");
+	while (line[i] != '\0')
 	{
-        if (line[i] == 'F')
-            parser_map_floor(line, map);
-        else if (line[i] == 'C')
-            parser_map_ceiling(line, map);
-        else if (line[i] == 'N' && line[i + 1] == 'O')
-            map->fase.no_texture = parser_map_north(line + 2);
-        else if (line[i] == 'S' && line[i + 1] == 'O')
-            map->fase.so_texture = parser_map_south(line + 2);
-        else if (line[i] == 'W' && line[i + 1] == 'E')
-            map->fase.we_texture = parser_map_west(line + 2);
-        else if (line[i] == 'E' && line[i + 1] == 'A')
-            map->fase.ea_texture = parser_map_east(line + 2);
-        else if (line[i] == '1' && line[i + 1] == '1' && line[i + 2] == '1' && map->fase.floor == 1 && map->fase.ceiling == 1)
-            parser_map_round(map);
-        else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
-			i++;
+		k = 0;
+		if (line[i] == 'F')
+		{
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			parser_map_floor(tmp, map);
+		}
+		else if (line[i] == 'C')
+		{
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			parser_map_ceiling(tmp, map);
+		}
+		else if (line[i] == 'N' && line[i + 1] == 'O')
+		{
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			map->fase.no_texture = parser_map_north(tmp + 2);
+			free(tmp);
+			tmp = ft_strdup("");
+		}
+		else if (line[i] == 'S' && line[i + 1] == 'O')
+		{
+			k = 0;
+			while (tmp[k] != '\0')
+				tmp[k++] = '\0';
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			map->fase.so_texture = parser_map_south(tmp + 2);
+		}
+		else if (line[i] == 'W' && line[i + 1] == 'E')
+		{
+			k = 0;
+			while (tmp[k] != '\0')
+				tmp[k++] = '\0';
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			map->fase.we_texture = parser_map_west(tmp + 2);
+		}
+		else if (line[i] == 'E' && line[i + 1] == 'A')
+		{
+			k = 0;
+			while (tmp[k] != '\0')
+				tmp[k++] = '\0';
+			k = 0;
+			while (line[i] != '\n' && line[i] != '\0')
+				tmp[k++] = line[i++];
+			map->fase.ea_texture = parser_map_east(tmp + 2);
+		}
 		i++;
 	}
-	parser_map_round(map);
+	map->fase.attributes = 1;
 	return ;
 }
+
+void	around_map(t_map *map, int len)
+{
+	int	row;
+	int	col;
+	int	k;
+	int	i;
+	char	*tmp;
+
+	row = 0;
+	k = 0;
+	i = 0;
+	tmp = calloc(len, sizeof(char));
+	while (map->original[row])
+	{
+		col = 0;
+		ft_printf("map->original[%d]: %s\n",row, map->original[row]);
+		while (map->original[row][col] != '\0')
+		{
+			if (map->original[row][col] == 'F')
+				row++;
+			if (map->original[row][col] == 'C')
+				row++;
+			if (map->original[row][col] == 'N' && map->original[row][col + 1] == 'O')
+				row++;
+			if (map->original[row][col] == 'S' && map->original[row][col + 1] == 'O')
+				row++;
+			if (map->original[row][col] == 'W' && map->original[row][col + 1] == 'E')
+				row++;
+			if (map->original[row][col] == 'E' && map->original[row][col + 1] == 'A')
+				row++;
+			col++;
+		}
+		k = 0;
+		while (map->original[row][k] != '\0')
+		{
+			tmp[i++] = map->original[row][k++];
+			if (tmp[i + 1] == '\0')
+			{
+				tmp[i] = '\n';
+				tmp[i + 1] = '\0';
+			}
+		}
+		row++;
+	}
+	ft_printf("tmp: \n%s\n", tmp);
+	map->map = ft_split(tmp, '\n');
+}
+
 // void insertNode(Node** head, char key, int value) {
 //     Node* newNode = createNode(key, value);
 //     newNode->next = *head;
@@ -213,3 +303,64 @@ void	parser_map_line(char *line, t_map *map)
 //         current = current->next;
 //     }
 //     return -1;
+
+
+// void	parser_map_line(t_map *map, char *line)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*buffer;
+
+// 	i = 0;
+// 	j = 0;
+// 	buffer = ft_strdup("");
+// 	// ft_printf("Line:\n%s", line);
+// 	while (line[i] != '\0')
+// 	{
+// 		if (line[i] == 'F')
+// 		{
+// 			parser_map_floor(line, map);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		else if (line[i] == 'C')
+// 		{
+// 			parser_map_ceiling(line, map);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		else if (line[i] == 'N' && line[i + 1] == 'O')
+// 		{
+// 			ft_printf("NO: %s\n", line);
+// 			map->fase.no_texture = parser_map_north(line + 2);
+// 			ft_printf("NO: %s\n", map->fase.no_texture);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		else if (line[i] == 'S' && line[i + 1] == 'O')
+// 		{
+// 			map->fase.so_texture = parser_map_south(line + 2);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		else if (line[i] == 'W' && line[i + 1] == 'E')
+// 		{
+// 			map->fase.we_texture = parser_map_west(line + 2);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		else if (line[i] == 'E' && line[i + 1] == 'A')
+// 		{
+// 			map->fase.ea_texture = parser_map_east(line + 2);
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				i++;
+// 		}
+// 		buffer[j] = line[i];
+// 		// else if (line[i++] == '1' && map->fase.floor == 1 && map->fase.ceiling == 1)
+// 		// 	parser_map_round();
+// 		i++;
+// 		j++;
+// 	}
+// 	ft_printf("Buffer: %s\n", buffer);
+// 	return ;
+// }

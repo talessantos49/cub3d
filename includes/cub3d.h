@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 19:09:50 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/15 13:12:47 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # include "get_next_line.h"
 # include "libft.h"
+# include "cub3d_parser.h"
 # include "cub3d_rays.h"
 # include "cub3d_window.h"
 # include "cub3d_move_camera.h"
@@ -32,7 +33,6 @@
 # define VIEW_RANGE 60
 # define N_RAYS WIDTH
 # define MAP_OFFSET 0
-# define  STR_SPACES " \t\r\f\v"
 # define CUB3D_H
 
 typedef struct s_draw_line
@@ -43,12 +43,6 @@ typedef struct s_draw_line
 	t_point	op;
 	char	swap_sig;
 }	t_draw_line;
-
-typedef struct Node {
-	char			key;
-	int				value;
-	struct Node		*next;
-}	Node;
 
 int		cub3d_read_map(char *map_path, t_map *read_map);
 int		cub3d_parse_map(int fd, t_map *read_map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 19:17:17 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/15 19:01:50 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	wall_sorrounded(t_map *read_map)
 	int	map_height;
 
 	line_width = ft_strlen(read_map->map[0]);
-	map_height = read_map->height - 1;
+	map_height = read_map->n_col - 1;
 	x = 0;
 	while (++x < line_width)
 	{
@@ -59,8 +59,8 @@ int	verify_map(t_map *read_map)
 
 	i = 0;
 	// if (wall_sorrounded(read_map))
-	if (line_too_long(read_map))
-		return (1);
+	// if (line_too_long(read_map))
+	// 	return (1);
 	while (read_map->map[i])
 	{
 		if (different_characters(read_map->map[i]))
@@ -68,6 +68,15 @@ int	verify_map(t_map *read_map)
 		i++;
 	}
 	return (0);
+}
+
+void printMatrix(char **matrix, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%c", matrix[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 int	cub3d_parse_map(int fd, t_map *read_map)
@@ -79,19 +88,19 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 	has_error = FALSE;
 	str_map = ft_calloc(1, sizeof(char));
 	line = get_next_line(fd);
-	if (!line || *line == '\n') // TODO: \n Evita segfault enquanto nao implementar o parser de texturas
+	if (!line || *line == '\n')
 		return (printf ("ERROR: Invalid map\n"));
 	while (line)
 	{
-		parser_map_line(line, read_map);
-		str_map = ft_strjoin(str_map, line);
+		str_map = ft_strjoin_gnl(str_map, line);
 		free(line);
-		read_map->height++;
 		line = get_next_line(fd);
 	}
-	read_map->map = ft_split(str_map, '\n');
-	has_error = verify_map(read_map);
-	free(str_map);
+	parser_atributes(read_map, str_map);
+	read_map->original = ft_split(str_map, '\n');
+	around_map(read_map, ft_strlen(str_map));
+	// has_error = verify_map(read_map);
+	// free(str_map);
 	free(line);
 	return (has_error);
 }
