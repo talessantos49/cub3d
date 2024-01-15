@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/15 20:20:41 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:32:13 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,6 @@ void	around_map(t_map *map, int len)
 	while (map->original[row])
 	{
 		col = 0;
-		ft_printf("map->original[%d]: %s\n",row, map->original[row]);
 		while (map->original[row][col] != '\0')
 		{
 			if (map->original[row][col] == 'F')
@@ -256,17 +255,10 @@ void	around_map(t_map *map, int len)
 		}
 		k = 0;
 		while (map->original[row][k] != '\0')
-		{
 			tmp[i++] = map->original[row][k++];
-			if (tmp[i + 1] == '\0')
-			{
-				tmp[i] = '\n';
-				tmp[i + 1] = '\0';
-			}
-		}
+		tmp[i++] = '\n';
 		row++;
 	}
-	ft_printf("tmp: \n%s\n", tmp);
 	map->map = ft_split(tmp, '\n');
 }
 
