@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 11:11:09 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/15 21:05:12 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 			*data->camera_angle = ONE_DEGREE * 90;
 		else if (data->camera_dir == 'W')
 			*data->camera_angle = ONE_DEGREE * 180;
-		printf("this is the first time\n");
 	}
 	else
 		center = data->mlx->viewer_dir->init;
@@ -36,7 +35,7 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 }
 
 // returns top-left block coordinates
-t_point	draw_block(t_point coord, t_pixel *data, int size)
+t_point	draw_block(t_point coord, int size)
 {
 	t_point	p;
 	t_point	end_coord;
@@ -54,10 +53,7 @@ t_point	draw_block(t_point coord, t_pixel *data, int size)
 	while (++p.x < end_coord.x)
 	{
 		while (++p.y < end_coord.y)
-		{
-			if (size != VIEWER_SIZE)
-				call_put_pixel(p.x, p.y, data, 0);
-		}
+			;
 		p.y = coord.y;
 	}
 	return (coord);
@@ -72,7 +68,7 @@ t_ray	draw_viewer(t_point coord, t_pixel *data, char dir)
 	bckp_color = data->line_color;
 	data->line_color = create_trgb(0, 0, 100, 200);
 	data->camera_dir = dir;
-	ret.init = verify_viewer_draw_rules(draw_block(coord, data, VIEWER_SIZE), data);
+	ret.init = verify_viewer_draw_rules(draw_block(coord, VIEWER_SIZE), data);
 	data->line_color = bckp_color;
 	return (ret);
 }
@@ -86,14 +82,11 @@ t_point	draw_scenario(t_pixel *data)
 
 	ft_memset((void *)&p, 0, sizeof(t_point));
 	map = data->mlx->map;
-	draw_quads(data);
 	while (map->map[p.y])
 	{
 		while (map->map[p.y][p.x])
 		{
 			c = map->map[p.y][p.x];
-			// if (c == '1')
-			// 	draw_block(p, data, BLOCK_SIZE);
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 				viewer_infos = draw_viewer(p, data, c);
 			p.x++;

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:15:34 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/11 11:35:48 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/14 18:11:01 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	take_descition(double angle, t_ray *camera, t_mlx *mlx)
 		camera->init = bckp;
 		return (FALSE);
 	}
-	return(TRUE);
+	return (TRUE);
 }
 
 int	read_key_input(int key, t_mlx *mlx)

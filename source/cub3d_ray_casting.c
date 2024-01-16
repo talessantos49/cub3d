@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 12:12:10 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/15 21:21:42 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data, int j)
 		}
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90)){
 			calculate_est_rays(ray, i);
-			debug_rays(ray, j, "est");
+			// debug_rays(ray, j, "est");
 		}
 		i++;
 		flag = check_collition(ray->map, data->mlx);
@@ -73,7 +73,7 @@ void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray)
 	else if (v_ray->len > h_ray->len)
 		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
 	else
-		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!h_ray->len)
 		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!v_ray->len)
@@ -128,7 +128,6 @@ void	ray_casting(t_point camera, t_pixel *data)
 	angle = *data->camera_angle - deeg_to_rad(VIEW_RANGE / 2);
 	if (angle < 0)
 		angle += deeg_to_rad(360);
-	// draw_circle_viewer(camera, data);
 	draw_rays(camera, data, angle);
 	if (data->mlx->viewer_dir)
 		free(data->mlx->viewer_dir);
