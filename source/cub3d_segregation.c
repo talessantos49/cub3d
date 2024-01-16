@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/15 22:27:51 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:03:50 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,18 @@ void	around_map(t_map *map, int len, int row, int k)
 		row++;
 	}
 	map->map = ft_split(tmp, '\n');
+	free (tmp);
 }
 
 void	cut_strings(t_map *map, char *line, char direction)
 {
 	int		i;
+	int		len;
 	char	*tmp;
 
 	i = 0;
-	tmp = ft_strdup("");
+	len = ft_strlen(line);
+	tmp = calloc(len, sizeof(char));
 	while (line[i] != '\n' && line[i] != '\0')
 	{
 		tmp[i] = line[i];

@@ -6,7 +6,7 @@
 #    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/15 21:39:02 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/16 17:16:08 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ ${LIBFT}:
 			@echo Libft has been compiled!
 
 valgrind:
-		$(VALGRIND) ./cub3d maps/test.cub
+		$(VALGRIND) ./cub3d maps/map_example.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean
