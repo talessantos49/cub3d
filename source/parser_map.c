@@ -6,54 +6,11 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/15 20:32:13 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/15 22:31:48 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-char	*ft_strjoin_gnl(char	*string1, const char	*string2)
-{
-	char	*join;
-	int		t;
-	int		k;
-
-	k = -1;
-	t = -1;
-	if (!string1)
-	{
-		string1 = (char *)malloc(1 * sizeof(char));
-		string1[0] = '\0';
-	}
-	if (!string1 || !string2)
-		return (NULL);
-	join = malloc((ft_strlen(string2) + ft_strlen(string1) + 1) * sizeof(char));
-	if (!join)
-		return (NULL);
-	while (string1[++t])
-		join[t] = string1[t];
-	while (string2[++k])
-		join[t + k] = string2[k];
-	join[t + k] = '\0';
-	free (string1);
-	return (join);
-}
-
-void	init_matrix(int filename, char *buffer, t_map *map)
-{
-	char	*line;
-
-	while (1)
-	{
-		line = get_next_line(filename);
-		if (!line)
-			break ;
-		buffer = ft_strjoin_gnl(buffer, line);
-		free(line);
-	}
-	map->matrix = ft_split(buffer, '\n');
-	free(buffer);
-}
 
 int	map_file(char *filename)
 {
@@ -68,6 +25,7 @@ int	map_file(char *filename)
 	}
 	return (fd);
 }
+/*
 // void	verify_first_last(t_game *game)
 // {
 // 	int	i;
@@ -101,166 +59,129 @@ int	map_file(char *filename)
 // }
 
 //  Ajustar essa função
-void	found_structure(t_map *map)
-{
-	int i;
-    int j;
+// void	found_structure(t_map *map)
+// {
+// 	int i;
+//     int j;
 
-    i = 0;
-    j =0;
-    while (i < map->n_row)
-    {
-        if (map->fase.floor == 1 && map->fase.ceiling == 1)
-            if (map->matrix[i][j] == '1')
-            {
-				// ft_printf("\nline %d - %s",i, map->matrix[i]);
-                map->fase.map = 1;
-                // break;
-            }
-        i++;
-    }
-}
+//     i = 0;
+//     j =0;
+//     while (i < map->n_row)
+//     {
+//         if (map->fase.floor == 1 && map->fase.ceiling == 1)
+//             if (map->matrix[i][j] == '1')
+//             {
+// 				// ft_printf("\nline %d - %s",i, map->matrix[i]);
+//                 map->fase.map = 1;
+//                 // break;
+//             }
+//         i++;
+//     }
+// }
 
-void	map_dimensions(t_map *map, char *path_map)
-{
-	int		file;
-	char	*buffer;
+// void	map_dimensions(t_map *map, char *path_map)
+// {
+// 	int		file;
+// 	char	*buffer;
 
-	buffer = ft_strdup("");
-	file = map_file(path_map);
-	if (file <= 0)
-	{
-		free(buffer);
-		exit(1);
-	}
-	init_matrix(file, buffer, map);
-	map->n_row = 0;
-	while (map->matrix[map->n_row] != NULL)
-	{
-		map->n_col = 0;
-		while (map->matrix[map->n_row][map->n_col] != 0)
-			map->n_col++;
-		map->n_row++;
-	}
-	found_structure(map);
-	// verify_first_last(game);
-}
+// 	buffer = ft_strdup("");
+// 	file = map_file(path_map);
+// 	if (file <= 0)
+// 	{
+// 		free(buffer);
+// 		exit(1);
+// 	}
+// 	init_matrix(file, buffer, map);
+// 	map->n_row = 0;
+// 	while (map->matrix[map->n_row] != NULL)
+// 	{
+// 		map->n_col = 0;
+// 		while (map->matrix[map->n_row][map->n_col] != 0)
+// 			map->n_col++;
+// 		map->n_row++;
+// 	}
+// 	found_structure(map);
+// 	// verify_first_last(game);
+// }
 
-void parser_map_round (t_map *map)
-{
-    map_dimensions(map, "maps/map_example.cub");
-}
+// void parser_map_round (t_map *map)
+// {
+//     map_dimensions(map, "maps/map_example.cub");
+// }
 
-void	parser_atributes(t_map *map, char *line)
-{
-	int		i;
-	int		k;
-	char	*tmp;
 
-	i = 0;
-	k = 0;
-	tmp = ft_strdup("");
-	while (line[i] != '\0')
-	{
-		k = 0;
-		if (line[i] == 'F')
-		{
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			parser_map_floor(tmp, map);
-		}
-		else if (line[i] == 'C')
-		{
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			parser_map_ceiling(tmp, map);
-		}
-		else if (line[i] == 'N' && line[i + 1] == 'O')
-		{
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			map->fase.no_texture = parser_map_north(tmp + 2);
-			free(tmp);
-			tmp = ft_strdup("");
-		}
-		else if (line[i] == 'S' && line[i + 1] == 'O')
-		{
-			k = 0;
-			while (tmp[k] != '\0')
-				tmp[k++] = '\0';
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			map->fase.so_texture = parser_map_south(tmp + 2);
-		}
-		else if (line[i] == 'W' && line[i + 1] == 'E')
-		{
-			k = 0;
-			while (tmp[k] != '\0')
-				tmp[k++] = '\0';
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			map->fase.we_texture = parser_map_west(tmp + 2);
-		}
-		else if (line[i] == 'E' && line[i + 1] == 'A')
-		{
-			k = 0;
-			while (tmp[k] != '\0')
-				tmp[k++] = '\0';
-			k = 0;
-			while (line[i] != '\n' && line[i] != '\0')
-				tmp[k++] = line[i++];
-			map->fase.ea_texture = parser_map_east(tmp + 2);
-		}
-		i++;
-	}
-	map->fase.attributes = 1;
-	return ;
-}
+// void	parser_atributes(t_map *map, char *line)
+// {
+// 	int		i;
+// 	int		k;
+// 	char	*tmp;
 
-void	around_map(t_map *map, int len)
-{
-	int	row;
-	int	col;
-	int	k;
-	int	i;
-	char	*tmp;
+// 	i = 0;
+// 	k = 0;
+// 	tmp = ft_strdup("");
+// 	while (line[i] != '\0')
+// 	{
+// 		k = 0;
+// 		if (line[i] == 'F')
+// 		{
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			parser_map_floor(tmp, map);
+// 		}
+// 		else if (line[i] == 'C')
+// 		{
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			parser_map_ceiling(tmp, map);
+// 		}
+// 		else if (line[i] == 'N' && line[i + 1] == 'O')
+// 		{
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			map->fase.no_texture = parser_map_north(tmp + 2);
+// 			free(tmp);
+// 			tmp = ft_strdup("");
+// 		}
+// 		else if (line[i] == 'S' && line[i + 1] == 'O')
+// 		{
+// 			k = 0;
+// 			while (tmp[k] != '\0')
+// 				tmp[k++] = '\0';
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			map->fase.so_texture = parser_map_south(tmp + 2);
+// 		}
+// 		else if (line[i] == 'W' && line[i + 1] == 'E')
+// 		{
+// 			k = 0;
+// 			while (tmp[k] != '\0')
+// 				tmp[k++] = '\0';
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			map->fase.we_texture = parser_map_west(tmp + 2);
+// 		}
+// 		else if (line[i] == 'E' && line[i + 1] == 'A')
+// 		{
+// 			k = 0;
+// 			while (tmp[k] != '\0')
+// 				tmp[k++] = '\0';
+// 			k = 0;
+// 			while (line[i] != '\n' && line[i] != '\0')
+// 				tmp[k++] = line[i++];
+// 			map->fase.ea_texture = parser_map_east(tmp + 2);
+// 		}
+// 		i++;
+// 	}
+// 	map->fase.attributes = 1;
+// 	return ;
+// }
 
-	row = 0;
-	k = 0;
-	i = 0;
-	tmp = calloc(len, sizeof(char));
-	while (map->original[row])
-	{
-		col = 0;
-		while (map->original[row][col] != '\0')
-		{
-			if (map->original[row][col] == 'F')
-				row++;
-			if (map->original[row][col] == 'C')
-				row++;
-			if (map->original[row][col] == 'N' && map->original[row][col + 1] == 'O')
-				row++;
-			if (map->original[row][col] == 'S' && map->original[row][col + 1] == 'O')
-				row++;
-			if (map->original[row][col] == 'W' && map->original[row][col + 1] == 'E')
-				row++;
-			if (map->original[row][col] == 'E' && map->original[row][col + 1] == 'A')
-				row++;
-			col++;
-		}
-		k = 0;
-		while (map->original[row][k] != '\0')
-			tmp[i++] = map->original[row][k++];
-		tmp[i++] = '\n';
-		row++;
-	}
-	map->map = ft_split(tmp, '\n');
-}
+
 
 // void insertNode(Node** head, char key, int value) {
 //     Node* newNode = createNode(key, value);
@@ -356,3 +277,4 @@ void	around_map(t_map *map, int len)
 // 	ft_printf("Buffer: %s\n", buffer);
 // 	return ;
 // }
+*/

@@ -6,7 +6,7 @@
 #    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/15 11:40:18 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/15 21:39:02 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_debug_util.c \
 		cub3d_check_collition.c \
 		cub3d_window.c \
+		cub3d_segregation.c \
 		parser_map.c \
 		parser_texture.c \
 

@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/15 19:01:50 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:19:06 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,6 @@ int	verify_map(t_map *read_map)
 	return (0);
 }
 
-void printMatrix(char **matrix, int rows, int cols) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%c", matrix[i][j]);
-        }
-        printf("\n");
-    }
-}
-
 int	cub3d_parse_map(int fd, t_map *read_map)
 {
 	int		has_error;
@@ -98,7 +89,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 	}
 	parser_atributes(read_map, str_map);
 	read_map->original = ft_split(str_map, '\n');
-	around_map(read_map, ft_strlen(str_map));
+	around_map(read_map, ft_strlen(str_map), 0, 0);
 	// has_error = verify_map(read_map);
 	// free(str_map);
 	free(line);

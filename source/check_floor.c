@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_floor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:42:32 by root              #+#    #+#             */
-/*   Updated: 2024/01/14 17:07:15 by root             ###   ########.fr       */
+/*   Updated: 2024/01/15 20:48:29 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	comma_check(char *line, char constant)
 {
-	int i;
-	int j;
-	int len;
+	int	i;
+	int	j;
+	int	len;
 
 	i = 0;
 	j = 0;
@@ -74,7 +74,7 @@ void	parser_map_floor(char *line, t_map *map)
 			i++;
 		else if ((ft_isdigit(line[i]) || line[i] == ',') && map->floor.r == 0)
 		{
-			check_rgb_and_split(&line[i], map, ',','f');
+			check_rgb_and_split(&line[i], map, ',', 'f');
 			if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
 				i++;
 		}
@@ -89,7 +89,7 @@ void	parser_map_floor(char *line, t_map *map)
 
 void	parser_map_ceiling(char *line, t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
@@ -101,7 +101,7 @@ void	parser_map_ceiling(char *line, t_map *map)
 		i++;
 		else if ((ft_isdigit(line[i]) || line[i] == ',') && map->ceiling.r == 0)
 		{
-			check_rgb_and_split(&line[i], map, ',','c');
+			check_rgb_and_split(&line[i], map, ',', 'c');
 			if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
 				i++;
 		}
