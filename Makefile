@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
+#    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/05 12:44:11 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/16 17:16:08 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ HEADERS_DIR		= ./includes/
 SOURCES_DIR		= ./source/
 
 HEADERS_LIST	= cub3d.h \
+				cub3d_parser.h \
 				cub3d_window.h \
 				cub3d_move_camera.h \
-				cub3d_rays.h
+				cub3d_rays.h \
 
 SOURCES_LIST	= cub3d.c \
 		cub3d_read_map.c \
@@ -27,13 +28,19 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_utils.c \
 		cub3d_move_camera.c \
 		cub3d_draw_line.c \
+		check_floor.c \
+		check_textures_path.c \
+		clear.c \
 		cub3d_ray_casting.c \
 		cub3d_ray_utils.c \
 		cub3d_draw.c \
 		cub3d_draw_scenario.c \
 		cub3d_debug_util.c \
 		cub3d_check_collition.c \
-		cub3d_window.c
+		cub3d_window.c \
+		cub3d_segregation.c \
+		parser_map.c \
+		parser_texture.c \
 
 GREEN			= \033[0;32m
 
@@ -81,7 +88,7 @@ ${LIBFT}:
 			@echo Libft has been compiled!
 
 valgrind:
-		$(VALGRIND) ./cub3d maps/test.cub
+		$(VALGRIND) ./cub3d maps/map_example.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean

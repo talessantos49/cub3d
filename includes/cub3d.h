@@ -6,13 +6,14 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 18:25:28 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/16 19:38:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # include "get_next_line.h"
 # include "libft.h"
+# include "cub3d_parser.h"
 # include "cub3d_rays.h"
 # include "cub3d_window.h"
 # include "cub3d_move_camera.h"
@@ -34,15 +35,6 @@
 # define MAP_OFFSET 0
 # define CUB3D_H
 
-// structure sugestion for the next develop parsing steps
-// typedef struct s_texture
-// {
-// 	void no;
-// 	void so;
-// 	void we;
-// 	void ea;
-// }	t_texture;
-
 typedef struct s_draw_line
 {
 	int		dx;
@@ -62,5 +54,8 @@ void	draw_circle_viewer(t_point coord, t_pixel *data);
 int		check_collition(t_point map, t_mlx *mlx);
 double	deeg_to_rad(int deegres);
 int		map_height(char **map, t_point map_coord);
+void	clean_before_exit(char *str, int error);
+int		line_too_long(t_map *map);
+void	free_map(char **map);
 
 #endif
