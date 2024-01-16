@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:56:50 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 18:56:50 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:40:43 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	clean_before_exit(char *str, int error)
 	ft_printf("%s\n", str);
 	exit(error);
 }
+
 void	clean_str_exit(char	*str, char *line, int error)
 {
 	free(str);

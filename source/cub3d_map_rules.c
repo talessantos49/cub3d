@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 18:59:30 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:34:18 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 		clean_str_exit(str_map, "ERROR: Missing components\n", 0);
 	read_map->original = ft_split(str_map, '\n');
 	around_map(read_map, ft_strlen(str_map), 0, 0);
+	free(str_map);
 	free(line);
 	return (has_error);
 }

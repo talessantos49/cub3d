@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_segregation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/16 18:03:50 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:35:57 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	around_map(t_map *map, int len, int row, int k)
 		row++;
 	}
 	map->map = ft_split(tmp, '\n');
+	free_map(map->original);
 	free (tmp);
 }
 

@@ -1,106 +1,15 @@
-==4285== Memcheck, a memory error detector
-==4285== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==4285== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==4285== Command: ./cub3d maps/map_example.cub
-==4285== Parent PID: 4284
-==4285== 
-==4285== Conditional jump or move depends on uninitialised value(s)
-==4285==    at 0x10B1E4: check_collition (cub3d_utils.c:53)
-==4285==    by 0x10C6EE: check_rays_colition_on_x_axis (cub3d_ray_casting.c:28)
-==4285==    by 0x10C92D: ray_end_coord (cub3d_ray_casting.c:89)
-==4285==    by 0x10CAAC: ray_casting (cub3d_ray_casting.c:108)
-==4285==    by 0x10D1F7: draw_scenario (cub3d_draw.c:97)
-==4285==    by 0x10AFD0: render_image (cub3d_mlx_utils.c:51)
-==4285==    by 0x10DACC: cub3d_open_window (cub3d_window.c:45)
-==4285==    by 0x10A67F: main (cub3d.c:47)
-==4285==  Uninitialised value was created by a stack allocation
-==4285==    at 0x10C89D: ray_end_coord (cub3d_ray_casting.c:78)
-==4285== 
-==4285== Conditional jump or move depends on uninitialised value(s)
-==4285==    at 0x10B1EB: check_collition (cub3d_utils.c:53)
-==4285==    by 0x10C6EE: check_rays_colition_on_x_axis (cub3d_ray_casting.c:28)
-==4285==    by 0x10C92D: ray_end_coord (cub3d_ray_casting.c:89)
-==4285==    by 0x10CAAC: ray_casting (cub3d_ray_casting.c:108)
-==4285==    by 0x10D1F7: draw_scenario (cub3d_draw.c:97)
-==4285==    by 0x10AFD0: render_image (cub3d_mlx_utils.c:51)
-==4285==    by 0x10DACC: cub3d_open_window (cub3d_window.c:45)
-==4285==    by 0x10A67F: main (cub3d.c:47)
-==4285==  Uninitialised value was created by a stack allocation
-==4285==    at 0x10C89D: ray_end_coord (cub3d_ray_casting.c:78)
-==4285== 
-==4285== Conditional jump or move depends on uninitialised value(s)
-==4285==    at 0x10B1BB: map_height (cub3d_utils.c:46)
-==4285==    by 0x10B206: check_collition (cub3d_utils.c:54)
-==4285==    by 0x10C6EE: check_rays_colition_on_x_axis (cub3d_ray_casting.c:28)
-==4285==    by 0x10C92D: ray_end_coord (cub3d_ray_casting.c:89)
-==4285==    by 0x10CAAC: ray_casting (cub3d_ray_casting.c:108)
-==4285==    by 0x10D1F7: draw_scenario (cub3d_draw.c:97)
-==4285==    by 0x10AFD0: render_image (cub3d_mlx_utils.c:51)
-==4285==    by 0x10DACC: cub3d_open_window (cub3d_window.c:45)
-==4285==    by 0x10A67F: main (cub3d.c:47)
-==4285==  Uninitialised value was created by a stack allocation
-==4285==    at 0x10C89D: ray_end_coord (cub3d_ray_casting.c:78)
-==4285== 
-==4285== 
-==4285== HEAP SUMMARY:
-==4285==     in use at exit: 2,772 bytes in 33 blocks
-==4285==   total heap usage: 2,370 allocs, 2,337 frees, 183,857 bytes allocated
-==4285== 
-==4285== 9 bytes in 3 blocks are definitely lost in loss record 1 of 5
-==4285==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==4285==    by 0x10F7D9: ft_strdup (ft_strdup.c:23)
-==4285==    by 0x10E742: result_array (ft_split.c:53)
-==4285==    by 0x10E869: ft_split (ft_split.c:83)
-==4285==    by 0x10B9C3: check_rgb_and_split (check_floor.c:41)
-==4285==    by 0x10BC63: parser_map_floor (check_floor.c:77)
-==4285==    by 0x10DFE5: cut_strings (cub3d_segregation.c:102)
-==4285==    by 0x10E0CA: parser_atributes (cub3d_segregation.c:121)
-==4285==    by 0x10AD70: cub3d_parse_map (cub3d_map_rules.c:119)
-==4285==    by 0x10A8BA: cub3d_read_map (cub3d_read_map.c:65)
-==4285==    by 0x10A657: main (cub3d.c:44)
-==4285== 
-==4285== 12 bytes in 3 blocks are definitely lost in loss record 2 of 5
-==4285==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==4285==    by 0x10F7D9: ft_strdup (ft_strdup.c:23)
-==4285==    by 0x10E742: result_array (ft_split.c:53)
-==4285==    by 0x10E869: ft_split (ft_split.c:83)
-==4285==    by 0x10B9C3: check_rgb_and_split (check_floor.c:41)
-==4285==    by 0x10BE3C: parser_map_ceiling (check_floor.c:104)
-==4285==    by 0x10E003: cut_strings (cub3d_segregation.c:104)
-==4285==    by 0x10E0F2: parser_atributes (cub3d_segregation.c:123)
-==4285==    by 0x10AD70: cub3d_parse_map (cub3d_map_rules.c:119)
-==4285==    by 0x10A8BA: cub3d_read_map (cub3d_read_map.c:65)
-==4285==    by 0x10A657: main (cub3d.c:44)
-==4285== 
-==4285== 208 bytes in 1 blocks are still reachable in loss record 3 of 5
-==4285==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==4285==    by 0x10E81E: ft_split (ft_split.c:78)
-==4285==    by 0x10ADBE: cub3d_parse_map (cub3d_map_rules.c:122)
-==4285==    by 0x10A8BA: cub3d_read_map (cub3d_read_map.c:65)
-==4285==    by 0x10A657: main (cub3d.c:44)
-==4285== 
-==4285== 1,268 bytes in 25 blocks are still reachable in loss record 4 of 5
-==4285==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==4285==    by 0x10F7D9: ft_strdup (ft_strdup.c:23)
-==4285==    by 0x10E742: result_array (ft_split.c:53)
-==4285==    by 0x10E869: ft_split (ft_split.c:83)
-==4285==    by 0x10ADBE: cub3d_parse_map (cub3d_map_rules.c:122)
-==4285==    by 0x10A8BA: cub3d_read_map (cub3d_read_map.c:65)
-==4285==    by 0x10A657: main (cub3d.c:44)
-==4285== 
-==4285== 1,275 bytes in 1 blocks are definitely lost in loss record 5 of 5
-==4285==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==4285==    by 0x10DB63: ft_strjoin_gnl (cub3d_segregation.c:30)
-==4285==    by 0x10AD38: cub3d_parse_map (cub3d_map_rules.c:115)
-==4285==    by 0x10A8BA: cub3d_read_map (cub3d_read_map.c:65)
-==4285==    by 0x10A657: main (cub3d.c:44)
-==4285== 
-==4285== LEAK SUMMARY:
-==4285==    definitely lost: 1,296 bytes in 7 blocks
-==4285==    indirectly lost: 0 bytes in 0 blocks
-==4285==      possibly lost: 0 bytes in 0 blocks
-==4285==    still reachable: 1,476 bytes in 26 blocks
-==4285==         suppressed: 0 bytes in 0 blocks
-==4285== 
-==4285== For lists of detected and suppressed errors, rerun with: -s
-==4285== ERROR SUMMARY: 6 errors from 6 contexts (suppressed: 2 from 1)
+==7494== Memcheck, a memory error detector
+==7494== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7494== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==7494== Command: ./cub3d maps/map_example.cub
+==7494== Parent PID: 7493
+==7494== 
+==7494== 
+==7494== HEAP SUMMARY:
+==7494==     in use at exit: 0 bytes in 0 blocks
+==7494==   total heap usage: 3,807 allocs, 3,807 frees, 237,203 bytes allocated
+==7494== 
+==7494== All heap blocks were freed -- no leaks are possible
+==7494== 
+==7494== For lists of detected and suppressed errors, rerun with: -s
+==7494== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

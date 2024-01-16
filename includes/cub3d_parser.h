@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/16 18:59:00 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:41:24 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ typedef struct s_map
 	t_color	ceiling;
 }	t_map;
 
-typedef struct Node {
+typedef struct s_node {
 	char			key;
 	int				value;
-	struct Node		*next;
-}	Node;
+	struct t_node	*next;
+}	t_node;
 
 int		parser_map_north(char *line);
 int		parser_map(char *path_map, t_map *map);

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 18:42:45 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/16 19:31:10 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	t_ray	*ray;
 
 	ray = ft_calloc(1, sizeof(t_ray));
+	ft_memset((void *)&h_ray, 0, sizeof(t_ray));
+	ft_memset((void *)&v_ray, 0, sizeof(t_ray));
 	h_ray.init = init_coord;
 	h_ray.angle = angle;
 	v_ray.init = init_coord;
