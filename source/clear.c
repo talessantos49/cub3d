@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:56:50 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 18:56:50 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:21:47 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,8 @@ void	clean_str_exit(char	*str, char *line, int error)
 	free(str);
 	clean_before_exit(line, error);
 }
+
+// void	free_all_parser(t_mlx *mlx)
+// {
+// 	free(mlx->map);
+// }
