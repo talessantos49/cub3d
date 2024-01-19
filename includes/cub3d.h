@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/15 13:12:47 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:38:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ double	deeg_to_rad(int deegres);
 int		map_height(char **map, t_point map_coord);
 void	clean_before_exit(char *str, int error);
 int		line_too_long(t_map *map);
-
+void	free_map(char **map);
 
 #endif

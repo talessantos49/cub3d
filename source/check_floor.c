@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:42:32 by root              #+#    #+#             */
-/*   Updated: 2024/01/16 19:05:32 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:28:49 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_rgb_and_split(char *line, t_map *map, char constant, char type)
 		map->ceiling.g = ft_atoi(split[1]);
 		map->ceiling.b = ft_atoi(split[2]);
 	}
-	free(split);
+	free_map(split);
 	if (map->floor.r > 255 || map->floor.g > 255 || map->floor.b > 255
 		|| map->floor.r < 0 || map->floor.g < 0 || map->floor.b < 0)
 		clean_before_exit("Floor color not valid\n", 0);

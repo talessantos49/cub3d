@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/15 22:31:48 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:39:42 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,32 +183,32 @@ int	map_file(char *filename)
 
 
 
-// void insertNode(Node** head, char key, int value) {
-//     Node* newNode = createNode(key, value);
-//     newNode->next = *head;
-//     *head = newNode;
+// void insertt_node(t_node** head, char key, int value) {
+//     t_node* newt_node = createt_node(key, value);
+//     newt_node->next = *head;
+//     *head = newt_node;
 // }
 
-// Node* createNode(char key,int value) {
-//     Node* newNode = (Node*)malloc(sizeof(Node));
-//     if (newNode == NULL) {
+// t_node* createt_node(char key,int value) {
+//     t_node* newt_node = (t_node*)malloc(sizeof(t_node));
+//     if (newt_node == NULL) {
 //         ft_printf(stderr, "Erro ao alocar memória para o novo nó\n");
 //         exit(EXIT_FAILURE);
 //     }
-//     strcpy(newNode->key, key);
-//     newNode->value = value;
-//     newNode->next = NULL;
-//     return newNode;
+//     strcpy(newt_node->key, key);
+//     newt_node->value = value;
+//     newt_node->next = NULL;
+//     return newt_node;
 // }
 
-// // void insertNode(Node** head, char key, int value) {
-//     Node* newNode = createNode(key, value);
-//     newNode->next = *head;
-//     *head = newNode;
+// // void insertt_node(t_node** head, char key, int value) {
+//     t_node* newt_node = createt_node(key, value);
+//     newt_node->next = *head;
+//     *head = newt_node;
 // }
 
-// int searchNode(Node* head, char key) {
-//     Node* current = head;
+// int searcht_node(t_node* head, char key) {
+//     t_node* current = head;
 //     while (current != NULL) {
 //         if (ft_strcmp(current->key, key) == 0) {
 //             return current->value;

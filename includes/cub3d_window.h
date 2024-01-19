@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 19:09:37 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:28:23 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_pixel
 int		cub3d_close_window(t_mlx *mlx);
 int		cub3d_open_window(t_mlx *mlx);
 int		render_image(t_mlx *mlx);
-int		put_pixel(t_point	 point, int trgb, t_data *img);
+int		put_pixel(t_point point, int trgb, t_data *img);
 int		draw_line(t_point point1, t_point point2, t_pixel *data);
 int		bresenham(t_point point1, t_point point2, t_pixel *data);
 void	free_all_parser(t_mlx *mlx);
