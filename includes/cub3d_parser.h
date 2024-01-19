@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/18 22:27:56 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:34:24 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ int		parser_map(char *path_map, t_map *map);
 int		parser_map_south(char *line);
 int		parser_map_west(char *line);
 int		parser_map_east(char *line);
+int		character_check(t_map *map);
 int		comma_check(char *line, char constant);
+int		night_watcher(t_map *map);
 char	*ft_strjoin_gnl(char *string1, const char *string2);
 char	*is_spaces(char *line, char *spaces);
 void	around_map(t_map *map, int len, int row, int k);
@@ -72,5 +74,9 @@ void	initialize_map(t_map *map);
 void	parser_atributes(t_map *map, char *line);
 void	parser_map_floor(char *line, t_map *map);
 void	parser_map_ceiling(char *line, t_map *map);
+void	count_data(t_map *map);
+
+
+
 
 #endif
