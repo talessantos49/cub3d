@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/16 17:16:08 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/19 20:32:06 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_ray_utils.c \
 		cub3d_draw.c \
 		cub3d_draw_scenario.c \
+		cub3d_draw_scenario_utils.c \
 		cub3d_debug_util.c \
 		cub3d_check_collition.c \
 		cub3d_window.c \
