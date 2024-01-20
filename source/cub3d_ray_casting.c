@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 15:58:29 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/20 20:00:02 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray)
 	else if (v_ray->len > h_ray->len)
 		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
 	else
-		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!h_ray->len)
 		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!v_ray->len)
