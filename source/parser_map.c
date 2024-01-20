@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:17:09 by root              #+#    #+#             */
-/*   Updated: 2024/01/19 18:56:55 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:00:58 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +27,9 @@ int	map_file(char *filename)
 	return (fd);
 }
 
-int	check_first_and_last_row(t_map *map)
-{
-	int	i;
-	int	j;
-	int	len_col;
 
-	i = 0;
-	j = 0;
-	len_col = 0;
-	while (i < map->n_row)
-	{
-		j = 0;
-		len_col = ft_strlen(map->map[i]);
-		while (j < len_col)
-		{
-			if (i == 0 || i == map->n_row - 1)
-				if (!(ft_strchr(" 1", map->map[i][j])))
-					return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
-int	night_watcher(t_map *map)
-{
-	if (check_first_and_last_row(map))
-		return (1);
-	return (0);
-}
+
 
 /*
 // void	verify_first_last(t_game *game)

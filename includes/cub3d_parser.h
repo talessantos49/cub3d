@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/19 18:34:24 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:24:10 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	parser_atributes(t_map *map, char *line);
 void	parser_map_floor(char *line, t_map *map);
 void	parser_map_ceiling(char *line, t_map *map);
 void	count_data(t_map *map);
-
-
-
+void	change_zero(t_map *map);
 
 #endif

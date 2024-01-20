@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/19 18:34:03 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:21:39 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	around_map(t_map *map, int len, int row, int k)
 		clean_before_exit("ERROR: Invalid map\n", 0);
 	if (night_watcher(map))
 		clean_before_exit("ERROR: Invalid Night map\n", 0);
+	change_zero(map);
 	free_map(map->original);
 	free (tmp);
 }
