@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 10:43:47 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 14:48:52 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	initialize_map(t_map *map)
 	map->n_row = 0;
 	map->n_col = 0;
 	map->map = NULL;
+	map->map_aux = NULL;
 	map->original = NULL;
 	map->no_texture = NULL;
 	map->so_texture = NULL;

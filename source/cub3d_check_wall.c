@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 23:35:57 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 13:33:08 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:20:39 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,79 +37,22 @@ int	check_first_and_last_row(t_map *map)
 	return (0);
 }
 
-int	check_collum(t_map *map)
-{
-	int	row;
-	int	col;
-	int	first_collum;
-	int	last_collum;
-	int	len_col;
-
-	row = 0;
-	col = 0;
-	first_collum = 0;
-	last_collum = 0;
-	len_col = 0;
-	while (row < map->n_row)
-	{
-		col = 0;
-		first_collum = 0;
-		last_collum = 0;
-		len_col = ft_strlen(map->map[row]);
-		while (col < len_col && map->map[row][col] != '\0')
-		{
-			ft_printf("map->map[%d][%d] = %c\n", row, col, map->map[row][col]);
-			if (map->map[row][col] == '1'  && first_collum == 0)
-				first_collum = 1;
-			if (map->map[row][col] == '1' && (map->map[row][col + 1] == ' ' || map->map[row][col + 1] == '\n') && first_collum == 1)
-				last_collum = 1;
-			col++;
-		}
-		if (first_collum != 1 && last_collum != 1)
-			return (1);
-		row++;
-	}
-	return (0);
-}
-
-
-int	check_player(t_map *map)
-{
-	int	i;
-	int	j;
-	int	len_col;
-
-	i = 0;
-	j = 0;
-	len_col = 0;
-	while (i < map->n_row)
-	{
-		j = 0;
-		len_col = ft_strlen(map->map[i]);
-		while (j < len_col)
-		{
-			if (ft_strchr("NSEW", map->map[i][j]))
-				map->fase.player++;
-			j++;
-		}
-		i++;
-	}
-	if (map->fase.player != 1)
-		return (1);
-	return (0);
-}
-
 int	night_watcher(t_map *map)
 {
+	map->fase.problems = 0;
 	if (check_first_and_last_row(map))
 		return (1);
 	if (check_player(map))
 		return (1);
-	// if (check_collum(map))
-	// 	return (1);
+	change_spaces(map);
+	check_player_position(map);
+	route_validation(map, map->x_position, map->y_position);
+	if (map->fase.problems > 0)
+		return (1);
 	return (0);
 }
-void	change_zero(t_map *map)
+
+void	change_spaces(t_map *map)
 {
 	int	row;
 	int	col;
@@ -121,14 +64,15 @@ void	change_zero(t_map *map)
 	while (row < map->n_row)
 	{
 		col = 0;
-		len_col = ft_strlen(map->map[row]);
+		len_col = ft_strlen(map->map_aux[row]);
 		while (col < len_col)
 		{
-			if (map->map[row][col] == ' ')
-				map->map[row][col] = '0';
+			if (map->map_aux[row][col] == ' ')
+				map->map_aux[row][col] = '2';
+			if (map->map_aux[row][col] == '\n')
+				map->map_aux[row][col] = '2';
 			col++;
 		}
-		ft_printf("%s\n", map->map[row]);
 		row++;
 	}
 }

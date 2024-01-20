@@ -6,7 +6,7 @@
 #    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/19 23:44:32 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/20 20:23:59 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_map_rules.c \
 		cub3d_mlx_utils.c \
 		cub3d_utils.c \
+		cub3d_player.c \
 		cub3d_move_camera.c \
 		cub3d_draw_line.c \
 		check_floor.c \

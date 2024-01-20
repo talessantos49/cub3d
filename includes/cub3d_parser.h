@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 13:24:10 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:25:03 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ typedef struct s_fase
 	int	player;
 	int	attributes;
 	int	completed;
+	int	problems;
 }	t_fase;
 
 typedef struct s_map
 {
 	char	**map;
+	char	**map_aux;
 	char	**original;
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
+	int		x_position;
+	int		y_position;
 	int		n_row;
 	int		n_col;
 	t_fase	fase;
@@ -64,6 +68,8 @@ int		parser_map_east(char *line);
 int		character_check(t_map *map);
 int		comma_check(char *line, char constant);
 int		night_watcher(t_map *map);
+int		cleaner_before_map(t_map *map, int row, int col);
+int		check_player(t_map *map);
 char	*ft_strjoin_gnl(char *string1, const char *string2);
 char	*is_spaces(char *line, char *spaces);
 void	around_map(t_map *map, int len, int row, int k);
@@ -75,6 +81,9 @@ void	parser_atributes(t_map *map, char *line);
 void	parser_map_floor(char *line, t_map *map);
 void	parser_map_ceiling(char *line, t_map *map);
 void	count_data(t_map *map);
-void	change_zero(t_map *map);
+void	change_spaces(t_map *map);
+void	make_square(t_map *map, int row, int k);
+void	route_validation(t_map *map, int x, int y);
+void	check_player_position(t_map *map);
 
 #endif
