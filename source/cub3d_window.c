@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 19:22:49 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:46:00 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	cub3d_close_window(t_mlx *mlx)
 {
 	mlx_destroy_window(mlx->init, mlx->window);
 	mlx_destroy_display(mlx->init);
-	// free_all_parser(mlx);
+	free_all_parser(mlx);
 	free_staff(mlx);
 	exit (0);
 }
