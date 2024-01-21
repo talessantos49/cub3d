@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 18:13:13 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/19 20:30:33 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,18 @@ void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
 {
 	double	wall_row;
 	double	center;
-	int		j;
 
 	wall_row = (BLOCK_SIZE * HEIGHT) / ray->len;
 	if (wall_row > HEIGHT)
 		wall_row = HEIGHT;
 	center = (HEIGHT / 2) - (wall_row / 2);
-	ray->init.x = (i * 1) + MAP_OFFSET;
+	ray->init.x = i + MAP_OFFSET;
 	ray->init.y = center;
-	ray->end.x = (i * 1) + MAP_OFFSET;
-	ray->end.y = (ray->init.y + wall_row);
-	j = 0;
-	while (j < 1)
-	{
-		draw_line(ray->init, ray->end, data);
-		ray->end.x++;
-		ray->init.x++;
-		j++;
-	}
+	ray->end.x = i + MAP_OFFSET;
+	ray->end.y = ray->init.y + wall_row;
+	draw_line(ray->init, ray->end, data);
+	draw_ceiling(ray, data);
+	draw_floor(ray, data);
 }
 
 void	cal_next_ray_angle(double *angle)

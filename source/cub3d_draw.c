@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:48:51 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/14 18:24:26 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/20 19:19:59 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_point	verify_viewer_draw_rules(t_point coord, t_pixel *data)
 }
 
 // returns top-left block coordinates
-t_point	draw_block(t_point coord, int size)
+t_point	cal_2d_block(t_point coord, int size)
 {
 	t_point	p;
 	t_point	end_coord;
@@ -68,7 +68,7 @@ t_ray	draw_viewer(t_point coord, t_pixel *data, char dir)
 	bckp_color = data->line_color;
 	data->line_color = create_trgb(0, 0, 100, 200);
 	data->camera_dir = dir;
-	ret.init = verify_viewer_draw_rules(draw_block(coord, VIEWER_SIZE), data);
+	ret.init = verify_viewer_draw_rules(cal_2d_block(coord, VIEWER_SIZE), data);
 	data->line_color = bckp_color;
 	return (ret);
 }

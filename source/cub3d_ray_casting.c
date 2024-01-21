@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 19:31:10 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:57:21 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 	int		flag;
 
 	i = 0;
+	if (ray->angle == ONE_DEGREE * 90|| ray->angle == ONE_DEGREE * 270)
+		return ;
 	while (TRUE)
 	{
 		if (ray->angle < deeg_to_rad(270) && ray->angle > deeg_to_rad(90))
@@ -42,6 +44,8 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 	int		flag;
 
 	i = 0;
+	if (!ray->angle || ray->angle ==  ONE_DEGREE * 180)
+		return ;
 	while (TRUE)
 	{
 		if (ray->angle < deeg_to_rad(180))
@@ -67,7 +71,7 @@ void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray)
 	else if (v_ray->len > h_ray->len)
 		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
 	else
-		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!h_ray->len)
 		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!v_ray->len)

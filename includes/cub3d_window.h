@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/18 22:28:23 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:00:15 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 # include <stdlib.h>
 # include <string.h>
 # define CUB3D_WINDOW_H
-# define HEIGHT 420
-# define WIDTH 680
+# define HEIGHT 640
+# define WIDTH 800
+
+typedef struct s_pointd
+{
+	double	x;
+	double	y;
+}	t_pointd;
 
 typedef struct s_point
 {
@@ -25,7 +31,7 @@ typedef struct s_point
 
 typedef struct s_ray
 {
-	int		len;
+	double	len;
 	double	angle;
 	t_point	init;
 	t_point	end;
