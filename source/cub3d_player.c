@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:19:10 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 21:30:14 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:34:44 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	make_square(t_map *map, int row, int k, int j)
 	char	*tmp;
 
 	i = 0;
-	row = 0;
-	tmp = malloc(sizeof(char) * ((map->n_row + 1) * (map->n_col + 1)+ 1));
-	while (row < map->n_row)
+	row = -1;
+	tmp = malloc(sizeof(char) * ((map->n_row + 1) * (map->n_col + 1) + 1));
+	while (++row < map->n_row)
 	{
 		k = 0;
 		j = -1;
@@ -97,13 +97,13 @@ void	make_square(t_map *map, int row, int k, int j)
 		{
 			if (map->map[row][k] == '1' || map->map[row][k] == '0'
 			|| map->map[row][k] == 'N' || map->map[row][k] == 'S'
-			|| map->map[row][k] == 'E' || map->map[row][k] == 'W' || map->map[row][k] == ' ')
+			|| map->map[row][k] == 'E' || map->map[row][k] == 'W'
+			|| map->map[row][k] == ' ')
 				tmp[i++] = map->map[row][k++];
 			else
 				tmp[i++] = '2';
 		}
 		tmp[i++] = '\n';
-		row++;
 	}
 	tmp[i] = '\0';
 	map->map_aux = ft_split(tmp, '\n');
