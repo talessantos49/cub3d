@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 22:11:36 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/21 18:45:31 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_ray
 	t_point	init;
 	t_point	end;
 	t_point	map;
+	char	is_hor;
 }	t_ray;
 
 typedef struct s_data {

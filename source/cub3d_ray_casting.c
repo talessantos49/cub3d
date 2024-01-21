@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 22:28:04 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/21 19:47:02 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	check_rays_colition_on_x_axis(&v_ray, data);
 	choose_final_ray(ray, &h_ray, &v_ray);
 	if (ray->end.x == h_ray.end.x && ray->end.y == h_ray.end.y)
-		data->line_color = ft_hex_to_int("273717");
+		ray->is_hor = TRUE;
 	else if (ray->end.x == v_ray.end.x && ray->end.y == v_ray.end.y)
-		data->line_color = create_trgb(0, 0, 0, 150);
+		ray->is_hor = FALSE;
 	return (ray);
 }
 
