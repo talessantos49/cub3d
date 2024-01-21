@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:19:10 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 21:25:52 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:30:14 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,19 @@ int	check_player(t_map *map)
 	return (0);
 }
 
-void	make_square(t_map *map, int row, int k)
+void	make_square(t_map *map, int row, int k, int j)
 {
 	int		i;
-	int		j;
 	char	*tmp;
 
 	i = 0;
 	row = 0;
-	j = 0;
 	tmp = malloc(sizeof(char) * ((map->n_row + 1) * (map->n_col + 1)+ 1));
 	while (row < map->n_row)
 	{
 		k = 0;
-		j = 0;
-		while (j < map->n_col)
+		j = -1;
+		while (++j < map->n_col)
 		{
 			if (map->map[row][k] == '1' || map->map[row][k] == '0'
 			|| map->map[row][k] == 'N' || map->map[row][k] == 'S'
@@ -103,7 +101,6 @@ void	make_square(t_map *map, int row, int k)
 				tmp[i++] = map->map[row][k++];
 			else
 				tmp[i++] = '2';
-			j ++;
 		}
 		tmp[i++] = '\n';
 		row++;

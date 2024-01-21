@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 20:25:03 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:29:39 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	parser_map_floor(char *line, t_map *map);
 void	parser_map_ceiling(char *line, t_map *map);
 void	count_data(t_map *map);
 void	change_spaces(t_map *map);
-void	make_square(t_map *map, int row, int k);
+void	make_square(t_map *map, int row, int k, int j);
 void	route_validation(t_map *map, int x, int y);
 void	check_player_position(t_map *map);
 
