@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 19:34:18 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:57:10 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int	different_characters(char *line)
 {
-	int	len;
-
-	len = ft_strlen(line) - 1;
-	if (line[0] != '1' || line[len] != '1')
-		return (printf("ERROR: Map most be sorrounded by walls\n"));
 	while (*line)
 	{
 		if (*line != 'N' && *line != 'E' && *line != 'W' && \
@@ -49,23 +44,6 @@ int	wall_sorrounded(t_map *read_map)
 	{
 		if (read_map->map[map_height][x] != '1')
 			return (printf("ERROR: Map most be sorrounded by walls\n"));
-	}
-	return (0);
-}
-
-int	verify_map(t_map *read_map)
-{
-	int	i;
-
-	i = 0;
-	// if (wall_sorrounded(read_map))
-	// if (line_too_long(read_map))
-	// 	return (1);
-	while (read_map->map[i])
-	{
-		if (different_characters(read_map->map[i]))
-			return (1);
-		i++;
 	}
 	return (0);
 }
@@ -109,7 +87,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 	str_map = ft_calloc(1, sizeof(char));
 	line = get_next_line(fd);
 	if (!line)
-		return (printf ("ERROR: Invalid map\n"));
+		return (ft_printf ("ERROR: Invalid map\n"));
 	while (line)
 	{
 		str_map = ft_strjoin_gnl(str_map, line);

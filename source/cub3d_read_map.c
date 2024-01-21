@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 17:22:54 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/20 14:48:52 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	initialize_map(t_map *map)
 	map->n_row = 0;
 	map->n_col = 0;
 	map->map = NULL;
+	map->map_aux = NULL;
 	map->original = NULL;
 	map->no_texture = NULL;
 	map->so_texture = NULL;
@@ -64,5 +65,46 @@ int	cub3d_read_map(char *map_path, t_map *read_map)
 	initialize_map(read_map);
 	cub3d_parse_map(fd, read_map);
 	close(fd);
+	return (0);
+}
+
+void	count_data(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->map[i])
+	{
+		j = ft_strlen(map->map[i]);
+		if (j > map->n_col)
+			map->n_col = j;
+		i++;
+	}
+	map->n_row = i;
+}
+
+int	character_check(t_map *map)
+{
+	int	i;
+	int	j;
+	int	len_col;
+
+	i = 0;
+	j = 0;
+	len_col = 0;
+	while (i < map->n_row)
+	{
+		j = 0;
+		len_col = ft_strlen(map->map[i]);
+		while (j < len_col)
+		{
+			if (ft_strchr(" 01NSEW", map->map[i][j]) == NULL)
+				return (1);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }

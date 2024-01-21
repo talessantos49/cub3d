@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/16 19:35:57 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:57:46 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,17 @@ void	around_map(t_map *map, int len, int row, int k)
 		k = 0;
 		while (map->original[row][k] != '\0')
 			tmp[i++] = map->original[row][k++];
+		tmp[i++] = ' ';
 		tmp[i++] = '\n';
 		row++;
 	}
 	map->map = ft_split(tmp, '\n');
+	count_data(map);
+	make_square(map, 0, 0, -1);
+	if (character_check(map))
+		clean_before_exit("ERROR: Invalid map\n", 0);
+	if (night_watcher(map))
+		clean_before_exit("ERROR: Invalid Map must be arround Walls\n", 0);
 	free_map(map->original);
 	free (tmp);
 }
