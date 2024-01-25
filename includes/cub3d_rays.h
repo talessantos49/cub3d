@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:55:55 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/19 20:31:27 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 15:29:14 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define CUB3D_RAYS_H
 
 t_point	draw_scenario(t_pixel *data);
-void	draw_ceiling(t_ray *ray, t_pixel *data);
-void	draw_floor(t_ray *ray, t_pixel *data);
+void	draw_ceiling(t_ray ray, t_pixel *data);
+void	draw_floor(t_ray ray, t_pixel *data);
 void	ray_casting(t_point camera, t_pixel *data);
 int		call_put_pixel(int x, int y, t_pixel *data, char swap_sig);
 void	calculate_west_rays(t_ray *ray, int i);

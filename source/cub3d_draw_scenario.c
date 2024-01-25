@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 12:55:16 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 15:32:36 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,22 @@ double	fish_eye_correction(t_pixel *data, t_ray *ray)
 	return (cos(correction));
 }
 
-void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
+void	draw_3d_wall(t_ray *ray2d, t_pixel *data, int i)
 {
 	double	wall_row;
 	double	center;
+	t_ray	ray;
 
-	wall_row = (BLOCK_SIZE * HEIGHT) / ray->len;
+	ft_memcpy(&ray, ray2d, sizeof(t_ray));
+	wall_row = (BLOCK_SIZE * HEIGHT) / ray2d->len;
 	if (wall_row > HEIGHT)
 		wall_row = HEIGHT;
 	center = (HEIGHT / 2) - (wall_row / 2);
-	ray->init.x = i + MAP_OFFSET;
-	ray->init.y = center;
-	ray->end.x = i + MAP_OFFSET;
-	ray->end.y = ray->init.y + wall_row;
-	draw_texture(ray, data);
+	ray.init.x = i;
+	ray.init.y = center;
+	ray.end.x = i;
+	ray.end.y = ray.init.y + wall_row;
+	draw_texture(ray, ray2d, data);
 	draw_ceiling(ray, data);
 	draw_floor(ray, data);
 }

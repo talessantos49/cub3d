@@ -20,6 +20,7 @@ SRC = 	ft_atoi.c \
 		ft_strchr.c \
 		ft_split.c \
 		ft_memset.c \
+		ft_memcpy.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		ft_lstlast.c \
