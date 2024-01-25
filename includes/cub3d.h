@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/16 19:38:31 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:56:20 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int		map_height(char **map, t_point map_coord);
 void	clean_before_exit(char *str, int error);
 int		line_too_long(t_map *map);
 void	free_map(char **map);
+void	cub3d_init_textures(t_mlx *mlx);
+void	draw_texture(t_ray *ray, t_pixel *data);
 
 #endif

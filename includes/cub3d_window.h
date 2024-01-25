@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/21 18:45:31 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:56:12 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef struct s_mlx
 	char	change_dir;
 	double	camera_angle;
 	t_ray	*viewer_dir;
+	int		**north_text;
+	int		**south_text;
+	int		**west_text;
+	int		**est_text;
 }	t_mlx;
 
 typedef struct s_pixel

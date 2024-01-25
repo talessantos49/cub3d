@@ -6,7 +6,7 @@
 #    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/20 22:01:18 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/25 12:17:17 by asoler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SOURCES_LIST	= cub3d.c \
 		cub3d_segregation.c \
 		parser_map.c \
 		parser_texture.c \
+		cub3d_init_textures.c \
+		cube3d_draw_texture.c
 
 GREEN			= \033[0;32m
 

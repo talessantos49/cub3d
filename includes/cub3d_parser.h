@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 21:59:59 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:54:00 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef struct s_color
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_char_color
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}	t_char_color;
 
 typedef struct s_fase
 {

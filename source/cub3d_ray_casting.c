@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/21 19:47:02 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:57:30 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 	int		flag;
 
 	i = 0;
-	if (ray->angle == ONE_DEGREE * 90|| ray->angle == ONE_DEGREE * 270)
+	if (ray->angle == ONE_DEGREE * 90 || ray->angle == ONE_DEGREE * 270)
 		return ;
 	while (TRUE)
 	{
@@ -44,7 +44,7 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 	int		flag;
 
 	i = 0;
-	if (!ray->angle || ray->angle ==  ONE_DEGREE * 180)
+	if (!ray->angle || ray->angle == ONE_DEGREE * 180)
 		return ;
 	while (TRUE)
 	{

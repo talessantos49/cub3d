@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 20:46:00 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:25:38 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	cub3d_close_window(t_mlx *mlx)
 int	cub3d_open_window(t_mlx *mlx)
 {
 	mlx->init = mlx_init();
+	cub3d_init_textures(mlx);
 	mlx->window = mlx_new_window(mlx->init, WIDTH, HEIGHT, "cub3d, get fun!");
 	mlx_hook(mlx->window, 2, 1L << 0, key_input, mlx);
 	mlx_hook(mlx->window, 17, 0, &cub3d_close_window, mlx);
