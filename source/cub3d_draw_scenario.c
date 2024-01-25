@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:17:56 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/19 20:30:33 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:55:16 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_3d_wall(t_ray *ray, t_pixel *data, int i)
 	ray->init.y = center;
 	ray->end.x = i + MAP_OFFSET;
 	ray->end.y = ray->init.y + wall_row;
-	draw_line(ray->init, ray->end, data);
+	draw_texture(ray, data);
 	draw_ceiling(ray, data);
 	draw_floor(ray, data);
 }
