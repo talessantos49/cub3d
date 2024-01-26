@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:42:32 by root              #+#    #+#             */
-/*   Updated: 2024/01/26 10:11:08 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:43:16 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	parser_map_floor(char *line, t_map *map)
 
 void	parser_map_ceiling(char *line, t_map *map)
 {
-	int	i;
+	int			i;
 	static int	first;
 
 	i = 0;
@@ -102,7 +102,7 @@ void	parser_map_ceiling(char *line, t_map *map)
 		else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
 			|| line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
 		i++;
-		else if ((ft_isdigit(line[i]) || line[i] == ',')  && !first)
+		else if ((ft_isdigit(line[i]) || line[i] == ',') && !first)
 		{
 			first = 1;
 			check_rgb_and_split(&line[i], map, ',', 'c');

@@ -6,16 +6,11 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:10:53 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 13:01:09 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:40:04 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-#define NORTH "xpm_assets/BRICK_6D.xpm"
-#define SOUTH "xpm_assets/HEDGE_1A.xpm"
-#define WEST "xpm_assets/LIGHT_1B.xpm"
-#define EST "xpm_assets/PIPES_1A.xpm"
 
 void	cub3d_xpm_file_to_image(void *mlx_ptr, char *path, t_data *img)
 {
@@ -71,8 +66,8 @@ void	alloc_textures(t_mlx *mlx, char *path, int ***text_matrix)
 
 void	cub3d_init_textures(t_mlx *mlx)
 {
-	alloc_textures(mlx, NORTH, &mlx->north_text);
-	alloc_textures(mlx, SOUTH, &mlx->south_text);
-	alloc_textures(mlx, WEST, &mlx->west_text);
-	alloc_textures(mlx, EST, &mlx->est_text);
+	alloc_textures(mlx, mlx->map->no_texture, &mlx->north_text);
+	alloc_textures(mlx, mlx->map->so_texture, &mlx->south_text);
+	alloc_textures(mlx, mlx->map->we_texture, &mlx->west_text);
+	alloc_textures(mlx, mlx->map->ea_texture, &mlx->est_text);
 }
