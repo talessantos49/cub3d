@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_path.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:09:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/26 11:36:28 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 17:12:31 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	verify_file_existence(char *str)
 	if ((str == NULL) || (fd == -1))
 	{
 		free(str);
-		clean_before_exit("North texture not found\n", 0);
+		close(fd);
+		clean_before_exit("Texture not found\n", 1);
 	}
 	close(fd);
 }
@@ -41,11 +42,7 @@ char	*parser_map_north(char *line, int i, int k)
 		i++;
 		k++;
 	}
-	if ((str == NULL) || (open(str, O_RDONLY) == -1))
-	{
-		free(str);
-		clean_before_exit("North texture not found\n", 0);
-	}
+	verify_file_existence(str);
 	return (str);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:06 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 12:25:38 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:25:24 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	cub3d_close_window(t_mlx *mlx)
 	mlx_destroy_display(mlx->init);
 	free_all_parser(mlx);
 	free_staff(mlx);
+	clean_textures(mlx);
 	exit (0);
 }
 

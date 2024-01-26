@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 12:56:12 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:28:23 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ int		put_pixel(t_point point, int trgb, t_data *img);
 int		draw_line(t_point point1, t_point point2, t_pixel *data);
 int		bresenham(t_point point1, t_point point2, t_pixel *data);
 void	free_all_parser(t_mlx *mlx);
-
+void	clean_textures(t_mlx *mlx);
 #endif

@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 11:00:01 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:18:30 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*is_spaces(char *line, char *spaces);
 void	around_map(t_map *map, int len, int row, int k);
 void	check_rgb_and_split(char *line, t_map *map, char constant, char type);
 void	clean_before_exit(char *message, int fd);
-void	clean_str_exit(char	*str, char *line, int error);
+void	clean_str_exit(char	*str, char *line, int error, t_map *map);
 void	initialize_map(t_map *map);
 void	parser_atributes(t_map *map, char *line);
 void	parser_map_floor(char *line, t_map *map);

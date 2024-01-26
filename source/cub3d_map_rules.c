@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 21:57:10 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 17:24:04 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	wall_sorrounded(t_map *read_map)
 	return (0);
 }
 
-int	verify_components(char *string, int len, int i)
+int	verify_components(char *line, int len, int i)
 {
 	t_map	tmp;
 
@@ -56,17 +56,17 @@ int	verify_components(char *string, int len, int i)
 	initialize_map(&tmp);
 	while (i < len)
 	{
-		if (string[i] == 'F')
+		if (line[i] == 'F' && line[i + 1] == ' ')
 			tmp.fase.floor = 1;
-		if (string[i] == 'C')
+		if (line[i] == 'C' && line[i + 1] == ' ')
 			tmp.fase.ceiling = 1;
-		if (string[i] == 'N' && string[i + 1] == 'O')
+		if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
 			tmp.fase.no_texture = 1;
-		if (string[i] == 'S' && string[i + 1] == 'O')
+		if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
 			tmp.fase.so_texture = 1;
-		if (string[i] == 'W' && string[i + 1] == 'E')
+		if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
 			tmp.fase.we_texture = 1;
-		if (string[i] == 'E' && string[i + 1] == 'A')
+		if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
 			tmp.fase.ea_texture = 1;
 		i++;
 	}
@@ -96,7 +96,7 @@ int	cub3d_parse_map(int fd, t_map *read_map)
 	}
 	parser_atributes(read_map, str_map);
 	if (verify_components(str_map, ft_strlen(str_map), 0))
-		clean_str_exit(str_map, "ERROR: Missing components\n", 0);
+		clean_str_exit(str_map, "Missing components", 1, read_map);
 	read_map->original = ft_split(str_map, '\n');
 	around_map(read_map, ft_strlen(str_map), 0, 0);
 	free(str_map);
