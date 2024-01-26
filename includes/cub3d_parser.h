@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 17:18:30 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:48:54 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ void	around_map(t_map *map, int len, int row, int k);
 void	check_rgb_and_split(char *line, t_map *map, char constant, char type);
 void	clean_before_exit(char *message, int fd);
 void	clean_str_exit(char	*str, char *line, int error, t_map *map);
+void	clear_watcher(char *str, char *line, int error, t_map *map);
+void	clean_textures(t_map *map);
+void	clear_texture(t_map *map);
+void	free_all_parser(t_map *map);
+void	clean_map(t_map *map);
+void	clean_map_map(t_map *map);
+void	check_player_position(t_map *map);
+void	check_textures_errors(t_map *map, char *line);
 void	initialize_map(t_map *map);
 void	parser_atributes(t_map *map, char *line);
 void	parser_map_floor(char *line, t_map *map);
@@ -91,6 +99,5 @@ void	count_data(t_map *map);
 void	change_spaces(t_map *map);
 void	make_square(t_map *map, int row, int k, int j);
 void	route_validation(t_map *map, int x, int y);
-void	check_player_position(t_map *map);
 
 #endif
