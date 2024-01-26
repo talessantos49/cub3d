@@ -1,14 +1,13 @@
-F 255,5,65
-EA ./xpm_assets/PIPES_1A.xpm
-SO ./xpm_assets/HEDGE_1A.xpm
-
 NO ./xpm_assets/BRICK_6D.xpm
 
-C 255,123,123
+C                               50,255,255
+EA ./xpm_assets/PIPES_1A.xpm
 
 WE ./xpm_assets/LIGHT_1B.xpm
 
+SO ./xpm_assets/HEDGE_1A.xpm
 
+F    255,1,65
 
 11111111111                111111111111111111111
 10000000001                100000000000000000001

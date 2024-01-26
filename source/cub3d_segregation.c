@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 12:09:57 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:37:14 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,17 +123,17 @@ void	parser_atributes(t_map *map, char *line)
 {
 	while (*line != '\0')
 	{
-		if (*line == 'F')
+		if (*line == 'F' && *(line + 1) == ' ')
 			cut_strings(map, line, 'F');
-		else if (*line == 'C')
+		else if (*line == 'C' && *(line + 1) == ' ')
 			cut_strings(map, line, 'C');
-		else if (*line == 'N' && *(line + 1) == 'O')
+		else if (*line == 'N' && *(line + 1) == 'O' && *(line + 2) == ' ')
 			cut_strings(map, line, 'N');
-		else if (*line == 'S' && *(line + 1) == 'O')
+		else if (*line == 'S' && *(line + 1) == 'O' && *(line + 2) == ' ')
 			cut_strings(map, line, 'S');
-		else if (*line == 'W' && *(line + 1) == 'E')
+		else if (*line == 'W' && *(line + 1) == 'E' && *(line + 2) == ' ')
 			cut_strings(map, line, 'W');
-		else if (*line == 'E' && *(line + 1) == 'A')
+		else if (*line == 'E' && *(line + 1) == 'A' && *(line + 2) == ' ')
 			cut_strings(map, line, 'E');
 		line++;
 	}
