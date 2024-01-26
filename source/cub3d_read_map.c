@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 14:48:52 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:14:56 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	cub3d_read_map(char *map_path, t_map *read_map)
 	if (fd < 0)
 		return (printf("ERROR: %s\n", strerror(errno)));
 	initialize_map(read_map);
-	cub3d_parse_map(fd, read_map);
+	cub3d_parse_map(fd, read_map, 0);
 	close(fd);
 	return (0);
 }

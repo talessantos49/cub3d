@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_path.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:09:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/26 11:36:28 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:39:25 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	verify_file_existence(char *str)
+int	verify_file_existence(char *str)
 {
 	int	fd;
 
 	fd = open(str, O_RDONLY);
 	if ((str == NULL) || (fd == -1))
-	{
-		free(str);
-		clean_before_exit("North texture not found\n", 0);
-	}
+		return (1);
 	close(fd);
+	return (0);
 }
 
 char	*parser_map_north(char *line, int i, int k)
 {
 	char	*str;
 
-	str = calloc(sizeof(char), ft_strlen(line)-1);
+	str = calloc(sizeof(char), ft_strlen(line) + 1);
 	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v'
 		|| line[i] == '\f' || line[i] == '\r')
 		line++;
@@ -41,10 +39,10 @@ char	*parser_map_north(char *line, int i, int k)
 		i++;
 		k++;
 	}
-	if ((str == NULL) || (open(str, O_RDONLY) == -1))
+	if (verify_file_existence(str))
 	{
 		free(str);
-		clean_before_exit("North texture not found\n", 0);
+		str = NULL;
 	}
 	return (str);
 }
@@ -53,7 +51,7 @@ char	*parser_map_south(char *line, int i, int k)
 {
 	char	*str;
 
-	str = calloc(sizeof(char), ft_strlen(line)-1);
+	str = calloc(sizeof(char), ft_strlen(line) + 1);
 	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v'
 		|| line[i] == '\f' || line[i] == '\r')
 		line++;
@@ -65,7 +63,11 @@ char	*parser_map_south(char *line, int i, int k)
 		i++;
 		k++;
 	}
-	verify_file_existence(str);
+	if (verify_file_existence(str))
+	{
+		free(str);
+		str = NULL;
+	}
 	return (str);
 }
 
@@ -73,7 +75,7 @@ char	*parser_map_west(char *line, int i, int k)
 {
 	char	*str;
 
-	str = calloc(sizeof(char), ft_strlen(line)-1);
+	str = calloc(sizeof(char), ft_strlen(line) + 1);
 	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v'
 		|| line[i] == '\f' || line[i] == '\r')
 		line++;
@@ -85,7 +87,11 @@ char	*parser_map_west(char *line, int i, int k)
 		i++;
 		k++;
 	}
-	verify_file_existence(str);
+	if (verify_file_existence(str))
+	{
+		free(str);
+		str = NULL;
+	}
 	return (str);
 }
 
@@ -93,7 +99,7 @@ char	*parser_map_east(char *line, int i, int k)
 {
 	char	*str;
 
-	str = calloc(sizeof(char), ft_strlen(line)-1);
+	str = calloc(sizeof(char), ft_strlen(line) + 1);
 	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\v'
 		|| line[i] == '\f' || line[i] == '\r')
 		line++;
@@ -105,6 +111,10 @@ char	*parser_map_east(char *line, int i, int k)
 		i++;
 		k++;
 	}
-	verify_file_existence(str);
+	if (verify_file_existence(str))
+	{
+		free(str);
+		str = NULL;
+	}
 	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:01:38 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 15:34:51 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 18:15:41 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_draw_line
 }	t_draw_line;
 
 int		cub3d_read_map(char *map_path, t_map *read_map);
-int		cub3d_parse_map(int fd, t_map *read_map);
+int		cub3d_parse_map(int fd, t_map *read_map, int len);
 int		create_trgb(int t, int r, int g, int b);
 void	swap(int *a, int *b);
 int		update_viewer_direction(t_mlx *mlx, int key);

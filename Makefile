@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+         #
+#    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/25 12:17:17 by asoler           ###   ########.fr        #
+#    Updated: 2024/01/26 18:41:51 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ ${LIBFT}:
 			@echo Libft has been compiled!
 
 valgrind:
-		$(VALGRIND) ./cub3d maps/map_example.cub
+		$(VALGRIND) ./cub3d maps/map_second_example.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean
