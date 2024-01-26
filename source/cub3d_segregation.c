@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 11:08:41 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:04:57 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,27 @@ char	*ft_strjoin_gnl(char	*string1, const char	*string2)
 	return (join);
 }
 
-int	cleaner_before_map(t_map *map, int row, int col)
+int	cleaner_before_map(t_map *map, int i, int k)
 {
-	while (map->original[row][col] != '\0')
+	while (map->original[i][k] != '\0')
 	{
-		if (map->original[row][col] == 'F')
-			row++;
-		if (map->original[row][col] == 'C')
-			row++;
-		if (map->original[row][col] == 'N'
-			&& map->original[row][col + 1] == 'O')
-			row++;
-		if (map->original[row][col] == 'S'
-			&& map->original[row][col + 1] == 'O')
-			row++;
-		if (map->original[row][col] == 'W'
-			&& map->original[row][col + 1] == 'E')
-			row++;
-		if (map->original[row][col] == 'E'
-			&& map->original[row][col + 1] == 'A')
-			row++;
-		col++;
+		k = 0;
+		while (map->original[i][k] != '\n' && map->original[i][k] != '\0')
+		{
+			if (map->original[i][k] == 'F' || map->original[i][k] == 'C'
+			|| (map->original[i][k] == 'N' && map->original[i][k + 1] == 'O')
+			|| (map->original[i][k] == 'S' && map->original[i][k + 1] == 'O')
+			|| (map->original[i][k] == 'W' && map->original[i][k + 1] == 'E')
+			|| (map->original[i][k] == 'W' && map->original[i][k + 1] == 'E')
+			|| (map->original[i][k] == 'E' && map->original[i][k + 1] == 'A'))
+			{
+				i++;
+				break ;
+			}
+			k++;
+		}
 	}
-	return (row);
+	return (i);
 }
 
 void	around_map(t_map *map, int len, int row, int k)
@@ -85,7 +83,7 @@ void	around_map(t_map *map, int len, int row, int k)
 	count_data(map);
 	make_square(map, 0, 0, -1);
 	if (character_check(map))
-		clean_before_exit("ERROR: Invalid map\n", 0);
+		clean_before_exit("ERROR: Wrong character inside map\n", 0);
 	if (night_watcher(map))
 		clean_before_exit("ERROR: Invalid Map must be arround Walls\n", 0);
 	free_map(map->original);

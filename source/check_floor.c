@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_floor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:42:32 by root              #+#    #+#             */
-/*   Updated: 2024/01/25 12:53:20 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:25:29 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_rgb_and_split(char *line, t_map *map, char constant, char type)
 		clean_before_exit("Floor color not valid\n", 0);
 	if (map->ceiling.r > 255 || map->ceiling.g > 255 || map->ceiling.b > 255
 		|| map->ceiling.r < 0 || map->ceiling.g < 0 || map->ceiling.b < 0)
-		clean_before_exit("Floor color not valid\n", 0);
+		clean_before_exit("Ceiling color not valid\n", 0);
 }
 
 void	parser_map_floor(char *line, t_map *map)
