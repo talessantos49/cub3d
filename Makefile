@@ -6,7 +6,7 @@
 #    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/26 18:41:51 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/26 20:58:59 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SOURCES_LIST	= cub3d.c \
 		check_floor.c \
 		check_textures_path.c \
 		clear.c \
+		clear_utils.c \
 		cub3d_check_wall.c \
 		cub3d_ray_casting.c \
 		cub3d_ray_utils.c \
