@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 09:42:42 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 10:35:12 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 09:06:35 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,25 @@ void	free_map(char **map)
 	free(map);
 }
 
+void	free_text(int **text)
+{
+	int	i;
+
+	i = 0;
+	while (i < BLOCK_SIZE)
+	{
+		free(text[i]);
+		i++;
+	}
+	free(text);
+}
+
 void	free_staff(t_mlx *mlx)
 {
+	free_text(mlx->est_text);
+	free_text(mlx->west_text);
+	free_text(mlx->north_text);
+	free_text(mlx->south_text);
 	free(mlx->init);
 	free_map(mlx->map->map);
 	free(mlx->viewer_dir);

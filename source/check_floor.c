@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:42:32 by root              #+#    #+#             */
-/*   Updated: 2024/01/25 12:53:20 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 10:11:08 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	check_rgb_and_split(char *line, t_map *map, char constant, char type)
 
 void	parser_map_floor(char *line, t_map *map)
 {
-	int		i;
+	int			i;
+	static int	first;
 
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
@@ -72,8 +73,9 @@ void	parser_map_floor(char *line, t_map *map)
 		else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
 			|| line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
 			i++;
-		else if ((ft_isdigit(line[i]) || line[i] == ',') && map->floor.r == 0)
+		else if ((ft_isdigit(line[i]) || line[i] == ',') && !first)
 		{
+			first = 1;
 			check_rgb_and_split(&line[i], map, ',', 'f');
 			if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
 				i++;
@@ -90,6 +92,7 @@ void	parser_map_floor(char *line, t_map *map)
 void	parser_map_ceiling(char *line, t_map *map)
 {
 	int	i;
+	static int	first;
 
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
@@ -99,8 +102,9 @@ void	parser_map_ceiling(char *line, t_map *map)
 		else if (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'
 			|| line[i] == '\v' || line[i] == '\f' || line[i] == '\r')
 		i++;
-		else if ((ft_isdigit(line[i]) || line[i] == ',') && map->ceiling.r == 0)
+		else if ((ft_isdigit(line[i]) || line[i] == ',')  && !first)
 		{
+			first = 1;
 			check_rgb_and_split(&line[i], map, ',', 'c');
 			if (ft_isdigit(line[i + 1]) || line[i + 1] == ',')
 				i++;

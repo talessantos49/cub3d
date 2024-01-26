@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:44:10 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/19 18:20:56 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:39:48 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 static int	count_words(char const *s, char c)
 {
-	int	wc;
+	int	words;
 
-	s++;
-	wc = 1;
+	words = 1;
 	while (*s == c)
 		s++;
 	while (*s)
 	{
-		while (*s == c)
-		{
-			s++;
-			if (*s != c && *s != '\0')
-				wc++;
-		}
-		if (*s != '\0')
-			s++;
+		if (*s == c && (*(s + 1) != c) && *(s + 1))
+			words++;
+		s++;
 	}
-	return (wc);
+	return (words);
 }
 
 static char	**result_array(char	**dest, char *s1, char c)
