@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 21:55:55 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 15:29:14 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:39:47 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_floor(t_ray ray, t_pixel *data);
 void	ray_casting(t_point camera, t_pixel *data);
 int		call_put_pixel(int x, int y, t_pixel *data, char swap_sig);
 void	calculate_west_rays(t_ray *ray, int i);
-void	calculate_est_rays(t_ray *ray, int i);
+void	calculate_east_rays(t_ray *ray, int i);
 void	calculate_north_rays(t_ray *ray, int i);
 void	calculate_south_rays(t_ray *ray, int i);
 t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data);

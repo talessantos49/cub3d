@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:16:44 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/20 19:32:57 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:38:55 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	calculate_west_rays(t_ray *ray, int i)
 	ray->map.y = ray->end.y / BLOCK_SIZE;
 }
 
-void	calculate_est_rays(t_ray *ray, int i)
+void	calculate_east_rays(t_ray *ray, int i)
 {
 	ray->end.x = ((ray->init.x + BLOCK_SIZE) / BLOCK_SIZE) * BLOCK_SIZE \
 				+ (BLOCK_SIZE * i);

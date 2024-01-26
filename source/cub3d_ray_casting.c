@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 20:03:57 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:48:44 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle < deeg_to_rad(270) && ray->angle > deeg_to_rad(90))
 			calculate_west_rays(ray, i);
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
-			calculate_est_rays(ray, i);
+			calculate_east_rays(ray, i);
 		i++;
 		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
