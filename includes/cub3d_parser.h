@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/25 12:54:00 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:00:01 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ typedef struct s_node {
 	struct t_node	*next;
 }	t_node;
 
-int		parser_map_north(char *line);
 int		parser_map(char *path_map, t_map *map);
-int		parser_map_south(char *line);
-int		parser_map_west(char *line);
-int		parser_map_east(char *line);
 int		character_check(t_map *map);
 int		comma_check(char *line, char constant);
 int		night_watcher(t_map *map);
 int		cleaner_before_map(t_map *map, int row, int col);
 int		check_player(t_map *map);
+char	*parser_map_north(char *line, int i, int k);
+char	*parser_map_south(char *line, int i, int k);
+char	*parser_map_west(char *line, int i, int k);
+char	*parser_map_east(char *line, int i, int k);
 char	*ft_strjoin_gnl(char *string1, const char *string2);
 char	*is_spaces(char *line, char *spaces);
 void	around_map(t_map *map, int len, int row, int k);

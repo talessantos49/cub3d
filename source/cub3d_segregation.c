@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_segregation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/20 21:57:46 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:08:41 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ void	cut_strings(t_map *map, char *line, char direction)
 	else if (direction == 'C')
 		parser_map_ceiling(tmp, map);
 	else if (direction == 'N')
-		map->fase.no_texture = parser_map_north(tmp + 2);
+		map->no_texture = parser_map_north(tmp + 2, 0, 0);
 	else if (direction == 'S')
-		map->fase.so_texture = parser_map_south(tmp + 2);
+		map->so_texture = parser_map_south(tmp + 2, 0, 0);
 	else if (direction == 'W')
-		map->fase.we_texture = parser_map_west(tmp + 2);
+		map->we_texture = parser_map_west(tmp + 2, 0, 0);
 	else if (direction == 'E')
-		map->fase.ea_texture = parser_map_east(tmp + 2);
+		map->ea_texture = parser_map_east(tmp + 2, 0, 0);
 	free (tmp);
 }
 
@@ -129,16 +129,14 @@ void	parser_atributes(t_map *map, char *line)
 			cut_strings(map, line, 'F');
 		else if (*line == 'C')
 			cut_strings(map, line, 'C');
-		else if (*line == 'N' && *line++ == 'O')
+		else if (*line == 'N' && *(line + 1) == 'O')
 			cut_strings(map, line, 'N');
-		else if (*line == 'S' && *line++ == 'O')
+		else if (*line == 'S' && *(line + 1) == 'O')
 			cut_strings(map, line, 'S');
-		else if (*line == 'W' && *line++ == 'E')
+		else if (*line == 'W' && *(line + 1) == 'E')
 			cut_strings(map, line, 'W');
-		else if (*line == 'E' && *line++ == 'A')
+		else if (*line == 'E' && *(line + 1) == 'A')
 			cut_strings(map, line, 'E');
-		else if (*line == '1' && map->fase.floor == 1 && map->fase.ceiling == 1)
-			map->fase.attributes = 1;
 		line++;
 	}
 	return ;

@@ -2,13 +2,13 @@ F 255,5,65
 
 C 255,123,123
 
-NO ./path_to_the_north_texture
+NO ./xpm_assets/BRICK_6D.xpm
 
-SO ./path_to_the_south_texture
+SO ./xpm_assets/HEDGE_1A.xpm
 
-WE ./path_to_the_west_texture
+WE ./xpm_assets/LIGHT_1B.xpm
 
-EA ./path_to_the_east_texture
+EA ./xpm_assets/PIPES_1A.xpm
 
 11111111111                111111111111111111111
 10000000001                100000000000000000001
