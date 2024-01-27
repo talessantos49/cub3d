@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 20:54:10 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:04:20 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	cleaner_before_map(t_map *map, int i, int k)
 	while (map->original[i][k] != '\0')
 	{
 		k = 0;
+		if (map->original[i + 1] == NULL)
+			break ;
 		while (map->original[i][k] != '\n' && map->original[i][k] != '\0')
 		{
 			if (map->original[i][k] == 'F' || map->original[i][k] == 'C'
@@ -68,6 +70,7 @@ void	around_map(t_map *map, int len, int row, int k)
 	char	*tmp;
 
 	i = 0;
+	check_map_exist(map);
 	tmp = calloc(len, sizeof(char));
 	row = cleaner_before_map(map, 0, 0);
 	while (map->original[row])

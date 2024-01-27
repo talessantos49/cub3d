@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 18:14:56 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:01:04 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ void	count_data(t_map *map)
 		i++;
 	}
 	map->n_row = i;
+	if (map->n_col < 3 || map->n_row < 3)
+	{
+		printf("ERROR\n Map most be at least 3x3\n");
+		exit (0);
+	}
 }
 
 int	character_check(t_map *map)

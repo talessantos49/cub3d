@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 20:48:36 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 22:49:46 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,9 @@ void	check_textures_errors(t_map *map, char *line)
 
 int	cub3d_parse_map(int fd, t_map *read_map, int len)
 {
-	int		has_error;
 	char	*line;
 	char	*str_map;
 
-	has_error = FALSE;
 	str_map = ft_calloc(1, sizeof(char));
 	line = get_next_line(fd);
 	if (!line)
@@ -131,5 +129,5 @@ int	cub3d_parse_map(int fd, t_map *read_map, int len)
 	free(str_map);
 	free(line);
 	around_map(read_map, len, 0, 0);
-	return (has_error);
+	return (0);
 }

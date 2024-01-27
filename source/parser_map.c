@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:42:15 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 11:42:18 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 23:05:04 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,22 @@ int	map_file(char *filename)
 		return (fd);
 	}
 	return (fd);
+}
+
+void	check_map_exist(t_map *read_map)
+{
+	int	i;
+
+	i = 0;
+	while (read_map->original[i])
+	{
+		i++;
+		if (i < 6)
+		{
+			ft_printf("Error\nMap must exist\n");
+			clear_texture(read_map);
+			free_map(read_map->original);
+			exit (1);
+		}
+	}
 }

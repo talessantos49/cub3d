@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:33:46 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 20:48:54 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:05:25 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void	count_data(t_map *map);
 void	change_spaces(t_map *map);
 void	make_square(t_map *map, int row, int k, int j);
 void	route_validation(t_map *map, int x, int y);
+void	check_map_exist(t_map *read_map);
 
 #endif
