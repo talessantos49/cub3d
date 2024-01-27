@@ -6,47 +6,11 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 10:00:36 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 22:49:46 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:42:42 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	different_characters(char *line)
-{
-	while (*line)
-	{
-		if (*line != 'N' && *line != 'E' && *line != 'W' && \
-			*line != 'S' && *line != '0' && *line != '1')
-			return (1);
-		line++;
-	}
-	return (0);
-}
-
-int	wall_sorrounded(t_map *read_map)
-{
-	int	x;
-	int	line_width;
-	int	map_height;
-
-	line_width = ft_strlen(read_map->map[0]);
-	map_height = read_map->n_col - 1;
-	x = 0;
-	while (++x < line_width)
-	{
-		if (read_map->map[0][x] != '1')
-			return (printf("ERROR\n Map most be sorrounded by walls\n"));
-	}
-	line_width = ft_strlen(read_map->map[map_height]);
-	x = 0;
-	while (++x < line_width)
-	{
-		if (read_map->map[map_height][x] != '1')
-			return (printf("ERROR\n Map most be sorrounded by walls\n"));
-	}
-	return (0);
-}
 
 int	verify_components(char *line, int len, int i)
 {

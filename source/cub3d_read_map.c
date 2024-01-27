@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:40:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 23:25:10 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:34:27 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	cub3d_read_map(char *map_path, t_map *read_map)
 	return (0);
 }
 
-void	count_data(t_map *map)
+void	count_data(t_map *map, char *line)
 {
 	int	i;
 	int	j;
@@ -85,11 +85,11 @@ void	count_data(t_map *map)
 	map->n_row = i;
 	if (map->n_col < 3 || map->n_row < 3)
 	{
-		free_all_parser(map);
 		clear_texture(map);
 		free_map(map->original);
-		printf("ERROR\n Map most be at least 3x3\n");
-		exit (0);
+		clean_map_map(map);
+		free(line);
+		clean_before_exit("Map most be at least 3x3", 1);
 	}
 }
 
