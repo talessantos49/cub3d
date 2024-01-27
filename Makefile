@@ -6,7 +6,7 @@
 #    By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 18:58:22 by tasantos          #+#    #+#              #
-#    Updated: 2024/01/26 20:58:59 by tasantos         ###   ########.fr        #
+#    Updated: 2024/01/26 23:20:09 by tasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,9 @@ ${LIBFT}:
 
 valgrind:
 		$(VALGRIND) ./cub3d maps/map_second_example.cub
+
+valgrind2:
+		$(VALGRIND) ./cub3d maps/big_maze.cub
 
 clean:
 			make -sC ${LIBFT_DIR} clean

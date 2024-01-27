@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:42:15 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 23:05:04 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:27:12 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ void	check_map_exist(t_map *read_map)
 
 	i = 0;
 	while (read_map->original[i])
-	{
 		i++;
-		if (i < 6)
-		{
-			ft_printf("Error\nMap must exist\n");
-			clear_texture(read_map);
-			free_map(read_map->original);
-			exit (1);
-		}
+	if (i < 7)
+	{
+		ft_printf("Error\nMap must exist\n");
+		clear_texture(read_map);
+		free_map(read_map->original);
+		exit (1);
 	}
 }
