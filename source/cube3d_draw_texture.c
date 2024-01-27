@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:05:37 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 15:50:37 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:38:44 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	choose_texture_by_angle(t_ray ray, t_point text, t_mlx *mlx)
 		if (ray.angle < deeg_to_rad(270) && ray.angle > deeg_to_rad(90))
 			color = mlx->west_text[text.y][text.x];
 		if (ray.angle > deeg_to_rad(270) || ray.angle < deeg_to_rad(90))
-			color = mlx->est_text[text.y][text.x];
+			color = mlx->east_text[text.y][text.x];
 	}
 	return (color);
 }

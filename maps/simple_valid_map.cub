@@ -1,0 +1,18 @@
+F 255,255,255
+
+C 0,50,50
+
+NO xpm_assets/TILE_2C.xpm
+
+SO xpm_assets/TECH_4E.xpm
+
+WE xpm_assets/TILE_2C.xpm
+
+EA xpm_assets/TECH_4E.xpm
+
+
+111111
+100101
+101001
+1100N1
+111111

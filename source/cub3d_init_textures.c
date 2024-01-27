@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:10:53 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 11:40:04 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:39:08 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	cub3d_init_textures(t_mlx *mlx)
 	alloc_textures(mlx, mlx->map->no_texture, &mlx->north_text);
 	alloc_textures(mlx, mlx->map->so_texture, &mlx->south_text);
 	alloc_textures(mlx, mlx->map->we_texture, &mlx->west_text);
-	alloc_textures(mlx, mlx->map->ea_texture, &mlx->est_text);
+	alloc_textures(mlx, mlx->map->ea_texture, &mlx->east_text);
 }

@@ -6,7 +6,7 @@
 /*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:43:57 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/25 15:30:10 by asoler           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:48:44 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_rays_colition_on_x_axis(t_ray *ray, t_pixel *data)
 		if (ray->angle < deeg_to_rad(270) && ray->angle > deeg_to_rad(90))
 			calculate_west_rays(ray, i);
 		if (ray->angle > deeg_to_rad(270) || ray->angle < deeg_to_rad(90))
-			calculate_est_rays(ray, i);
+			calculate_east_rays(ray, i);
 		i++;
 		flag = check_collition(ray->map, data->mlx);
 		if (flag > 0)
@@ -67,15 +67,17 @@ void	check_rays_colition_on_y_axis(t_ray *ray, t_pixel *data)
 void	choose_final_ray(t_ray *ray, t_ray *h_ray, t_ray *v_ray)
 {
 	if (v_ray->len < h_ray->len)
-		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
+		ft_memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	else if (v_ray->len > h_ray->len)
-		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
-	else
-		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
+		ft_memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
 	if (!h_ray->len)
-		memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
+		ft_memcpy((void *)ray, (void *)v_ray, sizeof(t_ray));
 	if (!v_ray->len)
-		memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+		ft_memcpy((void *)ray, (void *)h_ray, sizeof(t_ray));
+	if (ray->len == h_ray->len)
+		ray->is_hor = TRUE;
+	else if (ray->len == v_ray->len)
+		ray->is_hor = FALSE;
 }
 
 t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
@@ -94,10 +96,6 @@ t_ray	*ray_end_coord(double angle, t_point init_coord, t_pixel *data)
 	check_rays_colition_on_y_axis(&h_ray, data);
 	check_rays_colition_on_x_axis(&v_ray, data);
 	choose_final_ray(ray, &h_ray, &v_ray);
-	if (ray->end.x == h_ray.end.x && ray->end.y == h_ray.end.y)
-		ray->is_hor = TRUE;
-	else if (ray->end.x == v_ray.end.x && ray->end.y == v_ray.end.y)
-		ray->is_hor = FALSE;
 	return (ray);
 }
 

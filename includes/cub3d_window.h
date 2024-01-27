@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_window.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: asoler <asoler@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:56:49 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 17:53:59 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 22:07:51 by asoler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_mlx
 	int		**north_text;
 	int		**south_text;
 	int		**west_text;
-	int		**est_text;
+	int		**east_text;
 }	t_mlx;
 
 typedef struct s_pixel
