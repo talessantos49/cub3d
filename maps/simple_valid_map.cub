@@ -1,14 +1,14 @@
-F 10,10,10
+F 255,255,255
 
-C 0,150,50
+C 0,50,50
 
-NO ./path_to_the_north_texture
+NO xpm_assets/TILE_2C.xpm
 
-SO ./path_to_the_south_texture
+SO xpm_assets/TECH_4E.xpm
 
-WE ./path_to_the_west_texture
+WE xpm_assets/TILE_2C.xpm
 
-EA ./path_to_the_east_texture
+EA xpm_assets/TECH_4E.xpm
 
 
 111111
