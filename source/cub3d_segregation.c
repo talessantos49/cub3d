@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 23:21:41 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:33:06 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	around_map(t_map *map, int len, int row, int k)
 		row++;
 	}
 	map->map = ft_split(tmp, '\n');
-	count_data(map);
+	count_data(map, tmp);
 	make_square(map, 0, 0, -1);
 	free_map(map->original);
 	if (character_check(map))
