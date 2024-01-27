@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:23 by tasantos          #+#    #+#             */
-/*   Updated: 2024/01/26 23:33:06 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:39:35 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	around_map(t_map *map, int len, int row, int k)
 	make_square(map, 0, 0, -1);
 	free_map(map->original);
 	if (character_check(map))
-		clean_before_exit("Wrong character inside map", 1);
+		clear_character(tmp, "Wrong character inside map", 1, map);
 	if (night_watcher(map))
 		clear_watcher(tmp, "Invalid Map must be arround Walls", 1, map);
 	free (tmp);

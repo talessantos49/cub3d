@@ -6,7 +6,7 @@
 /*   By: tasantos <tasantos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:56:50 by asoler            #+#    #+#             */
-/*   Updated: 2024/01/26 20:53:32 by tasantos         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:39:19 by tasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ void	clear_texture(t_map *map)
 		free(map->we_texture);
 	if (map->ea_texture)
 		free(map->ea_texture);
+}
+
+void	clear_character(char *str, char *line, int error, t_map *map)
+{
+	free(str);
+	free(map->ea_texture);
+	free(map->so_texture);
+	free(map->no_texture);
+	free(map->we_texture);
+	clean_map_map(map);
+	free_all_parser(map);
+	clean_before_exit(line, error);
 }
